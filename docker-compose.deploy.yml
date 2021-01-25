@@ -1,0 +1,43 @@
+# https://docs.docker.com/compose/compose-file/
+
+version: '3'
+
+services:
+  nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - static-files:/static-files
+      - media-files:/media-files
+      - /etc/letsencrypt:/etc/letsencrypt
+      - frontend:/frontend
+
+  backend:
+    image: registry.gitlab.propulsion-home.ch/full-stack/batch-14-november-2020/final-projects/taxjungle/taxjungle:latest
+    restart: always
+    command: 'sh /scripts/prod.sh'
+    env_file:
+      - ./envs/prod.env
+    volumes:
+      - static-files:/static-files
+      - media-files:/media-files
+      - frontend:/frontend/build
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    env_file:
+      - ./envs/prod.env
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres:
+  static-files:
+  media-files:
+  frontend:
