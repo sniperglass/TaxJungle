@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom"
-import DefaultComponent from "./defaultComponent";
+import  Home  from "../components/Home";
 
 const Routes = (props) => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route exact path="/" component={DefaultComponent} />
+                <Route exact path="/" component={Home} />
             </Switch>
         </BrowserRouter>
     )
