@@ -1,22 +1,14 @@
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom"
-import { withAuth } from "../HOC/index"
-import SignIn from "../components/Landing/SignIn/index"
-import SignUp from "../components/Landing/SignUp/index"
-import Posts from "../components/Posts/index"
+import DefaultComponent from "./defaultComponent";
 
-const Routing = (props) => {
+const Routes = (props) => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route exact path="/">{props.authorized ? <Redirect to="/posts" /> : <SignIn />}</Route>
-                <Route exact path="/signup" component={SignUp} />
-                <Route exact path="/posts" component={withAuth(Posts)} />
-                <Route exact path="/posts/liked" component={withAuth(Posts)} />
-                <Route exact path="/posts/friends" component={withAuth(Posts)} />
-                <Route exact path="/posts/follow" component={withAuth(Posts)} />
+                <Route exact path="/" component={DefaultComponent} />
             </Switch>
         </BrowserRouter>
     )
 }
 
-export default Routing
+export default Routes
