@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_framework_simplejwt import views as jwt_views
-from apps.registration_profile.views.token_views import TokenObtainView
+from apps.authentication.views.token_views import TokenObtainView
 
 urlpatterns = [
     path('', TokenObtainView.as_view()),

@@ -1,7 +1,6 @@
 from rest_framework import generics, response, status
 from django.contrib.auth import get_user_model
-from apps.registration_profile.serializers.registration_serializer import \
-    RegistrationSerializer, \
+from apps.authentication.serializers.registration_serializers import RegistrationSerializer, \
     RegistrationValidationSerializer
 from apps.user.serializer import UserSerializer
 from rest_framework.permissions import AllowAny
@@ -12,8 +11,7 @@ User = get_user_model()
 
 class RegistrationView(generics.GenericAPIView):
     """
-    Create an inactive user with email info only and send the user
-    an email with a validation code.
+    Create an inactive user with email info only and send the user an email with a validation code.
     """
     queryset = User
     serializer_class = RegistrationSerializer
@@ -35,17 +33,11 @@ class RegistrationValidationView(generics.GenericAPIView):
     permission_classes = [AllowAny]
 
     def get_object(self):
-        return generics.get_object_or_404(User.objects.all(),
-                                          email=self.request.data.get('email'))
+        return generics.get_object_or_404(User.objects.all(), email=self.request.data.get('email'))
 
     @swagger_auto_schema(responses={status.HTTP_200_OK: UserSerializer})
     def put(self, request, *args, **kwargs):
         serializer = self.get_serializer(self.get_object(), data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return response.Response(
-            data=UserSerializer(
-                self.get_object()
-            ).data,
-            status=status.HTTP_200_OK
-        )
+        return response.Response(data=UserSerializer(self.get_object()).data, status=status.HTTP_200_OK)

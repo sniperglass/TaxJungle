@@ -1,6 +1,6 @@
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import status
-from apps.registration_profile.serializers.token_serializer import TokenObtainSerializer, TokenObtainResponseSerializer
+from apps.authentication.serializers.token_serializers import TokenObtainSerializer, TokenObtainResponseSerializer
 from django.utils.decorators import method_decorator
 from drf_yasg.utils import swagger_auto_schema
 

@@ -1,4 +1,4 @@
-from apps.registration_profile.serializers.registration_serializer import RegistrationSerializer, \
+from apps.authentication.serializers.registration_serializers import RegistrationSerializer, \
     RegistrationValidationSerializer
 from django.contrib.auth import get_user_model
 

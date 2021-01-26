@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model, password_validation
 from uuid import uuid4
-from apps.registration_profile.models import CODE_LENGTH
+from apps.authentication.models import CODE_LENGTH
 
 User = get_user_model()
 
@@ -60,7 +60,4 @@ class RegistrationValidationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email', 'code', 'username', 'location', 'password', 'password_repeat']
-
-
-
+        fields = ['email', 'username', 'first_name', 'last_name', 'code', 'password', 'password_repeat']

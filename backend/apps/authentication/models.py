@@ -30,6 +30,7 @@ class RegistrationProfile(models.Model):
         return f'Registration profile {self.user}'
 
 
+# Automatically create a registration profile for and send an email with the validation code to newly registered user
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_registration_profile(sender, instance, **kwargs):
     profile, created = RegistrationProfile.objects.get_or_create(user=instance)

@@ -20,8 +20,6 @@ from django.conf.urls.static import static
 from django.conf import settings
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-from rest_framework_simplejwt import views as jwt_views
-
 
 # Documentation configuration
 schema_view = get_schema_view(
@@ -42,17 +40,15 @@ api_patterns = [
     # Documentation
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 
-    #Registration
-    path('auth/token/', include('apps.registration_profile.urls.token_urls')),
-    path('auth/registration/', include('apps.registration_profile.urls.registration_urls')),
-    path('auth/password-reset/', include('apps.registration_profile.urls.password_reset_urls')),
-
+    # Authentication
+    path('auth/token/', include('apps.authentication.urls.token_urls')),
+    path('auth/registration/', include('apps.authentication.urls.registration_urls')),
+    path('auth/password-reset/', include('apps.authentication.urls.password_reset_urls')),
 ]
 
 urlpatterns = [
     path('backend/admin/', admin.site.urls),
     path('backend/api/', include(api_patterns)),
-
 ]
 
 # Serving static files during development

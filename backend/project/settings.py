@@ -60,7 +60,7 @@ INSTALLED_APPS = [
 
     # Own apps
     'apps.user',
-    'apps.registration_profile',
+    'apps.authentication',
 
 ]
 

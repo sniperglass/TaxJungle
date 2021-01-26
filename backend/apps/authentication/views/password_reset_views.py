@@ -1,6 +1,6 @@
 from rest_framework import generics, response, status
 from django.contrib.auth import get_user_model
-from apps.registration_profile.serializers.password_reset_serializer import PasswordResetSerializer, \
+from apps.authentication.serializers.password_reset_serializers import PasswordResetSerializer, \
     PasswordResetValidationSerializer
 from rest_framework.permissions import AllowAny
 from django.core.mail import send_mail
