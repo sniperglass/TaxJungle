@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     'drf_yasg',
 
     # Own apps
+    'apps.user',
+    'apps.registration_profile',
 
 ]
 
@@ -107,7 +109,7 @@ DATABASES = {
 
 # Custom user model
 # https://docs.djangoproject.com/en/3.1/topics/auth/customizing/#substituting-a-custom-user-model
-# AUTH_USER_MODEL = "user.User"  # Uncomment after User app has been implemented
+AUTH_USER_MODEL = "user.User"  # Uncomment after User app has been implemented
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
