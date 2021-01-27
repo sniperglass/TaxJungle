@@ -44,6 +44,8 @@ api_patterns = [
     path('auth/token/', include('apps.authentication.urls.token_urls')),
     path('auth/registration/', include('apps.authentication.urls.registration_urls')),
     path('auth/password-reset/', include('apps.authentication.urls.password_reset_urls')),
+
+    path('users/', include('apps.user.urls'))
 ]
 
 urlpatterns = [
