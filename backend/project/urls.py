@@ -39,6 +39,13 @@ schema_view = get_schema_view(
 api_patterns = [
     # Documentation
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+
+    # Authentication
+    path('auth/token/', include('apps.authentication.urls.token_urls')),
+    path('auth/registration/', include('apps.authentication.urls.registration_urls')),
+    path('auth/password-reset/', include('apps.authentication.urls.password_reset_urls')),
+
+    path('users/', include('apps.user.urls'))
 ]
 
 urlpatterns = [
