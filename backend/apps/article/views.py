@@ -1,6 +1,6 @@
 from rest_framework.response import Response
 from rest_framework.generics import ListCreateAPIView, CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView, \
-    GenericAPIView
+    GenericAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAdminUser, AllowAny, IsAuthenticated
 
 from apps.article.models import Article
@@ -54,4 +54,12 @@ class ToggleArticle(GenericAPIView):
         else:
             article.liked_by.add(user)
         return Response(self.get_serializer(article).data)
+
+
+class SingleArticle(RetrieveAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+    lookup_url_kwarg = 'article_id'
+    permission_classes = [IsAuthenticated]
+
 

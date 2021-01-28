@@ -8,8 +8,10 @@ User = get_user_model()
 class Article(models.Model):
     content = models.CharField(max_length=3000)
     created = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, related_name='user_article', on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, related_name='user_article',
+                             on_delete=models.SET_NULL, null=True)
     liked_by = models.ManyToManyField(to=User, verbose_name='liked by', related_name='liked_article', blank=True)
+    shared_by = models.ManyToManyField(to=User, verbose_name='shared_by', related_name='share_article', blank=True)
 
     def __str__(self):
-        return f'Post {self.pk} by {self.user}'
+        return f'Post {self.pk} by {self.user.username}'
