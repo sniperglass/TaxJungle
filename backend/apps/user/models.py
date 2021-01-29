@@ -11,6 +11,7 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
     email = models.EmailField(unique=True)
+    username = models.CharField(max_length=30, unique=True)
     first_name = models.CharField(max_length=80)
     last_name = models.CharField(max_length=80)
     location = models.CharField(max_length=80)
@@ -20,4 +21,4 @@ class User(AbstractUser):
 
 
 def __str__(self):
-    return self.usename
+    return self.username
