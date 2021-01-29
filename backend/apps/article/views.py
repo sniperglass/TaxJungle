@@ -14,6 +14,9 @@ class ArticleCreateView(CreateAPIView):
     serializer_class = ArticleSerializer
     permission_classes = [IsAdminUser]
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
 
 class ListArticleView(ListAPIView):
     """

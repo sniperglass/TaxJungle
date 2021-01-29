@@ -16,5 +16,6 @@ class ShareView(CreateAPIView):
         data['user'] = self.request.user.id
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
+        serializer.save()
         #self.perform_create(serializer)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
