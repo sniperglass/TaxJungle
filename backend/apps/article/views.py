@@ -1,8 +1,7 @@
 from rest_framework.response import Response
-from rest_framework.generics import ListCreateAPIView, CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView, \
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView, \
     GenericAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAdminUser, AllowAny, IsAuthenticated
-
 from apps.article.models import Article
 from apps.article.serializer import ArticleSerializer
 
@@ -41,7 +40,7 @@ class UpdateDeleteArticleView(RetrieveUpdateDestroyAPIView):
 
 class ToggleArticle(GenericAPIView):
     """
-    Like/Unlike Article (patch method)
+    Like/Dislike Article (patch method)
     """
     queryset = Article
     serializer_class = ArticleSerializer
@@ -60,9 +59,10 @@ class ToggleArticle(GenericAPIView):
 
 
 class SingleArticle(RetrieveAPIView):
+    """
+    Get single article
+    """
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     lookup_url_kwarg = 'article_id'
     permission_classes = [IsAuthenticated]
-
-

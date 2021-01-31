@@ -7,7 +7,6 @@ User = get_user_model()
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
-    # Create user
     def create(self, validated_data):
         user = User.objects.create(
             email=validated_data.get('email'),
