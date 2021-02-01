@@ -7,7 +7,7 @@ from apps.article_category.models import ArticleCategory
 class Article(models.Model):
     content = models.CharField(max_length=3000)
     title = models.CharField(max_length=50, blank=True, null=True)
-    article_category = models.ForeignKey(to=ArticleCategory, related_name='article_category',
+    article_category = models.ForeignKey(to=ArticleCategory, related_name='article',
                                          blank=True, null=True, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, related_name='user_article',
