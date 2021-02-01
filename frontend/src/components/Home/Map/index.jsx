@@ -288,7 +288,7 @@ const Map = () => {
             .attr("width", axisWidth)
             .attr("height", axisHeight)
             .style("rx", "8px")
-            .style("fill", Theme.backgrounds.greyLight)  // TODO: Use global style variable!
+            .style("fill", Theme.backgrounds.greyLight)
 
         // Draw color gradient
         d.append("linearGradient").attr("id", "axis").selectAll("stop")
