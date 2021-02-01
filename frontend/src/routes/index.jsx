@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom"
 import  Home  from "../components/Home";
 import  TaxDetailsModal  from "../components/Home/TaxDetailsModal";
 import  BlogOverview from '../components/BlogOverview';
-import  BlogPage from '../components/BlogOverview/BlogPage';
+import  BlogPage from '../components/BlogPage';
 
 const Routes = (props) => {
     return (

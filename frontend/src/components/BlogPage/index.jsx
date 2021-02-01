@@ -1,10 +1,10 @@
 import React, { useState} from 'react';
 import {Link} from 'react-router-dom';
 //img
-import taxes3 from '../../../assets/categories/taxes3.jpg';
+import taxes3 from '../../assets/categories/taxes3.jpg';
 
-import BlogHeaderComponent from '../../BlogOverview/BlogHeaderComponent';
-import BlogCardComponent from '../../BlogOverview/BlogCardComponent';
+import BlogHeaderComponent from '../BlogOverview/BlogHeaderComponent';
+import BlogCardComponent from '../BlogOverview/BlogCardComponent';
 
 //css
 import {BlogPageStyle} from '../BlogPage/styles';
