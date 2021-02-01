@@ -1,8 +1,8 @@
 import { MapStyle } from "./styles";
 import { cantons, colors, fetchTaxData } from "./utils"
 import { useRef, useEffect } from "react"
-import * as d3 from "d3v4"
-import * as topojson from "topojson-client";
+import * as d3 from "d3"
+import * as topojson from "topojson-client"
 
 
 const Map = () => {
@@ -24,16 +24,34 @@ const Map = () => {
     // Map projection, scale factor and path
     let projection, scaleFactor = 7.5, path
 
+    // Fetch tax data, prepare svg and draw map
+    useEffect(() => {
+        fetchTaxData()
+            .then(result => {
+                if (result) {
+                    setupSVG()
+                    drawMap(result)
+                }
+            })
+    })
+
     const setupSVG = () => {
+        console.log("Setup SVG")
+
         // Add svg container to MapStyle div
         svg = d3.select(mapRef.current).append("svg")
             .attr("width", mapWidth)
             .attr("height", mapHeight)
 
-        // Add rect for background
+        // Add rect for background with reset click handler
         b = svg.append('rect')
             .attr("width", mapWidth)
             .attr("height", mapHeight)
+            .style("fill", "transparent")
+            .on("click", function(e) {
+                e.preventDefault()
+                colorizeCantons()
+            })
 
         // Add group for municipalities
         m = svg.append("g")
@@ -47,29 +65,32 @@ const Map = () => {
 
         // Add div for hover tooltip
         tooltip = d3.select(mapRef.current).append("div")
-            .attr("class", "tooltip hidden")
+            .attr("id", "tooltip")
+            .attr("class", "hidden")
 
         // Define zoom and pan behaviour
-        const zoomed = () => {
-            m.selectAll("path")
-                .attr("transform", d3.event.transform)
-            c.selectAll("path")
-                .attr("transform", d3.event.transform)
-        }
-        const zoomer = d3.zoom()
+        const zoom = d3.zoom()
             .scaleExtent([1, 5])
-            .on("zoom", zoomed)
-        svg.call(zoomer)
+            .on("zoom", function(e) {
+                m.selectAll("path")
+                    .attr("transform", e.transform)
+                c.selectAll("path")
+                    .attr("transform", e.transform)
+            })
+        svg.call(zoom)
     }
 
     const colorizeMunicipalites = (taxJSON) => {
+        console.log("Colorize municipalitizes")
+
+        // Compare tax rate of municipalty to all rates in given canton
+        const rates = taxJSON.map(m => parseInt(m.satz * 10000))
+        const lowest = rates.sort((a, b) => a - b)[0]
+        const heighest = rates.sort((a, b) => a - b)[rates.length - 1]
+        const range = heighest - lowest
+        const interval = Math.round(range / (Object.keys(colors).length))
+
         for (let municipality of taxJSON) {
-            // Compare tax rate of municipalty to all rates in given canton
-            const rates = taxJSON.map(m => parseInt(m.satz * 10000))
-            const lowest = rates.sort((a, b) => a - b)[0]
-            const heighest = rates.sort((a, b) => a - b)[rates.length - 1]
-            const range = heighest - lowest
-            const interval = Math.round(range / (Object.keys(colors).length))
             const rate = (municipality.satz * 10000).toFixed(2)
 
             // Set municipalty fill color depending on it's rate
@@ -102,6 +123,8 @@ const Map = () => {
     }
 
     const colorizeCantons = () => {
+        console.log("Colorize cantons")
+
         // Get all cantons average rates
         const average_rates = []
         c.selectAll(".canton-boundaries").each(function(d) {  average_rates.push(parseInt(d3.select(this).attr("average_rate"))) })
@@ -113,6 +136,7 @@ const Map = () => {
         // Set cantons fill color depending on it's average tax rate
         for (let canton of Object.keys(cantons)) {
             const average_rate = c.select(`.canton-boundaries.c${canton}`).attr("average_rate")
+
             c.select(`.canton-boundaries.c${canton}`)
                 .attr("style", function(d) {
                     switch (true) {
@@ -141,16 +165,9 @@ const Map = () => {
         }
     }
 
-    const drawBackground = () => {
-        // Add click handler for resetting map view
-        b.attr("fill", "transparent")
-            .on("click", function() {
-                colorizeCantons()
-                d3.event.stopPropagation()
-            })
-    }
-
     const drawAxis = (taxJSON) => {
+        console.log("Draw axis")
+
         // Draw background
         a.append("rect")
             .attr("x", "-20px")
@@ -196,7 +213,7 @@ const Map = () => {
         const axis = d3.axisBottom(scale)
             .tickSize(axisInnerHeight)
             .tickPadding(10)
-            .tickFormat(d3.format(".1%"))
+            .tickFormat(d3.format(".2%"))
             .tickValues(tickValues)
 
         a.attr("transform", `translate(${axisMarginLeft}, ${mapHeight - axisMarginBottom})`).call(axis)
@@ -210,6 +227,8 @@ const Map = () => {
     }
 
     const drawMunicipalities = (topo, taxJSON) => {
+        console.log("Draw municipalities")
+
         m.selectAll("path")
             .data(topojson.feature(topo, topo.objects.municipalities).features)
             .enter()
@@ -218,8 +237,7 @@ const Map = () => {
             .attr("class", function(d) {
                 return `municipality-boundaries m${d.id}`
             })
-            .on('mouseover', function(d) {
-                // Add active css class
+            .on('mouseover', function(e, d) {
                 d3.select(this)
                     .classed("active",true)
                 // Display tooltip
@@ -227,18 +245,18 @@ const Map = () => {
                 if (mun) {
                     const rate = (mun.satz * 100).toFixed(2)
                     tooltip.classed('hidden', false)
-                        .attr('style', 'left:' + (d3.event.pageX - 80) +'px; top:' + (d3.event.pageY + 50) + 'px')
-                        .html(`${mun.gemeinde} ${rate}%`);
+                        .attr('style', 'left:' + (e.pageX - 80) +'px; top:' + (e.pageY + 50) + 'px')
+                        .html(`${mun.gemeinde} ${rate}%`)
                 }
             })
             .on('mouseout', function(d) {
-                // Remove active css class
                 d3.select(this)
                     .classed("active",false)
                 // Hide tooltip
                 tooltip.classed('hidden', true)
             })
-            .on("click", function(d) {
+            .on("click", function(e, d) {
+                e.preventDefault()
                 // TODO: Trigger tax detail modal display
             })
 
@@ -246,6 +264,8 @@ const Map = () => {
     }
 
     const drawCantons = (topo, taxJSON) => {
+        console.log("Draw cantons")
+
         c.selectAll("path")
             .data(topojson.feature(topo, topo.objects.cantons).features)
             .enter()
@@ -261,7 +281,7 @@ const Map = () => {
                 const average_rate = parseInt(average_satz * 10000)
                 return average_rate
             })
-            .on('mouseover', function(d) {
+            .on('mouseover', function(e, d) {
                 // Add active css class
                 d3.select(this)
                     .classed("active",true)
@@ -272,19 +292,18 @@ const Map = () => {
                 const average_satz = muns.map(m => m.satz).reduce((a, b) => a + b) / muns.length
                 const average_rate = (average_satz * 100).toFixed(2)
                 tooltip.classed('hidden', false)
-                    .attr('style', 'left:' + (d3.event.pageX - 80) +'px; top:' + (d3.event.pageY + 50) + 'px')
+                    .attr('style', 'left:' + (e.pageX - 80) +'px; top:' + (e.pageY + 50) + 'px')
                     .html(`${cantonName} ${average_rate}% (⌀)`);
                 })
             .on('mouseout', function(d) {
-                // Remove active css class
                 d3.select(this)
                     .classed("active",false)
                 // Hide tooltip
                 tooltip.classed('hidden', true)
             })
-            .on('click', function(d) {
+            .on('click', function(e, d) {
+                e.preventDefault()
                 colorizeCantons()
-                // Add active css class
                 d3.select(this)
                     .attr("style", "fill: none; stroke-width: 1.5;")
             })
@@ -293,21 +312,21 @@ const Map = () => {
     }
 
     const drawMap = (taxJSON) => {
+        console.log("Draw map")
 
-        d3.json("/swiss-topo.json", function(error, topo) {
+        d3.json("/swiss-topo.json").then(function(topo) {
 
             // Set projection and path
             projection = d3.geoMercator().scale((mapWidth + mapHeight / 2) * scaleFactor).translate([mapWidth / 2, mapHeight / 2]).center(d3.geoCentroid(topojson.feature(topo, topo.objects.cantons)))
             path = d3.geoPath().projection(projection)
 
-            drawBackground()
-
             drawAxis(taxJSON)
 
             drawMunicipalities(topo, taxJSON)
-
+            
             drawCantons(topo, taxJSON)
 
+            console.log("Draw map finished")
         })
     }
 
@@ -328,17 +347,6 @@ const Map = () => {
     }
 
     d3.select(window).on('resize', resize);
-
-    // Fetch tax data, prepare svg and draw map
-    useEffect(() => {
-        fetchTaxData()
-            .then(result => {
-                if (result) {
-                    setupSVG()
-                    drawMap(result)
-                }
-            })
-    })
 
     return (
         <MapStyle ref={mapRef} />
