@@ -61,6 +61,13 @@ INSTALLED_APPS = [
     # Own apps
     'apps.user',
     'apps.authentication',
+    'apps.article',
+    'apps.comment',
+    'apps.share',
+    'apps.social_network',
+    'apps.article_category',
+    'apps.article_image',
+    'apps.article_video',
 
 ]
 

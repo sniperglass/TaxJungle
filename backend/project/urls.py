@@ -45,7 +45,10 @@ api_patterns = [
     path('auth/registration/', include('apps.authentication.urls.registration_urls')),
     path('auth/password-reset/', include('apps.authentication.urls.password_reset_urls')),
 
-    path('users/', include('apps.user.urls'))
+    path('users/', include('apps.user.urls')),
+    path('article/', include('apps.article.urls')),
+    path('article/comment/', include('apps.comment.urls')),
+    path('article/share/', include('apps.share.urls')),
 ]
 
 urlpatterns = [
