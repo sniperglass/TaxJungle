@@ -1,10 +1,11 @@
-import styled from "styled-components";
+import styled from "styled-components"
+
 
 export const MapStyle = styled.div `
   width: 80vw;  /*TODO: Change back to % when including in Home*/
   height: 80vh;  /*TODO: Change back to % when including in Home*/
   border-radius: 8px;
-  background-color: lightblue; /*Use global style variable!*/
+  background-color: ${props => props.theme.backgrounds.greyLight}; /*Use global style variable!*/
   margin: auto; /*TODO: Remove when including in Home*/
 
   .hidden {
@@ -19,10 +20,11 @@ export const MapStyle = styled.div `
     position: absolute;
     padding: 15px;
     border-radius: 8px;
-    color: #222;
-    background-color: #fff;
-    text-shadow: #f5f5f5 0 1px 0;
-  }
+    font-weight: 600;
+    color: ${props => props.theme.text.mainColor};
+    background-color: ${props => props.theme.backgrounds.greyLight};
+    box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.5);  
+}
   
   .canton-boundaries {
     stroke: black;
