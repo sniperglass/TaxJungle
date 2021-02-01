@@ -15,17 +15,19 @@ const BlogCardComponent =()=>{
 const str = ""
     return(
         <BlogCardCompStyle>
-            {/* <Link to =""> */}
+            <Link to ="/blog">
             <div className="">
                 <img src={taxes3} alt="taxes1" className="taxes1-img"/>
             </div>
-            {/* </Link> */}
+            
             <div className="text-box">
                 <p className="blog-question">What is tax deductible in Switzerland?</p>
                 <p className="author">by Credit Suisse</p>
             </div>
             <p className="readmore">read this blog</p>
-        </BlogCardCompStyle>   
+            </Link>  
+        </BlogCardCompStyle> 
+        
     )
 }
 export default BlogCardComponent;

@@ -1,15 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import Carousel from 'react-elastic-carousel';
 //img
 /* import filter from '../../assets/icons/filter.svg'
 import search from '../../assets/icons/search.svg'
-import location from '../../assets/icons/location.svg' */
-import purple_background2 from '../../assets/purple_background2.jpg';
-import purple_background6 from '../../assets/purple_background6.jpg';
-import purple_background7 from '../../assets/purple_background7.jpg';
-import purple_background8 from '../../assets/purple_background8.jpeg';
-import purple_background9 from '../../assets/purple_background9.jpeg';
-import purple_background11 from '../../assets/purple_background11.jpg';
+*/
 
 import BlogHeaderComponent from '../BlogOverview/BlogHeaderComponent';
 import BlogCardComponent from './BlogCardComponent';
@@ -23,15 +18,22 @@ const BlogOverview =()=>{
         <BlogOverviewStyle>
                 <h1 className="title">Keen Blog</h1>
                 <BlogHeaderComponent />
-                
+               
             <div className="main-container">
-                <div className="card-box">
+            <Carousel itemsToShow={3} /* enableAutoPlay="true" */> 
                     <BlogCardComponent />
                     <BlogCardComponent />
                     <BlogCardComponent />
-                </div>
+                    <BlogCardComponent />
+                    <BlogCardComponent />
+                    <BlogCardComponent />
+                    <BlogCardComponent />
+                    <BlogCardComponent />
+                    <BlogCardComponent />
+            </Carousel>
                 <div className="back-img"></div>
             </div>
+            
             
         </BlogOverviewStyle>
         
