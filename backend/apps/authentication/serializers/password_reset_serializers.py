@@ -5,7 +5,6 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-# Only used for parameter in yasg docs
 class PasswordResetSerializer(RegistrationSerializer):
     def create(self, validated_data):
         pass
