@@ -15,15 +15,16 @@ const Map = () => {
     const firstRender = useRef(false)
     useEffect(() => {
         if (!firstRender.current) {
-            // Dispatch taxes fetch, setup svg and draw map (only after mounting)
-            dispatch(fetchTaxes())
+            // Dispatch taxes fetch, setup svg, draw map and axis (only on mounting)
             setupSVG()
+            dispatch(fetchTaxes()).then(result => { if (result) {drawAxis()} })
             drawMap()
             firstRender.current = true
             return
         }
-        // Update map on state changes in taxes (execpt after mounting)
+        // Update map and axis on state changes in taxes (execpt on mounting)
         updateMap()
+        updateAxis()
     }, [taxes])
 
     // Reference to main div in MapStyle
@@ -44,6 +45,9 @@ const Map = () => {
     const colorMultiplier = 10000
 
     const setupSVG = () => {
+        // Remove existing elements
+        d3.select(mapRef.current).selectAll("svg").remove()
+
         // Add svg container to MapStyle div
         const svg = d3.select(mapRef.current).append("svg")
             .attr("width", mapWidth)
@@ -57,7 +61,6 @@ const Map = () => {
             .style("pointer-events", "visible")
             .on("click", function(e) {
                 e.preventDefault()
-                dispatch(fetchTaxes("einkommen1=500000&jahrgang1=1990&zivilstand=0&kinder=0&kirche=0&plz=0")) // TODO: Remove again after testing!
                 colorizeCantons()
             })
 
@@ -134,7 +137,6 @@ const Map = () => {
     const updateMap = () => {
         updateMunicipalities()
         updateCantons()
-        drawAxis()
     }
 
     const updateMunicipalities = () => {
@@ -281,6 +283,9 @@ const Map = () => {
     }
 
     const drawAxis = () => {
+        // Position axis
+        d3.select(".axis").attr("transform", `translate(${axisMarginLeft}, ${mapHeight - axisMarginBottom})`)
+
         // Draw background
         d3.select(".axis").append("rect")
             .attr("x", "-20px")
@@ -297,13 +302,14 @@ const Map = () => {
             .append("stop")
             .attr("offset", (d, i) => (d * (100 / Object.values(colors).length)) + "%")
             .attr("stop-color", (d, i) => `${Object.values(colors)[i]}`)
-
+         
         d3.select(".axis").append("rect")
             .attr("width", axisInnerWidth)
             .attr("height", axisInnerHeight)
             .style("fill", "url(#axis)")
+    }
 
-        // Draw scale
+    const updateAxis = () => {
         const rates = taxes.map(m => m.satz)
         const scaleMin = d3.min(rates)
         const scaleMax = d3.max(rates)
@@ -328,11 +334,10 @@ const Map = () => {
             .tickFormat(d3.format(".2%"))
             .tickValues(tickValues)
 
-        d3.selectAll(".axis").attr("transform", `translate(${axisMarginLeft}, ${mapHeight - axisMarginBottom})`).call(axis)
+        d3.select(".axis").call(axis)
 
         d3.selectAll(".axis .domain, .axis .tick line")
             .attr("stroke", Theme.text.secondaryColor)
-
         d3.selectAll(".axis .tick text")
             .style("font-size", "12px")
             .style("fill", Theme.text.secondaryColor) 
