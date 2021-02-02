@@ -2,11 +2,9 @@ import styled from "styled-components"
 
 
 export const MapStyle = styled.div `
-  width: 80vw;  /*TODO: Change back to % when including in Home*/
-  height: 80vh;  /*TODO: Change back to % when including in Home*/
+  width: 100%; 
+  height: 100%; 
   border-radius: 8px;
-  background-color: ${props => props.theme.backgrounds.greyLight}; /*Use global style variable!*/
-  margin: auto; /*TODO: Remove when including in Home*/
 
   .hidden {
     display: none;

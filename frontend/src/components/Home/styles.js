@@ -11,6 +11,18 @@ align-items: center;
 background-color:${props => props.theme.backgrounds.greyLight};
 /* border: 1px solid red; */
 
+.map-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* background-color: green; */
+}
+
 .main-content {
     display: flex;
     height: 85%;
@@ -32,12 +44,15 @@ background-color:${props => props.theme.backgrounds.greyLight};
     font-size: 28px;
     font-weight: 300;
     color:${props => props.theme.text.mainColor};
+    z-index: 1;
+    pointer-events: none;
     /* border: 1px solid green; */
 }
 .search-wrapperbox {
     display: flex;
     flex-direction: row;
     padding-top: 25px;
+    z-index: 1;
     /* border: 1px solid orange; */
 }
 
@@ -96,6 +111,10 @@ background-color:${props => props.theme.backgrounds.greyLight};
     align-items: flex-end;
     justify-content: space-between;
     /* border: 1px solid red; */
+
+    button, p {
+        z-index: 1;
+    }
 }
 
 .config-btn {
@@ -103,6 +122,7 @@ background-color:${props => props.theme.backgrounds.greyLight};
     width: 50px;
     border: none;
     outline: none;
+    z-index: 1;
 }
 
 .config-box {
@@ -110,8 +130,7 @@ background-color:${props => props.theme.backgrounds.greyLight};
     flex-direction: column;
     align-items: flex-end;
     width: 100px;
-    /* border: 1px solid yellow; */
-    
+    /* border: 1px solid yellow; */   
 }
 
 .category {
@@ -129,8 +148,12 @@ footer {
     display: flex;
     width: 80%;
     justify-content: space-between;
-    /* border: 1px solid red; */
     padding-bottom: 50px;
+    /* border: 1px solid red; */
+
+    div > * {
+        z-index: 1;
+    }
 }
 
 .footer-bar-left {

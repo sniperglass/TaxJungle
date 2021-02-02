@@ -9,10 +9,12 @@ import { fetchTaxes } from "../../../store/actions/taxesActions"
 
 
 const Map = () => {
+    // <-- React -->
     const taxes = useSelector(state => state.taxesReducer.taxes)
     const dispatch = useDispatch()
-
+    const mapRef = useRef(null)
     const firstRender = useRef(false)
+
     useEffect(() => {
         if (!firstRender.current) {
             // Dispatch taxes fetch, setup svg, draw map and axis (only on mounting)
@@ -27,19 +29,17 @@ const Map = () => {
         updateAxis()
     }, [taxes])
 
-    // Reference to main div in MapStyle
-    const mapRef = useRef(null)
-
+    // <--- D3 --->
     // SVG dimensions (must be same as in MapStyle div)
-    let mapWidth = window.innerWidth * 0.8, mapHeight = window.innerHeight * 0.8
+    let mapWidth = window.innerWidth, mapHeight = window.innerHeight
 
     // Axis dimensions
     const axisWidth = 345, axisHeight = 75
     const axisInnerWidth = 300, axisInnerHeight = 15
-    const axisMarginLeft = 25, axisMarginBottom = axisHeight - axisInnerHeight
+    const axisMarginLeft = 150, axisMarginBottom = axisHeight - axisInnerHeight + 100
 
     // Map projection, scale factor and path
-    let projection, scaleFactor = 7.5, path
+    let projection, scaleFactor = 5.5, path
 
     // Multiplier applied to tax rates for better color distribution
     const colorMultiplier = 10000
@@ -336,8 +336,10 @@ const Map = () => {
 
         d3.select(".axis").call(axis)
 
-        d3.selectAll(".axis .domain, .axis .tick line")
-            .attr("stroke", Theme.text.secondaryColor)
+        d3.selectAll(".axis .domain")
+            .style("stroke", "none")
+        d3.selectAll(".axis .tick line")
+            .style("stroke", Theme.text.secondaryColor)
         d3.selectAll(".axis .tick text")
             .style("font-size", "12px")
             .style("fill", Theme.text.secondaryColor) 

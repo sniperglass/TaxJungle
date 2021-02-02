@@ -1,17 +1,20 @@
-import React from 'react';
-
 //img
 import filter from '../../assets/icons/filter.svg'
 import search from '../../assets/icons/search.svg'
 import location from '../../assets/icons/location.svg'
 
 //css
-import {HomeStyle} from '../Home/styles';
+import { HomeStyle } from '../Home/styles';
+
+//components
+import Map from "./Map"
+
 
 const Home =()=>{
 
     return(
         <HomeStyle>
+            <div className="map-container"><Map /></div>
             <div className="main-content">
                 <div className="title-search-box">
                     <div className="main-title">
@@ -26,7 +29,7 @@ const Home =()=>{
                     </div>
                 </div>
                 <div className="right-config-glimpse">
-                    <button type="submit" className="config-btn"><img src={filter} height="50px" className="filter" alt="manage config"></img></button>
+                    <button type="submit" className="config-btn"><img src={filter} height="50px" alt="manage config"></img></button>
                     <div className="config-box">
                         <p className="category">Income</p>
                         <p className="chosen-by-user">CHF 100'000</p>
@@ -57,8 +60,7 @@ const Home =()=>{
                     <a href="https://taxjungle.ch/ch-en/data-protection">Privacy Policy</a>
                     <a href="https://taxjungle.ch/ch-en/about">We are Keen</a>
                 </div>
-            </footer>
-            
+            </footer> 
         </HomeStyle>
         
     )
