@@ -27,10 +27,10 @@ export const MapStyle = styled.div `
 }
   
   .canton-boundaries {
+    fill: white;
     stroke: black;
     stroke-width: 0.5;
     opacity: 80%;
-    fill: white
   }
 
   .canton-boundaries.active {

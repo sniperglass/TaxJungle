@@ -1,7 +1,7 @@
 import { combineReducers } from "redux"
-import defaultReducer from "./defaultReducer";
+import taxesReducer from "./taxesReducer"
 
 
 export default combineReducers({
-    defaultReducer
+    taxesReducer
 })

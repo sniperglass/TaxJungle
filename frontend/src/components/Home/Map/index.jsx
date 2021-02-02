@@ -1,12 +1,31 @@
 import { MapStyle } from "./styles"
 import { Theme } from "../../../styles/index"
-import { cantons, colors, fetchTaxData } from "./utils"
-import { useRef, useEffect } from "react"
+import { cantons, colors } from "./constants"
 import * as d3 from "d3"
 import * as topojson from "topojson-client"
+import { useRef, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { fetchTaxes } from "../../../store/actions/taxesActions"
 
 
 const Map = () => {
+    const taxes = useSelector(state => state.taxesReducer.taxes)
+    const dispatch = useDispatch()
+
+    const firstRender = useRef(false)
+    useEffect(() => {
+        if (!firstRender.current) {
+            // Dispatch taxes fetch, setup svg and draw map (only after mounting)
+            dispatch(fetchTaxes())
+            setupSVG()
+            drawMap()
+            firstRender.current = true
+            return
+        }
+        // Update map on state changes in taxes (execpt after mounting)
+        updateMap()
+    }, [taxes])
+
     // Reference to main div in MapStyle
     const mapRef = useRef(null)
 
@@ -18,56 +37,38 @@ const Map = () => {
     const axisInnerWidth = 300, axisInnerHeight = 15
     const axisMarginLeft = 25, axisMarginBottom = axisHeight - axisInnerHeight
 
-    // SVG container and groups
-    let svg, m, c, d, a, tooltip
-
     // Map projection, scale factor and path
     let projection, scaleFactor = 7.5, path
 
-    // Multiplier for better color distribution based on taxrates
+    // Multiplier applied to tax rates for better color distribution
     const colorMultiplier = 10000
-
-    // Fetch tax data, prepare svg and draw map
-    useEffect(() => {
-        setupSVG()
-        drawMap()
-        fetchTaxData()
-            .then(result => {
-                if (result) {
-                    updateMap(result)
-                }
-            })
-    })
 
     const setupSVG = () => {
         // Add svg container to MapStyle div
-        svg = d3.select(mapRef.current).append("svg")
+        const svg = d3.select(mapRef.current).append("svg")
             .attr("width", mapWidth)
             .attr("height", mapHeight)
-
-        // Add rect for background with reset click handler
-        svg.append('rect')
+          
+        // Add rect for background (with reset click handler)
+        svg.append("rect")
             .attr("width", mapWidth)
             .attr("height", mapHeight)
             .style("fill", "none")
             .style("pointer-events", "visible")
             .on("click", function(e) {
                 e.preventDefault()
+                dispatch(fetchTaxes("einkommen1=500000&jahrgang1=1990&zivilstand=0&kinder=0&kirche=0&plz=0")) // TODO: Remove again after testing!
                 colorizeCantons()
             })
 
-        // Add group for municipalities
-        m = svg.append("g")
-
-        // Add group for cantons
-        c = svg.append("g")
-
-        // Add defs and group for axis
-        d = svg.append("defs")
-        a = svg.append("g")
+        // Add groups for map and axis
+        svg.append("g").attr("class", "municipalities")
+        svg.append("g").attr("class", "cantons")
+        svg.append("defs").attr("class", "axis-defs")
+        svg.append("g").attr("class", "axis")
 
         // Add div for hover tooltip
-        tooltip = d3.select(mapRef.current).append("div")
+        d3.select(mapRef.current).append("div")
             .attr("id", "tooltip")
             .attr("class", "hidden")
 
@@ -75,9 +76,9 @@ const Map = () => {
         const zoom = d3.zoom()
             .scaleExtent([1, 5])
             .on("zoom", function(e) {
-                m.selectAll("path")
+                d3.select(".municipalities").selectAll("path")
                     .attr("transform", e.transform)
-                c.selectAll("path")
+                d3.select(".cantons").selectAll("path")
                     .attr("transform", e.transform)
             })
         svg.call(zoom)
@@ -92,8 +93,8 @@ const Map = () => {
                 .scale((mapWidth + mapHeight / 2) * scaleFactor)
                 .translate([mapWidth / 2, mapHeight / 2])
 
-            svg.attr("width", mapWidth).attr("height", mapHeight)
-            a.attr("transform", `translate(${axisMarginLeft}, ${mapHeight - axisMarginBottom})`)
+            d3.select("svg").attr("width", mapWidth).attr("height", mapHeight)
+            d3.select(".axis").attr("transform", `translate(${axisMarginLeft}, ${mapHeight - axisMarginBottom})`)
 
             d3.selectAll("path").attr('d', path);
         }
@@ -101,15 +102,15 @@ const Map = () => {
         d3.select(window).on('resize', resize);
     }
 
-    const drawMap = (taxJSON) => {
+    const drawMap = () => {
         d3.json("/swiss-topo.json").then(function(topo) {
 
             // Set projection and path
             projection = d3.geoMercator().scale((mapWidth + mapHeight / 2) * scaleFactor).translate([mapWidth / 2, mapHeight / 2]).center(d3.geoCentroid(topojson.feature(topo, topo.objects.cantons)))
             path = d3.geoPath().projection(projection)
-
+            
             // Draw municipalities
-            m.selectAll("path")
+            d3.select(".municipalities").selectAll("path")
                 .data(topojson.feature(topo, topo.objects.municipalities).features)
                 .enter()
                 .append("path")
@@ -119,7 +120,7 @@ const Map = () => {
                 })
 
             // Draw cantons    
-            c.selectAll("path")
+            d3.select(".cantons").selectAll("path")
                 .data(topojson.feature(topo, topo.objects.cantons).features)
                 .enter()
                 .append("path")
@@ -130,53 +131,52 @@ const Map = () => {
         })
     }
 
-    const updateMap = (taxJSON) => {
-        updateMunicipalities(taxJSON)
-        updateCantons(taxJSON)
-        drawAxis(taxJSON)
+    const updateMap = () => {
+        updateMunicipalities()
+        updateCantons()
+        drawAxis()
     }
 
-    const updateMunicipalities = (taxJSON) => {
-        m.selectAll("path")
+    const updateMunicipalities = () => {
+        d3.selectAll(".municipalities path")
             .on('mouseover', function(e, d) {
-                const mun = taxJSON.filter(m => m.gemeinde_id === d.id)[0]
+                const mun = taxes.filter(m => m.gemeinde_id === d.id)[0]
                 if (!mun) { return }
                 d3.select(this)
                     .classed("active",true)
                 // Display tooltip
                 const rate = (mun.satz * 100).toFixed(2)
-                tooltip.classed('hidden', false)
+                d3.select("#tooltip").classed('hidden', false)
                     .attr('style', 'left:' + (e.pageX - 80) +'px; top:' + (e.pageY + 50) + 'px')
                     .html(`${mun.gemeinde} ${rate}%`)
-                
             })
             .on('mouseout', function(d) {
                 d3.select(this)
                     .classed("active",false)
                 // Hide tooltip
-                tooltip.classed('hidden', true)
+                d3.select("#tooltip").classed('hidden', true)
             })
             .on("click", function(e, d) {
                 e.preventDefault()
                 // TODO: Trigger tax detail modal display
             })
 
-        colorizeMunicipalites(taxJSON)
+        colorizeMunicipalites()
     }
 
-    const colorizeMunicipalites = (taxJSON) => {
+    const colorizeMunicipalites = () => {
         // Compare tax rate of municipalty to all rates in given canton
-        const rates = taxJSON.map(m => parseInt(m.satz * colorMultiplier))
+        const rates = taxes.map(m => parseInt(m.satz * colorMultiplier))
         const lowest = rates.sort((a, b) => a - b)[0]
         const heighest = rates.sort((a, b) => a - b)[rates.length - 1]
         const range = heighest - lowest
         const interval = Math.round(range / (Object.keys(colors).length))
 
         // Set fill color for municipalities depending on its tax rate
-        for (let municipality of taxJSON) {
+        for (let municipality of taxes) {
             const rate = parseInt(municipality.satz * colorMultiplier)
 
-            m.select(`.municipality-boundaries.m${municipality.gemeinde_id}`)
+            d3.select(`.municipality-boundaries.m${municipality.gemeinde_id}`)
                 .attr("style", function(d) {
                     switch (true) {
                         case (rate > heighest - interval):
@@ -204,30 +204,30 @@ const Map = () => {
         }
     }
 
-    const updateCantons = (taxJSON) => {
-        c.selectAll("path")
-            .attr("average_rate", function(d) {
+    const updateCantons = () => {
+        d3.selectAll(".cantons path")
+            .attr("averageRate", function(d) {
                 const canton = cantons[d.id]
-                const muns = taxJSON.filter(m => m.kanton_id === canton)
-                const average_rate = muns.map(m => m.satz).reduce((a, b) => a + b) / muns.length
-                return average_rate
+                const muns = taxes.filter(m => m.kanton_id === canton)
+                const averageRate = muns.map(m => m.satz).reduce((a, b) => a + b) / muns.length
+                return averageRate
             })
             .on('mouseover', function(e, d) {
                 d3.select(this)
                     .classed("active",true)
                 // Display tooltip
                 const canton = cantons[d.id]
-                const muns = taxJSON.filter(m => m.kanton_id === canton)
-                const average_rate = (d3.select(this).attr("average_rate") * 100).toFixed(2)
-                tooltip.classed('hidden', false)
+                const muns = taxes.filter(m => m.kanton_id === canton)
+                const averageRate = (d3.select(this).attr("averageRate") * 100).toFixed(2)
+                d3.select("#tooltip").classed('hidden', false)
                     .attr('style', 'left:' + (e.pageX - 80) +'px; top:' + (e.pageY + 50) + 'px')
-                    .html(`${muns[0].kanton_name} ${average_rate}% (⌀)`);
+                    .html(`${muns[0].kanton_name} ${averageRate}% (⌀)`);
                 })
             .on('mouseout', function(d) {
                 d3.select(this)
                     .classed("active",false)
                 // Hide tooltip
-                tooltip.classed('hidden', true)
+                d3.select("#tooltip").classed('hidden', true)
             })
             .on('click', function(e, d) {
                 e.preventDefault()
@@ -241,37 +241,37 @@ const Map = () => {
 
     const colorizeCantons = () => {
         // Compare average tax rate of all cantons
-        const average_rates = []
-        c.selectAll(".canton-boundaries").each(function() {  average_rates.push(parseInt(d3.select(this).attr("average_rate") * colorMultiplier)) })
-        const lowest = average_rates.sort((a, b) => a - b)[0]
-        const heighest = average_rates.sort((a, b) => a - b)[average_rates.length - 1]
+        const averageRates = []
+        d3.selectAll(".canton-boundaries").each(function() {  averageRates.push(parseInt(d3.select(this).attr("averageRate") * colorMultiplier)) })
+        const lowest = averageRates.sort((a, b) => a - b)[0]
+        const heighest = averageRates.sort((a, b) => a - b)[averageRates.length - 1]
         const range = heighest - lowest
         const interval = Math.round(range / (Object.keys(colors).length))
 
         // Set fill color for cantons depending on its average tax rate
         for (let canton of Object.keys(cantons)) {
-            const average_rate = parseInt(c.select(`.canton-boundaries.c${canton}`).attr("average_rate") * colorMultiplier)
+            const averageRate = parseInt(d3.select(`.canton-boundaries.c${canton}`).attr("averageRate") * colorMultiplier)
 
-            c.select(`.canton-boundaries.c${canton}`)
+            d3.select(`.canton-boundaries.c${canton}`)
                 .attr("style", function(d) {
                     switch (true) {
-                        case (average_rate > heighest - interval):
+                        case (averageRate > heighest - interval):
                             return `fill: ${colors.ten}`
-                        case (average_rate > heighest - interval * 2):
+                        case (averageRate > heighest - interval * 2):
                             return `fill: ${colors.nine}`
-                        case (average_rate > heighest - interval * 3):
+                        case (averageRate > heighest - interval * 3):
                             return `fill: ${colors.eight}`
-                        case (average_rate > heighest - interval * 4):
+                        case (averageRate > heighest - interval * 4):
                             return `fill: ${colors.seven}`
-                        case (average_rate > heighest - interval * 5):
+                        case (averageRate > heighest - interval * 5):
                             return `fill: ${colors.six}`
-                        case (average_rate > heighest - interval * 6):
+                        case (averageRate > heighest - interval * 6):
                             return `fill: ${colors.five}`
-                        case (average_rate > heighest - interval * 7):
+                        case (averageRate > heighest - interval * 7):
                             return `fill: ${colors.four}`
-                        case (average_rate > heighest - interval * 8):
+                        case (averageRate > heighest - interval * 8):
                             return `fill: ${colors.three}`
-                        case (average_rate > heighest - interval * 9):
+                        case (averageRate > heighest - interval * 9):
                             return `fill: ${colors.two}`
                         default:
                             return `fill: ${colors.one}`
@@ -280,9 +280,9 @@ const Map = () => {
         }
     }
 
-    const drawAxis = (taxJSON) => {
+    const drawAxis = () => {
         // Draw background
-        a.append("rect")
+        d3.select(".axis").append("rect")
             .attr("x", "-20px")
             .attr("y", "-20px")
             .attr("width", axisWidth)
@@ -291,20 +291,20 @@ const Map = () => {
             .style("fill", Theme.backgrounds.greyLight)
 
         // Draw color gradient
-        d.append("linearGradient").attr("id", "axis").selectAll("stop")
+        d3.select(".axis-defs").append("linearGradient").attr("id", "axis").selectAll("stop")
             .data([...Array(Object.keys(colors).length).keys()])
             .enter()
             .append("stop")
             .attr("offset", (d, i) => (d * (100 / Object.values(colors).length)) + "%")
             .attr("stop-color", (d, i) => `${Object.values(colors)[i]}`)
 
-        a.append("rect")
+        d3.select(".axis").append("rect")
             .attr("width", axisInnerWidth)
             .attr("height", axisInnerHeight)
             .style("fill", "url(#axis)")
 
         // Draw scale
-        const rates = taxJSON.map(m => m.satz)
+        const rates = taxes.map(m => m.satz)
         const scaleMin = d3.min(rates)
         const scaleMax = d3.max(rates)
         const scaleInterval = (scaleMax - scaleMin) / 6
@@ -328,12 +328,12 @@ const Map = () => {
             .tickFormat(d3.format(".2%"))
             .tickValues(tickValues)
 
-        a.attr("transform", `translate(${axisMarginLeft}, ${mapHeight - axisMarginBottom})`).call(axis)
+        d3.selectAll(".axis").attr("transform", `translate(${axisMarginLeft}, ${mapHeight - axisMarginBottom})`).call(axis)
 
-        a.selectAll(".domain, .tick line")
+        d3.selectAll(".axis .domain, .axis .tick line")
             .attr("stroke", Theme.text.secondaryColor)
 
-        a.selectAll(".tick text")
+        d3.selectAll(".axis .tick text")
             .style("font-size", "12px")
             .style("fill", Theme.text.secondaryColor) 
     }
