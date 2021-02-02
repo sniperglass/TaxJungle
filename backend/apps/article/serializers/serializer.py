@@ -4,6 +4,7 @@ from apps.user.serializer import UserSerializer
 from apps.article_category.serializer import ArticleCategorySerializer
 from apps.article_image.serializer import ArticleImageSerializer
 from apps.article_video.serializer import ArticleVideoSerializer
+from apps.comment.serializer import CommentSerializer
 
 
 class ArticleSerializer(serializers.ModelSerializer):
@@ -13,6 +14,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     article_category = ArticleCategorySerializer(read_only=True)
     article_image = ArticleImageSerializer(read_only=True, many=True)
     article_video = ArticleVideoSerializer(read_only=True, many=True)
+    comment = CommentSerializer(read_only=True, many=True)
 
     def get_share_counter(self, obj):
         return obj.article_share.all().count()
