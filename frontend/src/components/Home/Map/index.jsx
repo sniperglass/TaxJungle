@@ -39,7 +39,7 @@ const Map = () => {
     const axisMarginLeft = 150, axisMarginBottom = axisHeight - axisInnerHeight + 100
 
     // Map projection, scale factor and path
-    let projection, scaleFactor = 5.5, path
+    let projection, scaleFactor = 6, path
 
     // Multiplier applied to tax rates for better color distribution
     const colorMultiplier = 10000
