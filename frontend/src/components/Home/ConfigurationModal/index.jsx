@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { ConfigModalStyled } from './styles';
+import DropDown from '../../Home/DropDownMenu/index';
+
 //IMAGES
 import CloseButton from '../../../assets/icons/x-icon.svg';
 import Check from '../../../assets/icons/check.svg';
@@ -38,9 +40,6 @@ const ConfigModal = ({taxConfigurationOpenButtonHandler}) => {
         return years;
     }    
 
-    //NUMBER OF CHILDREN FIELD
-    
-
     //MARITAL STATUS FIELD
 
     const partnerOneMaritalStatusSelector = (e) => {
@@ -48,14 +47,13 @@ const ConfigModal = ({taxConfigurationOpenButtonHandler}) => {
         setPartnerOneMaritalStatus(e.target.value);
     }
 
-  
     return (
          
         <ConfigModalStyled>
                 <div className="close-button">
                     <button type="submit" className="x-closebutton" onClick={taxConfigurationOpenButtonHandler}><img src={CloseButton} className="x-button" alt=""></img></button>
                 </div>
-               
+               {/*<DropDown/>*/}
 
                 <div className="main-content">
                     <div className="main-header">
@@ -75,19 +73,19 @@ const ConfigModal = ({taxConfigurationOpenButtonHandler}) => {
                     <div className="main">
                         <input type="range" min="10000" max="1000000" value={partnerOneIncomeValue} id="slider" onChange={partnerOneIncomeSliderOnChange}/>
                     </div>                  
-                </div>
+               
 
-                {partnerOneMaritalStatus != "Single" ? 
-                    <>
-                        <div className="slidecontainer">
-                            <div className="text-n-numbers">
-                                <label className="slidecontainer-label">Gross Income (Partner 2)</label>
-                                <div className="underline">
-                                    <span className="cash-money-2">CHF</span>
-                                    <input type="text" value={partnerTwoIncomeValue} className="text-field-2" onChange={partnerTwoIncomeSliderOnChange}/>
-                                </div>
-                            </div>    
-                        </div>
+                    {partnerOneMaritalStatus != "Single" ? 
+                        <>
+                            <div className="slidecontainer">
+                                <div className="text-n-numbers">
+                                    <label className="slidecontainer-label">Gross Income (Partner 2)</label>
+                                    <div className="underline">
+                                        <span className="cash-money-2">CHF</span>
+                                        <input type="text" value={partnerTwoIncomeValue} id="text-field-2" className="text-field-2" onChange={partnerTwoIncomeSliderOnChange}/>
+                                    </div>
+                                </div>    
+                            </div>
 
                         <div className="main-2">
                             <input type="range" min="10000" max="1000000" value={partnerTwoIncomeValue} id="slider-2" onChange={partnerTwoIncomeSliderOnChange}/> 
@@ -116,8 +114,8 @@ const ConfigModal = ({taxConfigurationOpenButtonHandler}) => {
                         </div> 
                         </> 
                         : ""}
-                    </div>
-
+                   </div>
+                </div>
                 {/*Section 2*/}
                 <div className="section-2">
                     <div className="dropdown">
@@ -141,11 +139,10 @@ const ConfigModal = ({taxConfigurationOpenButtonHandler}) => {
                     <div className="dropdown">
                         <label for="Category" className="category">Church affiliation</label>
                             <select className="required" id="status" name="category">
-                                <option value="2003">Roman Catholic</option>
-                                <option value="2003">Protestant</option>
+                                <option value="Roman Catholic">Roman Catholic</option>
+                                <option value="Protestant">Protestant</option>
                                 <option value="2003">Christian Catholic</option>
                                 <option value="2003">Other/None</option>
-
                             </select>
                     </div>  
 
@@ -154,7 +151,7 @@ const ConfigModal = ({taxConfigurationOpenButtonHandler}) => {
                             </button>
                     </div>
                 </div>
-             
+               
         </ConfigModalStyled>      
     )
 }

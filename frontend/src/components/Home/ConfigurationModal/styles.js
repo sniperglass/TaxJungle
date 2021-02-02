@@ -12,7 +12,6 @@ justify-content: flex-end;
 z-index: 3;
 `;
 
-
 export const ConfigModalStyled = styled.section`
 
 width: 60vw;
@@ -57,7 +56,7 @@ background-color:${props => props.theme.backgrounds.greyLight};
 
 //SLIDER
 
-input[type=range]{
+input[type=range] {
     -webkit-appearance: none;
 }
 
@@ -94,7 +93,7 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 .main-2 {
-    width: 65%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -120,7 +119,6 @@ input[type=range]::-webkit-slider-thumb {
 .text-n-numbers {
     display: flex;
     justify-content: space-between;
-    
 }
 
 .underline {
@@ -129,7 +127,6 @@ input[type=range]::-webkit-slider-thumb {
     border-bottom: 2px solid ${props => props.theme.text.mainColor};
     width: 120px;
     text-align: right;
-
 }
 
 .text-field,
@@ -141,26 +138,22 @@ input[type=range]::-webkit-slider-thumb {
     border-bottom: none;
     text-align: right;
     width: 88px;
-   font-size: 16px;
-   font-weight: 600;
+    font-size: 16px;
+    font-weight: 600;
     color: ${props => props.theme.text.mainColor};
 }
-                
+       
 .cash-money,
 .cash-money-2 {
     color: ${props => props.theme.text.mainColor};
     font-weight: 600;    
 }
 
-
 //Section 1
 
 .section-1 {
     display: flex;
-    flex-direction: row;
-    margin-top: 50px;
-    //padding-top: -50px;
-       
+    justify-content: space-between;
 }
 
 .category,
@@ -175,26 +168,25 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 .category-2 {
-    margin-right: 42px;
+    margin-right: 45px;
 }
 
 .year-of-birth-partner-one {
-    flex-basis: 50%;
-    margin-left: 128px;
-
+    margin-top: 30px;
 }
 
 .year-of-birth-partner-two {
     display: flex;
     flex-direction: column;
-    flex-basis: 60%;
-    //margin-right: 125px;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
 .dropdown {
     display: flex;
     flex-direction: column;
-
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 .dropdown-2 {
@@ -219,6 +211,11 @@ input[type=range]::-webkit-slider-thumb {
   border-color: ${props => props.theme.text.mainColor};
 }
 
+#status option {
+    background-color: green !important;
+    font-weight: bold;
+    color: red;
+}
 
 //Section 2
 
@@ -241,12 +238,6 @@ input[type=range]::-webkit-slider-thumb {
     color: ${props => props.theme.text.mainColor};
     font-size: 12px;
     padding: 5px;
-}
-
-#status {
-    margin-right: 35px;
-    width: 300px;
-    
 }
 
 //Section 3
@@ -292,8 +283,6 @@ img {
     justify-content: space-around;
 }
 
-
-
 img {
     width: 20px;
     height: 20px;
@@ -302,12 +291,15 @@ img {
 input[type=number] {
   line-height: 30px;
   background-color:${props => props.theme.backgrounds.greyLight};
-
 }
 
 input[type=number]::-webkit-inner-spin-button {
   width: 50px;
   height: 50px;
+}
+
+.roman {
+    background-color: orange !important;
 }
 `;
 
