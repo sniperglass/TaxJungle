@@ -1,0 +1,65 @@
+# User registration by providing email, user receive email with code
+https://taxjungle.propulsion-learn.ch/backend/api/auth/registration/
+
+
+# Registration Validation, user need to fill form with code, password, etc.
+https://taxjungle.propulsion-learn.ch/backend/api/auth/registration/validation/
+
+
+# User get token while login
+https://taxjungle.propulsion-learn.ch/backend/api/auth/token/
+
+
+# Token verification
+https://taxjungle.propulsion-learn.ch/backend/api/auth/token/verify/
+
+# Password reset by providing email address
+https://taxjungle.propulsion-learn.ch/backend/api/auth/password-reset/
+
+
+# Create new article by admin only
+https://taxjungle.propulsion-learn.ch/backend/api/article/new/
+
+
+# Display list of all articles in chronological order by all users
+https://taxjungle.propulsion-learn.ch/backend/api/article/
+
+
+# Update, Display and Delete single article by admin olny
+https://taxjungle.propulsion-learn.ch/backend/api/article/<int:article_id>/
+
+
+# Like/ Dislike article by login user(patch method)
+https://taxjungle.propulsion-learn.ch/backend/api/article/like/<int:article_id>/
+
+# Display single article by login user
+https://taxjungle.propulsion-learn.ch/backend/api/article/search/<int:article_id>/
+
+
+# Create comment on single article and get list of all comments on article
+https://taxjungle.propulsion-learn.ch/backend/api/article/comment/<int:article_id>/
+
+
+# Delete comment by its owner
+https://taxjungle.propulsion-learn.ch/backend/api/article/comment/delete/<int:comment_id>/
+
+
+# Share article(need to coleect data) 
+https://taxjungle.propulsion-learn.ch/backend/api/article/share/
+
+
+# Get, Update, Delete User Profile
+https://taxjungle.propulsion-learn.ch/backend/api/users/me/
+
+
+# List of all users
+https://taxjungle.propulsion-learn.ch/backend/api/users/list/
+
+
+
+# Get single user by id
+https://taxjungle.propulsion-learn.ch/backend/api/users/<int:user_id>/
+
+
+
+

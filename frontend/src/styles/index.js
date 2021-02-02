@@ -20,6 +20,7 @@ export const Theme = {
         greyLight: "#e7e7e7",
         white: "#FFFFFF",
         hover: "#D9CEEE",
+        modal: "#E1E1E1",
     },
 
     borders: {
