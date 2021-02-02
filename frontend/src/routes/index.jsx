@@ -6,8 +6,8 @@ import BlogOverview from '../components/BlogOverview';
 import BlogPage from '../components/BlogPage';
 import BlogPageCreate from '../components/BlogPageCreate';
 import Profile from '../components/Profile';
-// import SignIn from '../components/Authentication/SignIn/index';
-// import SignUp from '../components/Authentication/SignUp/index';
+// import SignIn from '../components/Authentication/SignIn/index'
+// import SignUp from '../components/Authentication/SignUp/index'
 
 
 const Routes = (props) => {
