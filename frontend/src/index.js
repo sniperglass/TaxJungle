@@ -5,7 +5,7 @@ import store from "./store/index"
 import { ThemeProvider } from "styled-components"
 import { GlobalStyle, Theme } from "./styles/index"
 import Routes from "./routes/index"
-import { signinAction } from "./store/actions/auth";
+import { signinAction } from "./store/actions/authActions";
 
 
 // Check if user already signed-in before and if so sign-in with stored access token

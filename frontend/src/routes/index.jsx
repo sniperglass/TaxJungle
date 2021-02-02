@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom"
 import Home from "../components/Home";
-import SignIn from '../components/Authentication/SignIn/index';
-import SignUp from '../components/Authentication/SignUp/index';
+// import SignIn from '../components/Authentication/SignIn/index';
+// import SignUp from '../components/Authentication/SignUp/index';
 import TaxDetailsModal  from "../components/Home/TaxDetailsModal";
 import BlogOverview from '../components/BlogOverview';
 import BlogPage from '../components/BlogPage';
