@@ -23,7 +23,7 @@ const BlogPage =()=>{
             </ul>
             <div className="header-right-wrapper">
                 <ul className="nav-center">
-                    <Link to="/blogs"><li>my profile</li></Link>
+                    <Link to="/profile"><li>my profile</li></Link>
                     <Link to="/renting"><li>create blog</li></Link>
                 </ul> 
                 <ul className="nav-right">
