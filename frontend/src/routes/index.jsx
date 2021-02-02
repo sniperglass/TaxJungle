@@ -6,9 +6,6 @@ import  BlogPage from '../components/BlogPage';
 import  Profile from '../components/Profile';
 // import SignIn from '../components/Authentication/SignIn/index';
 // import SignUp from '../components/Authentication/SignUp/index';
-import TaxDetailsModal  from "../components/Home/TaxDetailsModal";
-import BlogOverview from '../components/BlogOverview';
-import BlogPage from '../components/BlogPage';
 import BlogPageCreate from '../components/BlogPageCreate';
 
 
