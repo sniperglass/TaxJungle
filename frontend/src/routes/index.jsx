@@ -3,6 +3,7 @@ import  Home  from "../components/Home";
 import  TaxDetailsModal  from "../components/Home/TaxDetailsModal";
 import  BlogOverview from '../components/BlogOverview';
 import  BlogPage from '../components/BlogPage';
+import  BlogPageCreate from '../components/BlogPageCreate';
 
 const Routes = (props) => {
     return (
@@ -15,6 +16,7 @@ const Routes = (props) => {
                 <Route path="/renting" component={BlogOverview} />
                 <Route path="/insurance" component={BlogOverview} />
                 <Route path="/banking" component={BlogOverview} />
+                <Route path="/create" component={BlogPageCreate} />
             </Switch>
         </BrowserRouter>
     )
