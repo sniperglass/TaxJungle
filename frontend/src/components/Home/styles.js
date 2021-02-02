@@ -1,15 +1,27 @@
 import styled from "styled-components";
 
+const setBlur = () => {
+    return `
+        -webkit-filter: blur(2px);
+        -moz-filter: blur(2px);
+        -o-filter: blur(2px);
+        -ms-filter: blur(2px);
+        filter: blur(2px);  
+    `
+}
+
 export const HomeStyle = styled.section`
 
+//position: relative;
 width: 100vw;
-height:100vh;
+height: 100vh;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 background-color:${props => props.theme.backgrounds.greyLight};
-/* border: 1px solid red; */
+
+${props => props.blur ? setBlur : ''} 
 
 .main-content {
     display: flex;
