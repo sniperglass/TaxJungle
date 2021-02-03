@@ -1,16 +1,26 @@
 import styled from "styled-components";
 
-export const HomeStyle = styled.section`
+const setBlur = () => {
+    return `
+        -webkit-filter: blur(2px);
+        -moz-filter: blur(2px);
+        -o-filter: blur(2px);
+        -ms-filter: blur(2px);
+        filter: blur(2px);  
+    `
+}
 
-width: 100vw;
-height:100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-background-color:${props => props.theme.backgrounds.greyLight};
-user-select: none;
-/* border: 1px solid red; */
+export const HomeStyle = styled.section`
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:${props => props.theme.backgrounds.greyLight};
+    user-select: none;
+    /* border: 1px solid red; */
+    ${props => props.blur ? setBlur : ''}
 
 .map-container {
     width: 100%;
@@ -126,10 +136,11 @@ user-select: none;
 .config-btn {
     height: 50px;
     width: 50px;
+    border-radius: 12px;
     border: none;
     outline: none;
     z-index: 1;
-    border-radius: 12px;
+    cursor: pointer;
 }
 
 .config-box {
@@ -193,7 +204,7 @@ footer {
     width: 50%;
     font-size: 12px;
     justify-content: space-between;
-    /* border: 1px solid green; */
     padding-right: 50px;
+    /* border: 1px solid green; */
 }
 `

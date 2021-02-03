@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 //img
 import filter from '../../assets/icons/filter.svg'
 import search from '../../assets/icons/search.svg'
@@ -5,19 +7,29 @@ import location from '../../assets/icons/location.svg'
 
 //css
 import { HomeStyle } from '../Home/styles';
+import { ConfigModalPageStyled } from '../Home/ConfigurationModal/styles'
 
 //components
 import Map from "./Map"
+import ConfigModal from '../Home/ConfigurationModal'
 
 
 const Home =()=>{
+    const [openTaxConfig, setOpenTaxConfig] = useState(false);
+
+    const taxConfigurationOpenButtonHandler = (e) => {
+        e.preventDefault();
+        setOpenTaxConfig(!openTaxConfig);
+      };
 
     return(
-        <HomeStyle>
+        <div style={{position:"relative"}}>
+        {openTaxConfig ? <ConfigModalPageStyled><ConfigModal taxConfigurationOpenButtonHandler={taxConfigurationOpenButtonHandler} /></ConfigModalPageStyled> : ""}
+        <HomeStyle blur={openTaxConfig}>
             <div className="map-container"><Map /></div>
             <div className="main-content">
                 <div className="title-search-box">
-                    <div className="main-title">
+                    <div className="main-title"> 
                         <h1>Where do you pay the lowest taxes in Switzerland?</h1>
                     </div>
                     <div className="search-wrapperbox">
@@ -29,7 +41,7 @@ const Home =()=>{
                     </div>
                 </div>
                 <div className="right-config-glimpse">
-                    <button type="submit" className="config-btn"><img src={filter} height="50px" alt="manage config"></img></button>
+                    <button type="submit" className="config-btn" onClick={taxConfigurationOpenButtonHandler}><img src={filter} height="50px" className="filter" alt="manage config"></img></button>
                     <div className="config-box">
                         <p className="category">Income</p>
                         <p className="chosen-by-user">CHF 100'000</p>
@@ -62,7 +74,7 @@ const Home =()=>{
                 </div>
             </footer> 
         </HomeStyle>
-        
+        </div>
     )
 }
 export default Home;
