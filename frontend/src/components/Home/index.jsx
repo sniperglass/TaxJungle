@@ -11,6 +11,7 @@ import {ConfigModalPageStyled} from '../Home/ConfigurationModal/styles';
 
 //importing components
 import ConfigModal from '../Home/ConfigurationModal';
+//import DropDownMenu from '../Home/DropDownMenu';
 
 
 const Home =()=>{
@@ -22,12 +23,11 @@ const Home =()=>{
       };
     
 
-    return(
+    return (
         <div style={{position:"relative"}}>
         {openTaxConfig ? <ConfigModalPageStyled><ConfigModal taxConfigurationOpenButtonHandler={taxConfigurationOpenButtonHandler} /></ConfigModalPageStyled> : ""}
 
         <HomeStyle blur={openTaxConfig}>
-
             <div className="main-content">
                 <div className="title-search-box">
                     <div className="main-title"> 
