@@ -44,7 +44,7 @@ justify-content: flex-start;
 .back-img {
     position: fixed;
     width: 100%;
-    height: 300px;
+    height: 35%;
     z-index: -1;
     bottom: 0;
     background-image: linear-gradient(to right top, #3c1e59, #4b296b, #5a357d, #694190, #794ea4);

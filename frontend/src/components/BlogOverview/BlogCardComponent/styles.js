@@ -7,7 +7,7 @@ flex-direction: column;
 align-items: center;
 width: 85%;
 max-width: 350px;
-height:500px;
+height: 450px;
 background-color: white;
 /* border: 1px solid red; */
 border-radius:3px;

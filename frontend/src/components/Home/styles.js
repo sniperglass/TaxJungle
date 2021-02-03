@@ -11,17 +11,27 @@ const setBlur = () => {
 }
 
 export const HomeStyle = styled.section`
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:${props => props.theme.backgrounds.greyLight};
+    user-select: none;
+    /* border: 1px solid red; */
+    ${props => props.blur ? setBlur : ''}
 
-//position: relative;
-width: 100vw;
-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-background-color:${props => props.theme.backgrounds.greyLight};
-
-${props => props.blur ? setBlur : ''} 
+.map-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
 
 .main-content {
     display: flex;
@@ -44,12 +54,19 @@ ${props => props.blur ? setBlur : ''}
     font-size: 28px;
     font-weight: 300;
     color:${props => props.theme.text.mainColor};
+    z-index: 1;
+    pointer-events: none;
     /* border: 1px solid green; */
 }
+
 .search-wrapperbox {
+    height: 50px;
+    width: 340px;
     display: flex;
     flex-direction: row;
-    padding-top: 25px;
+    margin-top: 25px;
+    z-index: 1;
+    pointer-events: none;
     /* border: 1px solid orange; */
 }
 
@@ -63,6 +80,7 @@ ${props => props.blur ? setBlur : ''}
     background-color:${props => props.theme.backgrounds.greyLight};
     border-radius: 8px;
     border: 1px solid ${props => props.theme.text.mainColor};
+    pointer-events: initial;
     /* border: 1px solid red; */
 }
 
@@ -77,7 +95,7 @@ ${props => props.blur ? setBlur : ''}
     font-size: 16px;
     color:${props => props.theme.text.mainColor};
     background-color:${props => props.theme.backgrounds.greyLight};
-    padding-left: 15px;
+    padding: 0 15px;
     border: none;
     outline: none;
     /* border: 1px solid yellow; */
@@ -96,6 +114,7 @@ ${props => props.blur ? setBlur : ''}
     justify-content: center;
     align-items: center;
     outline: none;
+    cursor: pointer;
     background:${props => props.theme.backgrounds.purple};
 }
 
@@ -108,13 +127,20 @@ ${props => props.blur ? setBlur : ''}
     align-items: flex-end;
     justify-content: space-between;
     /* border: 1px solid red; */
+
+    button, p {
+        z-index: 1;
+    }
 }
 
 .config-btn {
     height: 50px;
     width: 50px;
+    border-radius: 12px;
     border: none;
     outline: none;
+    z-index: 1;
+    cursor: pointer;
 }
 
 .config-box {
@@ -122,8 +148,8 @@ ${props => props.blur ? setBlur : ''}
     flex-direction: column;
     align-items: flex-end;
     width: 100px;
-    /* border: 1px solid yellow; */
-    
+    pointer-events: none;
+    /* border: 1px solid yellow; */   
 }
 
 .category {
@@ -141,8 +167,12 @@ footer {
     display: flex;
     width: 80%;
     justify-content: space-between;
-    /* border: 1px solid red; */
     padding-bottom: 50px;
+    /* border: 1px solid red; */
+
+    div > * {
+        z-index: 1;
+    }
 }
 
 .footer-bar-left {
@@ -174,7 +204,7 @@ footer {
     width: 50%;
     font-size: 12px;
     justify-content: space-between;
-    /* border: 1px solid green; */
     padding-right: 50px;
+    /* border: 1px solid green; */
 }
 `

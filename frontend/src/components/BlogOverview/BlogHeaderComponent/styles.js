@@ -67,7 +67,6 @@ background-color: white;
 
 .nav-right {
     display: flex;
-    width: 10%;
     padding-right: 20px;
     justify-content: space-between;
     /* border: 1px solid yellow; */

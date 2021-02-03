@@ -15,8 +15,9 @@ z-index: 3;
 
 export const ConfigModalStyled = styled.section`
 
-width: 60vw;
-height: 100vh;
+/* width: 60%; */
+width: 775px;
+height: 100%;
 display: flex;
 flex-direction: column;
 background-color:${props => props.theme.backgrounds.greyLight};

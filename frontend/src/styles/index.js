@@ -12,6 +12,7 @@ export const GlobalStyle = createGlobalStyle `
 export const Theme = {
     text: {
         mainColor: "#573E8C",
+        secondaryColor: "#8073A5",
         defaultSize: "16px",
     },
 

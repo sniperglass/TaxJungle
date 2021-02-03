@@ -56,13 +56,11 @@ a {
     /* border: 1px solid yellow;  */
 }
 
-
-
 .round-pic {
     display: flex;
     justify-content: flex-start;
     margin-left: 70%;
-    margin-top:100px;
+    margin-top: 20%;
     /* border: 1px solid yellow; */
 
     .blog-img {

@@ -15,7 +15,7 @@ const str = ""
             <header className="header">
                 <ul className="nav-left">
                     <img src={ leticia } className="avatar" height="35px" alt="avatar"></img>
-                    <Link to="/profile"><li>my Profile</li></Link>
+                    <Link to="/profile"><li>Profile</li></Link>
                 </ul>
                 <ul className="nav-center">
                     <Link to="/blogs"><li>Taxes</li></Link>
