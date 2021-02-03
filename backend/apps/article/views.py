@@ -1,9 +1,13 @@
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView, \
     GenericAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAdminUser, AllowAny, IsAuthenticated
 from apps.article.models import Article
 from apps.article.serializers.serializer import ArticleSerializer
+from apps.article_category.models import ArticleCategory
+from apps.article_image.models import ArticleImage
+from apps.article_video.models import ArticleVideo
 
 
 class ArticleCreateView(CreateAPIView):
@@ -13,8 +17,18 @@ class ArticleCreateView(CreateAPIView):
     serializer_class = ArticleSerializer
     permission_classes = [IsAdminUser]
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        article_category = ArticleCategory.objects.filter(id=request.data['article_category'])[0]
+        new_article = serializer.save(article_category=article_category, user=self.request.user)
+        if request.data['article_image'] != '':
+            article_image = ArticleImage(image=request.data['article_image'], article_image=new_article)
+            article_image.save()
+        if request.data['article_video'] != '':
+            article_video = ArticleVideo(video=request.data['article_video'], article_video=new_article)
+            article_video.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class ListArticleView(ListAPIView):
