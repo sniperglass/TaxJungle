@@ -6,6 +6,7 @@ import BlogOverview from '../components/BlogOverview';
 import BlogPage from '../components/BlogPage';
 import BlogPageCreate from '../components/BlogPageCreate';
 import Profile from '../components/Profile';
+import SignIn from '../components/SignIn';
 // import SignIn from '../components/Authentication/SignIn/index'
 // import SignUp from '../components/Authentication/SignUp/index'
 
@@ -24,8 +25,9 @@ const Routes = (props) => {
                 <Route exact path="/insurance" component={BlogOverview} />
                 <Route exact path="/banking" component={BlogOverview} />
                 <Route exact path="/create" component={BlogPageCreate} />
-                {/* <Route exact path="/signin" component={SignIn} />
-                <Route exact path="/signup" component={SignUp} /> */}
+                <Route exact path="/create" component={BlogPageCreate} />
+                <Route exact path="/signin" component={SignIn} />
+                {/* <Route exact path="/signup" component={SignUp} /> */}
             </Switch>
         </BrowserRouter>
     )
