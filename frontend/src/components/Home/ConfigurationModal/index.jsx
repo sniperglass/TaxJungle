@@ -59,7 +59,6 @@ const ConfigModal = ({taxConfigurationOpenButtonHandler}) => {
                     <div className="main-header">
                         <p>Tax details</p>
                     </div>
-
                     <div className="slidecontainer">
                         <div className="text-n-numbers">
                             <label className="slidecontainer-label">Gross Income (Partner 1)</label>
@@ -69,12 +68,9 @@ const ConfigModal = ({taxConfigurationOpenButtonHandler}) => {
                             </div>
                             </div> 
                     </div>
-
                     <div className="main">
                         <input type="range" min="10000" max="1000000" value={partnerOneIncomeValue} id="slider" onChange={partnerOneIncomeSliderOnChange}/>
                     </div>                  
-               
-
                     {partnerOneMaritalStatus != "Single" ? 
                         <>
                             <div className="slidecontainer">
@@ -86,13 +82,11 @@ const ConfigModal = ({taxConfigurationOpenButtonHandler}) => {
                                     </div>
                                 </div>    
                             </div>
-
                         <div className="main-2">
                             <input type="range" min="10000" max="1000000" value={partnerTwoIncomeValue} id="slider-2" onChange={partnerTwoIncomeSliderOnChange}/> 
                         </div>  
                     </> 
                     : "" }      
-                
                     {/*Section 1*/}
                     <div className="section-1">
                         <div className="year-of-birth-partner-one">
@@ -103,7 +97,6 @@ const ConfigModal = ({taxConfigurationOpenButtonHandler}) => {
                                     </select>
                             </div>        
                         </div>  
-
                         {partnerOneMaritalStatus != "Single" ? 
                         <>
                         <div className="year-of-birth-partner-two">
