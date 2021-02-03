@@ -5,7 +5,8 @@ export const BlogCardCompStyle = styled.section`
 display: flex;
 flex-direction: column;
 align-items: center;
-width: 380px;
+width: 85%;
+max-width: 350px;
 height:500px;
 background-color: white;
 /* border: 1px solid red; */
@@ -32,7 +33,7 @@ a {
 }
  */
 .taxes1-img{
-    width: 380px;
+    width: 100%
     /* border: 1px solid orange; */
 }
 

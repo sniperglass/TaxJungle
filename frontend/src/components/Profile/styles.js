@@ -33,6 +33,7 @@ a {
     width: 100%;
     margin-top: 70px;
     opacity: 1;
+    padding: 10px;
     color: white;
     /* color: ${props => props.theme.text.mainColor}; */
     justify-content: center;
@@ -77,7 +78,7 @@ a {
     flex-direction: column;
     align-items: center;
     height: 100%;
-    width: 50%;
+    width: 55%;
     /* border: 1px solid blue; */
     margin-left: 150px;
 }
@@ -88,31 +89,33 @@ a {
     width: 60%;
     height: 28%;
     justify-content: space-between;
-    /* border: 1px solid yellow; */
+   /*  border: 1px solid yellow; */
 }
 
 .names {
     display: flex;
-    width: 200px;
+    width: 40%;
     flex-direction: column;
     /* border: 1px solid red; */
 }
 
-.fn-label,
-.ln-label,
+
 .un-label,
 .email-label {
     display: flex;
-    height: 90px;
+    height: 50%;
+    width: 40%;
     flex-direction: column;
-    /* border: 1px solid yellow; */
+    /* border: 1px solid green; */
 }
-
+.fn-label,
 .ln-label {
     margin-top: 10px;
     display: flex;
-    height: 90px;
+    height: 40%;
+    width: 100%;
     flex-direction: column;
+    /* border: 1px solid green; */
 }
 
 
@@ -121,7 +124,7 @@ a {
     margin-top: 20px;
     padding: 7px;
     border: none;
-    width: 200px;
+    width: 100%;
     height: 40px;
     outline: none;
 }
@@ -132,24 +135,27 @@ a {
     margin-top: 20px;
     padding: 7px;
     border: none;
-    width: 200px;
+    width: 100%;
     height: 40px; 
+    /* border: 1px solid yellow; */
     color: ${props => props.theme.text.mainColor};
 }
 
 
 .location-box {
+    margin-top: 10px;
     display: flex;
-    height: 185px;
+    height: 83%;
+    width: 40%;
     flex-direction: column;
-    /* border: 1px solid yellow; */
+    /* border: 1px solid blue; */
 }
 
 .location {
     margin-top: 20px;
     border: none;
-    height: 500px;
-    width: 200px;
+    height: 100%;
+    width: 100%;
     outline: none;
     padding: 7px;
 }
@@ -164,7 +170,7 @@ a {
     .about {
         margin-top: 20px;
         padding: 7px;
-        width: 500px;
+        width: 100%;
         height: 100px;
         border: none;
         outline: none;
@@ -175,7 +181,7 @@ a {
 .known-credentials {
     margin-top: 20px;
     width: 60%;
-    height: 200px;
+    height: 180px;
     display: flex;
     justify-content: space-between;
     /* border: 1px solid red; */
@@ -184,10 +190,10 @@ a {
 
 .footer-btn {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
     height: 10%;
-    width: 40%;
+    width: 400px;
     /* border: 1px solid red; */
 }
 
@@ -195,6 +201,7 @@ a {
 .save {
     border: none;
     color: white;
+    margin: 20px;
     border-radius: 8px;
     background-color: ${props => props.theme.text.mainColor};
     width: 120px;

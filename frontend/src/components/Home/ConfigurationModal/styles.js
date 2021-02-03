@@ -10,6 +10,7 @@ background-color: rgba(255, 255, 255, 0);
 display: flex;
 justify-content: flex-end;
 z-index: 3;
+/* border: 1px solid red; */
 `;
 
 export const ConfigModalStyled = styled.section`
@@ -19,6 +20,7 @@ height: 100vh;
 display: flex;
 flex-direction: column;
 background-color:${props => props.theme.backgrounds.greyLight};
+/* border: 1px solid red; */
 
 .close-button {
     display: flex;
@@ -43,7 +45,8 @@ background-color:${props => props.theme.backgrounds.greyLight};
     display: flex;
     flex-direction: column;
     margin: 0 auto; 
-    width: 65%;
+    width: 480px;
+    /* border: 1px solid green; */
 }
 
 .main-header {
@@ -165,6 +168,7 @@ input[type=range]::-webkit-slider-thumb {
     color: ${props => props.theme.text.mainColor};
     font-size: 12px;
     padding: 5px;
+    font-weight: 300;
 }
 
 .category-2 {
@@ -173,6 +177,7 @@ input[type=range]::-webkit-slider-thumb {
 
 .year-of-birth-partner-one {
     margin-top: 30px;
+    font-weight: 300;
 }
 
 .year-of-birth-partner-two {
@@ -180,6 +185,7 @@ input[type=range]::-webkit-slider-thumb {
     flex-direction: column;
     align-items: flex-end;
     justify-content: flex-end;
+    font-weight: 300;
 }
 
 .dropdown {
@@ -223,8 +229,11 @@ input[type=range]::-webkit-slider-thumb {
 .section-3 {
     display: flex;
     flex-direction: row;  
+    height: auto;
+    width: 480px;
     margin: 0 auto;
     margin-top: 30px;
+    /* border: 1px solid red; */
 }
  
 #kids {
@@ -238,6 +247,7 @@ input[type=range]::-webkit-slider-thumb {
     color: ${props => props.theme.text.mainColor};
     font-size: 12px;
     padding: 5px;
+    font-weight: 300;
 }
 
 //Section 3

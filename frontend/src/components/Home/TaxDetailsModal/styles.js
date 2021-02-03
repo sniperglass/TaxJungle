@@ -13,7 +13,7 @@ background-color: transparent;
 
 .modal-container {
     width: 70%;
-    height: 80%;
+    min-height: 80%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -21,7 +21,7 @@ background-color: transparent;
     align-items: center;
     padding-top: 30px;
     background-color:${props => props.theme.backgrounds.greyLight};
-/*     border: 1px solid blue; */
+    /* border: 1px solid blue;  */
 }
 
 .closing-btn {
