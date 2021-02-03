@@ -15,7 +15,17 @@ const Routes = (props) => {
         <BrowserRouter>
             <Switch>
                 <Route exact path="/" component={Home} />
-                <Route exact path="/V" component={ConfigurationModal} />
+                <Route exact path="/taxconfig" component={ConfigurationModal} />
+                <Route exact path="/taxdetails" component={TaxDetailsModal} />
+                <Route path="/profile" component={Profile} />
+                <Route exact path="/blogs" component={BlogOverview} />
+                <Route exact path="/blog" component={BlogPage} />
+                <Route exact path="/renting" component={BlogOverview} />
+                <Route exact path="/insurance" component={BlogOverview} />
+                <Route exact path="/banking" component={BlogOverview} />
+                <Route exact path="/create" component={BlogPageCreate} />
+                {/* <Route exact path="/signin" component={SignIn} />
+                <Route exact path="/signup" component={SignUp} /> */}
             </Switch>
         </BrowserRouter>
     )

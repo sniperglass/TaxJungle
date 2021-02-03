@@ -15,9 +15,9 @@ const BlogCardComponent =()=>{
 const str = ""
     return(
         <BlogCardCompStyle>
-            <Link to ="/blog">
+            <Link to ="/blog" draggable="false">
             <div className="">
-                <img src={taxes3} alt="taxes1" className="taxes1-img"/>
+                <img src={taxes3} alt="taxes1" className="taxes1-img" draggable="false" />
             </div>
             
             <div className="text-box">

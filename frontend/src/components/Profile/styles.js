@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import jungle1 from '../../assets/jungle1.jpg';
 
 export const ProfileStyle = styled.section`
 
@@ -53,7 +52,6 @@ a {
     top: 0;
     /* opacity: 50%; */ 
     background-color: ${props => props.theme.text.mainColor};
-/*     background-image: url(${jungle1}), linear-gradient(115deg, #922ecf 0%, #426be7); */
     /* border: 1px solid yellow;  */
 }
 

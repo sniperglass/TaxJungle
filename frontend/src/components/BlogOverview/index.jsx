@@ -20,17 +20,17 @@ const BlogOverview =()=>{
                 <BlogHeaderComponent />
                
             <div className="main-container">
-            <Carousel itemsToShow={3} /* enableAutoPlay="true" */> 
-                    <BlogCardComponent />
-                    <BlogCardComponent />
-                    <BlogCardComponent />
-                    <BlogCardComponent />
-                    <BlogCardComponent />
-                    <BlogCardComponent />
-                    <BlogCardComponent />
-                    <BlogCardComponent />
-                    <BlogCardComponent />
-            </Carousel>
+                <Carousel itemsToShow={3} itemsToScroll={3} enableMouseSwipe={false} /* enableAutoPlay="true" */> 
+                        <BlogCardComponent />
+                        <BlogCardComponent />
+                        <BlogCardComponent />
+                        <BlogCardComponent />
+                        <BlogCardComponent />
+                        <BlogCardComponent />
+                        <BlogCardComponent />
+                        <BlogCardComponent />
+                        <BlogCardComponent />
+                </Carousel>
                 <div className="back-img"></div>
             </div>
             
