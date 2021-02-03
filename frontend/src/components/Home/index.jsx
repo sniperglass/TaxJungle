@@ -20,7 +20,7 @@ const Home =()=>{
                     <div className="main-title">
                         <h1>Where do you pay the lowest taxes in Switzerland?</h1>
                     </div>
-                    <div class="search-wrapperbox">
+                    <div className="search-wrapperbox">
                         <form onSubmit="" className="search-form" autoComplete="off">
                                 <label for="search-input"><img src={location} height="25px" alt="" className="location-pic"></img></label>
                                 <input id="search-input" className="search-input" type="text" placeholder="Check your city" name="search"></input>

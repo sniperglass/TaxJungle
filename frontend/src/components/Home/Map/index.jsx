@@ -36,7 +36,7 @@ const Map = () => {
     // Axis dimensions
     const axisWidth = 345, axisHeight = 75
     const axisInnerWidth = 300, axisInnerHeight = 15
-    const axisMarginLeft = 150, axisMarginBottom = axisHeight - axisInnerHeight + 100
+    let axisMarginLeft = mapHeight > 450 ? mapWidth * 0.115 : -10000, axisMarginBottom = axisHeight - axisInnerHeight + 100
 
     // Map projection, scale factor and path
     let projection, scaleFactor = 6, path
@@ -91,13 +91,18 @@ const Map = () => {
             const map = d3.select(mapRef.current)
             mapWidth = parseInt(map.style("width"))
             mapHeight = parseInt(map.style("height"))
+            axisMarginLeft = mapHeight > 450 ? mapWidth * 0.115 : -10000
 
+            // Upate projection
             projection
                 .scale((mapWidth + mapHeight / 2) * scaleFactor)
                 .translate([mapWidth / 2, mapHeight / 2])
 
+            // Upate map
             d3.select("svg").attr("width", mapWidth).attr("height", mapHeight)
-            d3.select(".axis").attr("transform", `translate(${axisMarginLeft}, ${mapHeight - axisMarginBottom})`)
+
+            // Upate axis
+            d3.select(".axis").attr("transform", `translate(${axisMarginLeft}, ${mapHeight - axisMarginBottom})`) 
 
             d3.selectAll("path").attr('d', path);
         }
