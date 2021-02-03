@@ -19,7 +19,7 @@ justify-content: flex-start;
 .back-img {
     position: absolute;
     width: 100%;
-    height: 280px;
+    height: 340px;
     z-index: -1;
     top: 0;
     background-image: linear-gradient(to right top, #3c1e59, #4b296b, #5a357d, #694190, #794ea4);
@@ -171,6 +171,7 @@ justify-content: flex-start;
     height: auto;
     width: 100%;
     justify-content: space-evenly;
+    margin-top: 7%;
 
 }
 .title-inputs {
@@ -182,14 +183,12 @@ justify-content: flex-start;
 }
 
 .article-title {
-    width: 200px;
+    width: 25%;
     height: 30px;
     padding: 5px;
     outline: none;
     border: none;
-    box-shadow: 
-        0 1px 10px rgba(0,0,0,0.3), 
-        0 0 0 1px rgba(221,221,221,0.75);
+  
 }
 
    
@@ -199,12 +198,10 @@ justify-content: flex-start;
     align-items: flex-start;
     justify-content: flex-start;
     height: 300px;
-    width: 900px;
+    width: 99%;
     margin-top: 25px;
     background-color: white;
-    box-shadow: 
-        0 1px 10px rgba(0,0,0,0.3), 
-        0 0 0 1px rgba(221,221,221,0.75);
+  
 }
 
 .article-input {
@@ -224,7 +221,7 @@ justify-content: flex-start;
 
 .media-input{
     display: flex;
-    height: 100 px;
+    height: 10%;
     width: 99%;
     justify-content:space-between;
     align-items: center;
@@ -233,9 +230,9 @@ justify-content: flex-start;
 }
 .files {
     display: flex;
-    width: 50%;
+    width: 60%;
     align-items: center;
-    justify-content: space-between;
+    
 }
 
 .imageFile {
@@ -243,31 +240,28 @@ justify-content: flex-start;
     align-items: center;
     outline: none;
     white-space: nowrap;
-    width: 200px;
-    height: 30px;
+    width: 60%;
+    height: 100%;
         
 }
 
 .videoFile {
     outline: none;
     border: none;
-    width: 200px;
-    height: 30px;
+    width: 40%;
+    height: 100%;
     padding: 5px;
-    box-shadow: 
-        0 1px 10px rgba(0,0,0,0.3), 
-        0 0 0 1px rgba(221,221,221,0.75);
+    margin-left: 5px;
+    
 }
 
 .article-category {
     outline: none;
     border: none;
-    width: 200px;
+    width: 25%;
     height: 30px;
     background-color: white;
-    box-shadow: 
-        0 1px 10px rgba(0,0,0,0.3), 
-        0 0 0 1px rgba(221,221,221,0.75);
+   
 }
 
 
@@ -277,7 +271,7 @@ justify-content: flex-start;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
+    width: 65px;
     height: 35px;
     background-color: ${props => props.theme.text.mainColor};
     border: 1px solid ${props => props.theme.text.mainColor};

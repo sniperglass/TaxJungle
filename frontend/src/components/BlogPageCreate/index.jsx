@@ -1,19 +1,69 @@
 import React, { useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
+import {useDispatch} from 'react-redux'
+import {newArticleAction} from '../../store/actions/blogAction'
 //img
 import taxes3 from '../../assets/categories/typewriter.jpeg';
-
-
-
-//css
-import {BlogPageCreateStyle, WriteNewArticleStyle} from '../BlogPageCreate/style'
+import {BlogPageCreateStyle} from '../BlogPageCreate/style'
 
 const BlogPageCreate =()=>{
+    const [article, setNewArticle] = useState({
+        title: '',
+        content: '',
+        article_category: 1,
+        article_video: '',
+        article_image: []
+    });
+    const dispatch = useDispatch()
+    const history = useHistory()
+
+    // const [image, setImage] = useState([])
+
+    const articleInputHandler = e => {
+        console.log(e.target.value)
+        let{name, value}=e.target
+        if (name==='article_category'){
+            value = parseInt(value)
+        }else if(name === 'article_image'){
+            value = e.target.files[0]
+        }
+        setNewArticle({
+            ...article, 
+            [name]:value
+        })
+    }
+
+    const onSubmitHandler = e => {
+        console.log(article)
+        e.preventDefault()
+        
+        
+        const formData = new FormData();
+        formData.append('article_image', article.article_image);
+        formData.append('article_video', article.article_video);
+        formData.append('title', article.title);
+        formData.append('content', article.content);
+        formData.append('article_category', article.article_category);
+
+        console.log(formData)
+        dispatch(newArticleAction(formData, history))
+    }
+    
+    // const fileInputHandler = e => {
+    //     //console.log(e.target.files)
+    //     setImage(e.target.files)
+    //     // for (file in e.target.files){
+    //     //     setImage(file)
+    //     // }
+    // }
+
+    
 
 
     return(
         
         <BlogPageCreateStyle>
+            {console.log('article', article)}
         <header className="header">
             <div className="back-img"></div>
             <ul className="nav-left">
@@ -36,25 +86,24 @@ const BlogPageCreate =()=>{
                 <p className="headline">What is your article about?</p>
                 <p className="author"></p>
                 <div className="main-content">
-                        <form className="form">
+                        <form className="form" onSubmit={onSubmitHandler}>
                             <div className="title-inputs">
-                                <input className="article-title" type="text" required placeholder = "Title" />
-                                <select className="article-category" name="category" id="category">
-                                    <option value="Choose a Category">Choose a Category</option>
-                                    <option value="Taxes">Taxes</option>
-                                    <option value="Renting">Renting</option>
-                                    <option value="Banking">Banking</option>
-                                    <option value="Insurance">Insurance</option>
+                                <input className="article-title" onChange={articleInputHandler} value={article.title} name='title' type="text" required placeholder = "Title" />
+                                <select className="article-category" onChange={articleInputHandler} value={article.article_category} name="article_category" id="category">
+                                    <option value="1">Taxes</option>
+                                    <option value="2">Renting</option>
+                                    <option value="3">Banking</option>
+                                    <option value="4">Insurance</option>
                                 </select>
                             </div>
                             <div className="article-box">
-                                <textarea className="article-input" type="text" required placeholder="Let's create...">
+                                <textarea name='content' onChange={articleInputHandler} value={article.content} className="article-input" type="text" required placeholder="Let's create...">
                                 </textarea>
                             </div>
                             <div className="media-input">
                                 <div className="files">
-                                    <input className="imageFile" type="file" accept="image/jpeg, image/png" multiple placeholder="Image" />
-                                    <input className="videoFile" type="url" placeholder="Video url" />
+                                    <input className="imageFile" onChange={articleInputHandler} name='article_image' type="file" accept="image/jpeg, image/png" multiple placeholder="Image" />
+                                    <input className="videoFile" onChange={articleInputHandler} value={article.article_video}  name='article_video'   type="url" placeholder="Video url" />
                                 </div>
                                 <button type="submit" className="submit-btn">Submit</button>
 
