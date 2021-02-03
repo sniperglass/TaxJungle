@@ -3,22 +3,17 @@ import styled from "styled-components";
 export const DropDownStyled = styled.div`
 
 display: flex;
-position: absolute;
-width: 100px;
-height: 100px;
+flex-direction: column;
+width: 40%;
+height: 200px;
 background-color: rgba(255, 255, 255, 0);
 
 .navigation {
     border: 1px solid ${props => props.theme.text.mainColor};
     border-radius: 8px;
-    height: 55px;
     display: flex;
     flex-direction: column;
-    padding: 5px;
-}
-
-.down-arrow {
-    color: ${props => props.theme.text.mainColor};
+    width: 100%;
 }
 
 li {
@@ -52,13 +47,11 @@ li {
      width: 100%;
    }
 
-   #status {
-    margin-right: 35px;
-    width: 300px;
-    height: 55px;
-    } 
-
     .required {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;    
     background-color:${props => props.theme.backgrounds.greyLight};
     color: ${props => props.theme.text.mainColor};
     font-size: 15px;
@@ -68,6 +61,49 @@ li {
     border-radius: 8px;
     border-color: ${props => props.theme.text.mainColor};
     text-decoration: none;
+    width: 100%;
+
+        .select {
+            margin: 0;
+            padding: 0;
+        }
+
+        .down-arrow {
+            color: ${props => props.theme.text.mainColor};
+            margin: 0;
+            padding: 0;
+            width: 15px;
+        }
+
     }
 
+    #border {
+        color: ${props => props.theme.text.mainColor};
+        font-size: 15px;
+        font-weight: 100;
+        padding: 5px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    #border li {
+        padding: 3px;
+    }
+
+    .dropdown {
+        margin-top: 5px;  
+        box-shadow: 0 0 10px ${props => props.theme.text.mainColor};
+        border-radius: 8px;
+    }
+
+    .selection {
+        height: 50%;
+    }
+    .selection:hover {
+        transition-duration: 0.5s;
+        background-color: #DFCFEA;
+        height: 50%;
+    }
 `;   

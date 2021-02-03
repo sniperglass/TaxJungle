@@ -12,6 +12,7 @@ import { ConfigModalPageStyled } from '../Home/ConfigurationModal/styles'
 //components
 import Map from "./Map"
 import ConfigModal from '../Home/ConfigurationModal'
+//import DropDownMenu from '../Home/DropDownMenu';
 
 
 const Home =()=>{
@@ -22,7 +23,7 @@ const Home =()=>{
         setOpenTaxConfig(!openTaxConfig);
       };
 
-    return(
+    return (
         <div style={{position:"relative"}}>
         {openTaxConfig ? <ConfigModalPageStyled><ConfigModal taxConfigurationOpenButtonHandler={taxConfigurationOpenButtonHandler} /></ConfigModalPageStyled> : ""}
         <HomeStyle blur={openTaxConfig}>
