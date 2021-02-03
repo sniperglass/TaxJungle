@@ -21,9 +21,9 @@ const Home =()=>{
                         <h1>Where do you pay the lowest taxes in Switzerland?</h1>
                     </div>
                     <div class="search-wrapperbox">
-                        <form onSubmit="" className="search-form">
-                                <img src={location} height="25px" alt="" className="location-pic"></img>
-                                <input className="search-input" type="text" placeholder="Check your city" name="search"></input>
+                        <form onSubmit="" className="search-form" autoComplete="off">
+                                <label for="search-input"><img src={location} height="25px" alt="" className="location-pic"></img></label>
+                                <input id="search-input" className="search-input" type="text" placeholder="Check your city" name="search"></input>
                                 <button type="submit" className="search-btn"><img src={search} height="18px" alt=""></img></button>
                         </form>
                     </div>

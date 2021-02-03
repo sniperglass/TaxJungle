@@ -9,6 +9,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 background-color:${props => props.theme.backgrounds.greyLight};
+user-select: none;
 /* border: 1px solid red; */
 
 .map-container {
@@ -20,7 +21,6 @@ background-color:${props => props.theme.backgrounds.greyLight};
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    /* background-color: green; */
 }
 
 .main-content {
@@ -48,11 +48,15 @@ background-color:${props => props.theme.backgrounds.greyLight};
     pointer-events: none;
     /* border: 1px solid green; */
 }
+
 .search-wrapperbox {
+    height: 50px;
+    width: 340px;
     display: flex;
     flex-direction: row;
-    padding-top: 25px;
+    margin-top: 25px;
     z-index: 1;
+    pointer-events: none;
     /* border: 1px solid orange; */
 }
 
@@ -66,6 +70,7 @@ background-color:${props => props.theme.backgrounds.greyLight};
     background-color:${props => props.theme.backgrounds.greyLight};
     border-radius: 8px;
     border: 1px solid ${props => props.theme.text.mainColor};
+    pointer-events: initial;
     /* border: 1px solid red; */
 }
 
@@ -80,7 +85,7 @@ background-color:${props => props.theme.backgrounds.greyLight};
     font-size: 16px;
     color:${props => props.theme.text.mainColor};
     background-color:${props => props.theme.backgrounds.greyLight};
-    padding-left: 15px;
+    padding: 0 15px;
     border: none;
     outline: none;
     /* border: 1px solid yellow; */
@@ -99,6 +104,7 @@ background-color:${props => props.theme.backgrounds.greyLight};
     justify-content: center;
     align-items: center;
     outline: none;
+    cursor: pointer;
     background:${props => props.theme.backgrounds.purple};
 }
 
@@ -123,6 +129,7 @@ background-color:${props => props.theme.backgrounds.greyLight};
     border: none;
     outline: none;
     z-index: 1;
+    border-radius: 12px;
 }
 
 .config-box {
@@ -130,6 +137,7 @@ background-color:${props => props.theme.backgrounds.greyLight};
     flex-direction: column;
     align-items: flex-end;
     width: 100px;
+    pointer-events: none;
     /* border: 1px solid yellow; */   
 }
 
