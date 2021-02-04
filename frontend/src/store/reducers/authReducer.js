@@ -1,4 +1,4 @@
-import { SIGNIN, SIGNOUT, SIGNUP_STEP, SIGNUP_REGISTRATION, NEW_ARTICLE } from "../actionTypes"
+import { SIGNIN, SIGNOUT, SIGNUP_STEP, SIGNUP_REGISTRATION } from "../actionTypes"
 
 const initialState = {
     user: {},
@@ -31,11 +31,7 @@ const authReducer = (state = initialState, action) => {
             newState.signupEmail = action.email
             return newState
         }
-        case NEW_ARTICLE: {
-            const newState = {...state}
-            newState.newArticle = action.payload
-            return newState
-        }
+        
         default:
             return state
     }

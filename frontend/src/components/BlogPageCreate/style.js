@@ -280,5 +280,16 @@ justify-content: flex-start;
     outline: none;
     
 }
+.confirmation {
+    position: absolute;
+    background-color: ${props => props.theme.text.mainColor};
+    width: 500px;
+    height: 500px;
+    border: 1px solid red;
+    z-index: 99;
+}
+.hidden{
+    display: none;
+}
 
 `
