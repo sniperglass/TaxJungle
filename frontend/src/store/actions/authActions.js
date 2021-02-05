@@ -105,10 +105,10 @@ export const updateUserAction = (userData) => {
 }
 
 //token need to be replaced
-export const updateUser = (method, user) => (dispatch, getState) => {
+export const updateUser = (method, user) => async (dispatch, getState) => {
     const token = getState().authReducer.accessToken
     const headers = new Headers ({
-        'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjEyODc1NjQ4LCJqdGkiOiJmZjQ4ZTk4OWY2ZTc0YjFmOGYwZWQ5YWY4Y2M4YTMwYSIsInVzZXJfaWQiOjF9.kOHMnXo8OsPybDZbhFdrU0d1CnNuVXKRBwckIn66mJg"
+        'Authorization': ` Bearer ${token} `
     })
 
     let config = {}
@@ -126,12 +126,11 @@ export const updateUser = (method, user) => (dispatch, getState) => {
         method: method,
         headers: headers,
     }
-    console.log("user info", user) 
-    console.log("config info", config) 
-    fetch(`${baseBackendURL}/users/me/`, config)
-    .then(response => response.json())
-    .then(userData => {
+
+    const response = await fetch(`${baseBackendURL}/users/me/`, config)
+    if (response.ok) {
+        const userData = await response.json()
         dispatch(updateUserAction(userData))
-    })
-    return null
+    }
+    return response
 }

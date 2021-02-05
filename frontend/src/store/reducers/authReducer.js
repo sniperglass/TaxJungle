@@ -7,7 +7,8 @@ const initialState = {
         location: "",
         about: "",
         username: "",
-        email: ""
+        email: "",
+        profile_picture: ""
     },
     accessToken: "",
     authenticated: false,
