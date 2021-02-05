@@ -126,11 +126,12 @@ export const updateUser = (method, user) => async (dispatch, getState) => {
         method: method,
         headers: headers,
     }
-
+    console.log("before response")
     const response = await fetch(`${baseBackendURL}/users/me/`, config)
     if (response.ok) {
         const userData = await response.json()
         dispatch(updateUserAction(userData))
+        console.log("after response", userData)
     }
     return response
 }
