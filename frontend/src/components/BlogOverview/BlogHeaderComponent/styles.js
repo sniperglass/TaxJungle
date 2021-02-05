@@ -21,7 +21,6 @@ background-color: white;
 .nav-left {
     display: flex;
     width: 10%;
-    justify-content: space-between;
     align-items: center;
     padding-left: 20px;
     /* border: 1px solid red; */
@@ -30,16 +29,22 @@ background-color: white;
 
     a {
         text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: ${props => props.theme.text.mainColor};
 
         li{
-        padding:22px 10px;
-        &:active, &:focus, &:hover{
-             font-weight: 700;
-             color:black;
-             
-             outline: none;
+            padding: 22px 10px;
+            &:active, &:focus, &:hover {
+                outline: none;
             }
         }
+    }
+
+    img {
+        border-radius: 50%;
+        border: 1px solid ${props => props.theme.text.mainColor}
     }
 
 }
@@ -53,14 +58,12 @@ background-color: white;
     text-decoration: none;
 
     a {
+        color: ${props => props.theme.text.mainColor};
         text-decoration: none;
-    li{
-        padding:22px 10px;
-        &:active, &:focus, &:hover{
-             font-weight: 700;
-             color:black;
+    
+        padding: 22px 10px;
+        &:active, &:focus, &:hover {
              text-decoration: none;
-            }
         }
     }
 }
@@ -74,17 +77,16 @@ background-color: white;
     text-decoration: none;
 
     a {
+        color: ${props => props.theme.text.mainColor};
         text-decoration: none;
-    li{
-        padding:22px 10px;
-        &:active, &:focus, &:hover{
-             font-weight: 700;
-             color:black;
+
+        li {
+            padding:22px 10px;
+            &:active, &:focus, &:hover{
              text-decoration: none;
             }
         }
     }
 }
-
 
 `
