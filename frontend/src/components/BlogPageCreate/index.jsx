@@ -16,6 +16,7 @@ const BlogPageCreate =()=>{
     });
     const dispatch = useDispatch()
     const history = useHistory()
+    const [showConfirmation, setShowConfirmation] = useState(false) 
 
     const articleInputHandler = e => {
         let{name, value}=e.target
@@ -41,9 +42,9 @@ const BlogPageCreate =()=>{
         formData.append('article_category', article.article_category);
 
         dispatch(newArticleAction(formData, history))
+        setShowConfirmation(true)
     }
     
-
     return(
         
         <BlogPageCreateStyle>
@@ -69,6 +70,9 @@ const BlogPageCreate =()=>{
                 <p className="category">Your story starts here</p>
                 <p className="headline">What is your article about?</p>
                 <p className="author"></p>
+                {<div className={`confirmation ${showConfirmation ? "" : "hidden"}`}>
+                    <p>Succes your article has been publish</p>
+                    </div>}
                 <div className="main-content">
                         <form className="form" onSubmit={onSubmitHandler}>
                             <div className="title-inputs">

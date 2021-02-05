@@ -10,18 +10,18 @@ import taxes5 from '../../../assets/categories/taxes5.jpg';
 //css
 import {BlogCardCompStyle} from './styles';
 
-const BlogCardComponent = () => {
+const BlogCardComponent =(props)=>{
 
     return(
         <BlogCardCompStyle>
             <Link to ="/blog" draggable="false">
             <div className="">
-                <img src={taxes3} alt="taxes1" className="taxes1-img" draggable="false" />
+                <img src={props.article.article_image.length ? props.article.article_image[0].image : taxes3} alt="taxes1" className="taxes1-img" draggable="false" />
             </div>
             
             <div className="text-box">
-                <p className="blog-question">What is tax deductible in Switzerland?</p>
-                <p className="author">by Credit Suisse</p>
+                <p className="blog-question">{props.article.title}</p>
+                <p className="author">{props.article.user.first_name}</p>
             </div>
             <p className="readmore">read this blog</p>
             </Link>  

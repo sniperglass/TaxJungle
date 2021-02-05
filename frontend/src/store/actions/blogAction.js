@@ -1,4 +1,4 @@
-import {NEW_ARTICLE} from '../actionTypes'
+import {NEW_ARTICLE, FETCH_ALL_ARTICLES} from '../actionTypes'
 import {baseBackendURL} from '../constants'
 
 //token need to be replaced
@@ -22,3 +22,24 @@ export const newArticleAction = (article, history) => (dispatch, getState) => {
         }
     })
 }
+const fetchAllArticlesAction = (articles) => {
+    return {
+        type: FETCH_ALL_ARTICLES,
+        payload: articles
+    }
+}
+export const fetchAllArticles = () => async (dispatch, getState) => {
+    const config = {
+        method: "GET",
+    }
+
+    const response = await fetch (`${baseBackendURL}/article/`, config)
+    if (response.ok) {
+        const json = await response.json()
+        dispatch(fetchAllArticlesAction(json))
+        return json
+    }
+    return null
+}
+
+
