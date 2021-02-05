@@ -16,6 +16,7 @@ const BlogPageCreate =()=>{
     });
     const dispatch = useDispatch()
     const history = useHistory()
+    const [showConfirmation, setShowConfirmation] = useState(false) 
 
     // const [image, setImage] = useState([])
 
@@ -47,15 +48,10 @@ const BlogPageCreate =()=>{
 
         console.log(formData)
         dispatch(newArticleAction(formData, history))
+        setShowConfirmation(true)
     }
     
-    // const fileInputHandler = e => {
-    //     //console.log(e.target.files)
-    //     setImage(e.target.files)
-    //     // for (file in e.target.files){
-    //     //     setImage(file)
-    //     // }
-    // }
+    
 
     
 
@@ -85,6 +81,9 @@ const BlogPageCreate =()=>{
                 <p className="category">Your story starts here</p>
                 <p className="headline">What is your article about?</p>
                 <p className="author"></p>
+                {<div className={`confirmation ${showConfirmation ? "" : "hidden"}`}>
+                    <p>Succes your article has been publish</p>
+                    </div>}
                 <div className="main-content">
                         <form className="form" onSubmit={onSubmitHandler}>
                             <div className="title-inputs">

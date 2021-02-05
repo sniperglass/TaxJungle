@@ -9,4 +9,4 @@ export const FETCH_TAXES = "FETCH_TAXES"
 
 //Blog
 export const NEW_ARTICLE = "NEW_ARTICLE"
-
+export const FETCH_ALL_ARTICLES = "FETCH_ALL_ARTICLES"
