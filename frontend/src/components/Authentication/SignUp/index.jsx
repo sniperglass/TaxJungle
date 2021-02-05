@@ -102,9 +102,9 @@ const SignUp = () => {
                         <SignupFormThreeStyle id="sign-up-form" onSubmit={signUpHandler}>
                             <TitleStyle>Validation</TitleStyle>
                             <div>
-                                <InputSmallStyle name="firstname" type="text" placeholder="first name" required />
-                                <InputSmallStyle name="lastname" type="text" placeholder="last name" required />
-                                <InputSmallStyle name="username" type="text" placeholder="username" onChange={usernameInputHandler} required />
+                                <InputSmallStyle name="firstname" type="text" placeholder="first name" autocomplete="family-name" required />
+                                <InputSmallStyle name="lastname" type="text" placeholder="last name" autocomplete="given-name" required />
+                                <InputSmallStyle name="username" type="text" placeholder="username" autocomplete="username" onChange={usernameInputHandler} required />
                                 <InputSmallStyle name="code" type="number" placeholder="validation code" required />
                                 <InputSmallStyle name="password" type="password" placeholder="Password" onChange={passwordInputHandler} required />
                                 <InputSmallStyle name="passwordrepeat" type="password" placeholder="Password repeat" onChange={passwordRepeatInputHandler} required />

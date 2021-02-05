@@ -23,6 +23,10 @@ flex-direction: column;
 background-color:${props => props.theme.backgrounds.greyLight};
 /* border: 1px solid red; */
 
+* {
+    outline: none;
+}
+
 .close-button {
     display: flex;
     align-items: flex-end;
@@ -136,10 +140,7 @@ input[type=range]::-webkit-slider-thumb {
 .text-field,
 .text-field-2 {
     background-color:${props => props.theme.backgrounds.greyLight};
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
+    border: none;
     text-align: right;
     width: 88px;
     font-size: 16px;
@@ -214,7 +215,7 @@ input[type=range]::-webkit-slider-thumb {
   cursor: pointer;
   border-radius: 8px;
   width: 200px;
-  height: 55px;
+  height: 50px;
   border-color: ${props => props.theme.text.mainColor};
 }
 
@@ -283,7 +284,7 @@ input[type=range]::-webkit-slider-thumb {
   border-radius: 8px;
   border: 1px solid ${props => props.theme.text.mainColor};
   width: 130px;
-  height: 55px;
+  height: 50px;
   margin-left: 10px;
 }
 

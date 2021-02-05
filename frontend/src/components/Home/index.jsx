@@ -12,7 +12,7 @@ import { ConfigModalPageStyled } from '../Home/ConfigurationModal/styles'
 //components
 import Map from "./Map"
 import ConfigModal from '../Home/ConfigurationModal'
-//import DropDownMenu from '../Home/DropDownMenu';
+import DropDownMenu from '../Home/DropDownMenu';
 
 
 const Home =()=>{
@@ -38,6 +38,7 @@ const Home =()=>{
                                 <label for="search-input"><img src={location} height="25px" alt="" className="location-pic"></img></label>
                                 <input id="search-input" className="search-input" type="text" placeholder="Check your city" name="search"></input>
                                 <button type="submit" className="search-btn"><img src={search} height="18px" alt=""></img></button>
+                                <DropDownMenu id="dropdown"/>
                         </form>
                     </div>
                 </div>

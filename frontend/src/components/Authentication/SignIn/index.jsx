@@ -41,7 +41,7 @@ const SignIn = () => {
                         <label for="email">
                             <img id="input-img" src={emailIcon} alt="email" height="40px" />
                         </label>
-                        <input id="email" name="email" type="email" placeholder="email" required />
+                        <input id="email" name="email" type="email" placeholder="email" autocomplete="email" required />
                     </InputFieldStyle>
                     <InputFieldStyle>
                         <label for="password">

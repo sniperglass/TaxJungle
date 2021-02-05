@@ -73,7 +73,7 @@ export const HomeStyle = styled.section`
 .search-form {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     height: 50px;
     width: 340px;
     color:${props => props.theme.text.mainColor};
@@ -82,11 +82,20 @@ export const HomeStyle = styled.section`
     border: 1px solid ${props => props.theme.text.mainColor};
     pointer-events: initial;
     /* border: 1px solid red; */
+    position: relative;
+    
+
+    div {
+        width: 100%;
+        z-index: 0;
+    }
 }
 
 .location-pic {
     border: none;
-    padding-left: 10px;
+    padding: 12px;
+    height: 50px;
+    margin: auto 0;
 }
 
 .search-input {
