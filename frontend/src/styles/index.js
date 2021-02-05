@@ -26,7 +26,7 @@ export const Theme = {
 
     borders: {
         color: "rgba(87, 62, 140, 0.3)",
-        radius: "6px",
+        radius: "8px",
     },
 }
 

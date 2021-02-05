@@ -31,7 +31,6 @@ const authReducer = (state = initialState, action) => {
             newState.signupEmail = action.email
             return newState
         }
-        
         default:
             return state
     }
