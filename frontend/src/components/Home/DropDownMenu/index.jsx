@@ -6,10 +6,10 @@ import UpArrow from '../../../assets/icons/up-arrow.svg';
 import DownArrow from '../../../assets/icons/down-arrow.svg';
 
 
-const DropDownMenu = () => {
+const DropDownMenu = (props) => {
 
-    const [toggleDropDownMenu, setToggleDropDownMenu] = useState(false);
-    const [selectedOption, setSelectedOption] = useState("Single");
+    const [toggleDropDownMenu, setToggleDropDownMenu] = useState(props.visible);
+    const [selectedOption, setSelectedOption] = useState("");
 
     const onOptionClicked = (e) => {
         const {id} = e.target;
@@ -17,26 +17,26 @@ const DropDownMenu = () => {
         setToggleDropDownMenu(false);
     };
 
-    const options = ['Single', 'Married', 'Cohabitation'];
-
     return (
         <DropDownStyled>
-            <nav className="navigation">
+            <nav className="navigation" style={{display: `${props.nav ? "flex" : "none"}`}} >
                 <div className="required" onClick={ () => setToggleDropDownMenu(!toggleDropDownMenu)}>
                     <p className="select">{selectedOption}</p>
-                    {!toggleDropDownMenu ? 
+                    {!props.visible ? 
                         <img src={DownArrow} className="down-arrow"/> 
                         : <img src={UpArrow} className="down-arrow"/> 
                     }   
                 </div>
             </nav>
-            {toggleDropDownMenu ? 
+            {props.visible ? 
             <div className="dropdown">
-                <ul id="border">
-                    {options.map((option, index) => (
-                    <div className="selection" id={option} key={index} onClick={onOptionClicked}>{option}</div>
-                    ))}
-                </ul>   
+                <div id="border-wrapper">
+                    <ul id="border">
+                        {props.options.map((option, index) => (
+                            <div className="selection" id={option} key={index} onClick={onOptionClicked}>{option}</div>
+                        ))}
+                    </ul>   
+                </div>
             </div> : ""}
         </DropDownStyled> 
     )

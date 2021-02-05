@@ -65,15 +65,16 @@ export const HomeStyle = styled.section`
     display: flex;
     flex-direction: row;
     margin-top: 25px;
-    z-index: 1;
+    z-index: 99;
     pointer-events: none;
     /* border: 1px solid orange; */
+
 }
 
 .search-form {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     height: 50px;
     width: 340px;
     color:${props => props.theme.text.mainColor};
@@ -84,16 +85,15 @@ export const HomeStyle = styled.section`
     /* border: 1px solid red; */
     position: relative;
     
-
     div {
         width: 100%;
-        z-index: 0;
+        top: 100%;
     }
 }
 
 .location-pic {
     border: none;
-    padding: 12px;
+    padding: 18px 12px 10px 12px;
     height: 50px;
     margin: auto 0;
 }
@@ -104,7 +104,6 @@ export const HomeStyle = styled.section`
     font-size: 16px;
     color:${props => props.theme.text.mainColor};
     background-color:${props => props.theme.backgrounds.greyLight};
-    padding: 0 15px;
     border: none;
     outline: none;
     /* border: 1px solid yellow; */
@@ -115,10 +114,11 @@ export const HomeStyle = styled.section`
 }
 
 .search-btn {
-    height: 50px;
+    height: 100%;
     width: 50px;
-    border-radius: 8px;
     border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;

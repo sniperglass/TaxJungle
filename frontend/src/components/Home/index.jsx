@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 //img
 import filter from '../../assets/icons/filter.svg'
@@ -6,22 +7,39 @@ import search from '../../assets/icons/search.svg'
 import location from '../../assets/icons/location.svg'
 
 //css
-import { HomeStyle } from '../Home/styles';
+import { HomeStyle } from '../Home/styles'
 import { ConfigModalPageStyled } from '../Home/ConfigurationModal/styles'
 
 //components
 import Map from "./Map"
 import ConfigModal from '../Home/ConfigurationModal'
-import DropDownMenu from '../Home/DropDownMenu';
+import DropDownMenu from '../Home/DropDownMenu'
 
 
 const Home =()=>{
-    const [openTaxConfig, setOpenTaxConfig] = useState(false);
+    const [openTaxConfig, setOpenTaxConfig] = useState(false)
+    const municipalities = useSelector(state => state.taxesReducer.taxes.map(mun => mun.gemeinde).sort())
+    const [options, setOptions] = useState(municipalities)
+    const [showDropdown, setShowDropDown] = useState(false)
 
     const taxConfigurationOpenButtonHandler = (e) => {
-        e.preventDefault();
-        setOpenTaxConfig(!openTaxConfig);
-      };
+        e.preventDefault()
+        setOpenTaxConfig(!openTaxConfig)
+    }
+
+    const searchHandler = (e) => {
+        const query = e.target.value
+        setShowDropDown(query.length)
+        setOptions(municipalities.filter(mun => mun.includes(query)))
+    }
+
+    const searchSubmitHandler = (e) => {
+        e.preventDefault()
+        if (options.length === 1) {
+            // TODO: trigger search on map here
+            console.log(e.target.elements.search.value)
+        }
+    }
 
     return (
         <div style={{position:"relative"}}>
@@ -34,11 +52,11 @@ const Home =()=>{
                         <h1>Where do you pay the lowest taxes in Switzerland?</h1>
                     </div>
                     <div className="search-wrapperbox">
-                        <form onSubmit="" className="search-form" autoComplete="off">
-                                <label for="search-input"><img src={location} height="25px" alt="" className="location-pic"></img></label>
-                                <input id="search-input" className="search-input" type="text" placeholder="Check your city" name="search"></input>
+                        <form onSubmit={searchSubmitHandler} className="search-form" autocomplete="off">
+                                <label for="search-input"><img src={location} alt="" className="location-pic"></img></label>
+                                <input id="search-input" className="search-input" type="text" placeholder="Check your city" name="search" onChange={searchHandler} />
                                 <button type="submit" className="search-btn"><img src={search} height="18px" alt=""></img></button>
-                                <DropDownMenu id="dropdown"/>
+                                <DropDownMenu id="dropdown" options={options} visible={showDropdown} />
                         </form>
                     </div>
                 </div>
