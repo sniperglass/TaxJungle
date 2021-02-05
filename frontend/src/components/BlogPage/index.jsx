@@ -29,7 +29,7 @@ const BlogPage =()=>{
             <div className="header-right-wrapper">
                 <ul className="nav-center">
                     <Link to="/profile"><li>my profile</li></Link>
-                    <Link to="/blog/create"><li>create blog</li></Link>
+                    <Link to="/blog/create"><li>create article</li></Link>
                 </ul> 
                 <ul className="nav-right">
                     <Link to=""><li>LogIn</li></Link>

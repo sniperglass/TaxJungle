@@ -67,7 +67,7 @@ const BlogPageCreate =()=>{
         <header className="header">
             <div className="back-img"></div>
             <ul className="nav-left">
-                <Link to="/blog"><li>all blogs</li></Link>
+                <Link to="/blog"><li>blog</li></Link>
             </ul>
         </header>
         <div className="article-info">
