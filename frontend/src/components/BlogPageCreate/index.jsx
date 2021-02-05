@@ -4,6 +4,7 @@ import {useDispatch} from 'react-redux'
 import {newArticleAction} from '../../store/actions/blogAction'
 //img
 import taxes3 from '../../assets/categories/typewriter.jpeg';
+import xicon from '../../assets/icons/x-icon.svg'
 import {BlogPageCreateStyle} from '../BlogPageCreate/style'
 
 const BlogPageCreate =()=>{
@@ -83,6 +84,7 @@ const BlogPageCreate =()=>{
                 <p className="author"></p>
                 {<div className={`confirmation ${showConfirmation ? "" : "hidden"}`}>
                     <p>Succes your article has been publish</p>
+                    <button className= 'x-button'><img className="x-image" src={xicon}/></button>
                     </div>}
                 <div className="main-content">
                         <form className="form" onSubmit={onSubmitHandler}>

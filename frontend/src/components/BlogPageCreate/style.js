@@ -282,14 +282,31 @@ justify-content: flex-start;
 }
 .confirmation {
     position: absolute;
-    background-color: ${props => props.theme.text.mainColor};
+    background-color: ${props => props.theme.backgrounds.greyLight};
     width: 500px;
-    height: 500px;
-    border: 1px solid red;
+    height: 200px;
     z-index: 99;
+    margin-top: 23%;
+    margin-left: 10%;
+    border-radius: 40%;
+    padding: 5%;
+    
+    
 }
 .hidden{
     display: none;
 }
 
+.x-button {
+    height: 20px;
+    width: 20px;
+    margin-left: 42%;
+    margin-top: 12%;
+    outline: none;
+    border: none;
+}
+.x-image {
+    height: 20px;
+    width: 20px;
+}
 `
