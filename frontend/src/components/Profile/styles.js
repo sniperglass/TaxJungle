@@ -19,6 +19,7 @@ justify-content: flex-start;
     flex-direction: column;
     width: 30%;
     min-height: 100%;
+    background-color: ${props => props.theme.text.mainColor};
     /* border: 1px solid yellow; */
 }
 
@@ -51,9 +52,6 @@ a {
     min-height: 100%;
     z-index: -1;
     top: 0;
-    /* opacity: 50%; */ 
-    background-color: ${props => props.theme.text.mainColor};
-    /* border: 1px solid yellow;  */
 }
 
 .round-pic {
@@ -69,6 +67,27 @@ a {
         width: 300px;
         /* border: 1px solid yellow; */
     }
+}
+
+.delete {
+    display: flex;
+    justify-content: flex-end;
+    /* border: 1px solid yellow; */
+    width: 100%;
+    height: 20px;
+}
+
+.delete-btn {
+    display: flex;
+   /*  border: 1px solid yellow; */
+    background-color: transparent;
+    color: black;
+    justify-content: flex-end;
+    border-style: none;
+    padding-right: 10px;
+    margin-top: 20px;
+    width: 150px;
+    height: 20px;
 }
 
 .right {

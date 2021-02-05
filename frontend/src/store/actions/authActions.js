@@ -1,4 +1,4 @@
-import { SIGNIN, SIGNOUT, SIGNUP_REGISTRATION, SIGNUP_STEP  } from "../actionTypes"
+import { SIGNIN, SIGNOUT, SIGNUP_REGISTRATION, SIGNUP_STEP, UPDATE_USER } from "../actionTypes"
 import { baseBackendURL } from "../constants"
 
 
@@ -94,5 +94,44 @@ export const signupValidation = (data) => async (dispatch, getState) => {
         return json
     }
 
+    return null
+}
+
+export const updateUserAction = (userData) => {
+    return {
+        type: UPDATE_USER,
+        payload: userData,
+    }
+}
+
+//token need to be replaced
+export const updateUser = (method, user) => (dispatch, getState) => {
+    const token = getState().authReducer.accessToken
+    const headers = new Headers ({
+        'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjEyODc1NjQ4LCJqdGkiOiJmZjQ4ZTk4OWY2ZTc0YjFmOGYwZWQ5YWY4Y2M4YTMwYSIsInVzZXJfaWQiOjF9.kOHMnXo8OsPybDZbhFdrU0d1CnNuVXKRBwckIn66mJg"
+    })
+
+    let config = {}
+    user ? 
+
+    config = {
+        method: method,
+        headers: headers,
+        body: user
+    }
+
+    :
+
+    config = {
+        method: method,
+        headers: headers,
+    }
+    console.log("user info", user) 
+    console.log("config info", config) 
+    fetch(`${baseBackendURL}/users/me/`, config)
+    .then(response => response.json())
+    .then(userData => {
+        dispatch(updateUserAction(userData))
+    })
     return null
 }

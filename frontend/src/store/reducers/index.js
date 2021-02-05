@@ -5,5 +5,5 @@ import taxesReducer from "./taxesReducer"
 
 export default combineReducers({
     authReducer,
-    taxesReducer
+    taxesReducer,
 })
