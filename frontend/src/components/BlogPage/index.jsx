@@ -10,8 +10,13 @@ import BlogCardComponent from '../BlogOverview/BlogCardComponent';
 import {BlogPageStyle} from '../BlogPage/styles';
 import {CommentsStyledDown} from '../BlogPage/styles';
 
-const BlogPage =()=>{
+//import social media icons
+import { FacebookShareButton, FacebookIcon, EmailShareButton,
+EmailIcon, LinkedinShareButton, LinkedinIcon, TwitterShareButton, 
+TwitterIcon, WhatsappShareButton, WhatsappIcon } from "react-share";
 
+
+const BlogPage =()=>{
 
     return(
         
@@ -31,8 +36,9 @@ const BlogPage =()=>{
                 </ul>
             </div>
         </header>
-        <div className="article-info">
-            <div className="round-pic"><img className="blog-img" src={taxes3} alt=""/></div>
+        <div className="article-info">   
+            <div className="round-pic"><img className="blog-img" src={taxes3} alt=""/>
+            </div>
             <div className="header-info">
                 <p className="category">Taxes</p>
                 <p className="headline">What is tax deductible in Switzerland?</p>
@@ -82,6 +88,15 @@ const BlogPage =()=>{
                                 <div className="single-comment">I agree. Nevertheless, I would have some more questions regarding the tax deduction in shared households. How is the ........</div>
                                 <div className="comment-by">john, 02.02.21</div>
                             </div>
+                            <div className="social-media-icons">  
+                                <div className="position-icons">
+                                    <FacebookShareButton className="no-border" url="https://taxjungle.propulsion-learn.ch"><FacebookIcon size={38} bgStyle={{ fill: "#ABB2B9"}} borderRadius="50%" className="icon"/></FacebookShareButton>
+                                    <LinkedinShareButton className="no-border" url="https://taxjungle.propulsion-learn.ch"><LinkedinIcon size={38} bgStyle={{ fill: "#ABB2B9"}} borderRadius="50%" className="icon"/></LinkedinShareButton>
+                                    <TwitterShareButton  className="no-border" url="https://taxjungle.propulsion-learn.ch"><TwitterIcon size={38}   bgStyle={{ fill: "#ABB2B9"}} borderRadius="48%" className="icon"/></TwitterShareButton> 
+                                    <WhatsappShareButton className="no-border" url="https://taxjungle.propulsion-learn.ch"><WhatsappIcon size={38} bgStyle={{ fill: "#ABB2B9"}} borderRadius="50%" className="icon"/></WhatsappShareButton>
+                                    <EmailShareButton    className="no-border" url="https://taxjungle.propulsion-learn.ch" subject="Check out this cool article!"><EmailIcon size={38} bgStyle={{ fill: "#ABB2B9"}} borderRadius="50%" className="icon"/></EmailShareButton>
+                                </div> 
+                            </div>  
                         </div>
                 </div>
             </div>
@@ -91,3 +106,6 @@ const BlogPage =()=>{
     )
 }
 export default BlogPage;
+
+
+
