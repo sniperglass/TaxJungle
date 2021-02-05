@@ -60,11 +60,10 @@ background-color: white;
     a {
         color: ${props => props.theme.text.mainColor};
         text-decoration: none;
-    li{
+    
         padding: 22px 10px;
         &:active, &:focus, &:hover {
              text-decoration: none;
-            }
         }
     }
 }

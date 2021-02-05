@@ -13,8 +13,9 @@ import {BlogOverviewStyle} from '../BlogOverview/styles';
 const BlogOverview =()=>{
     const dispatch = useDispatch()
     const articles = useSelector(state => state.blogReducer.articles)
+    const category = useSelector(state => state.blogReducer.category)
 
-    useEffect(() => dispatch(fetchAllArticles()), [])
+    useEffect(() => dispatch(fetchAllArticles(category)), [category])
 
     return(
         <BlogOverviewStyle>

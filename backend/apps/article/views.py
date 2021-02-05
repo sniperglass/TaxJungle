@@ -88,7 +88,7 @@ class ArticleCategoryView(ListAPIView):
     """
     serializer_class = ArticleSerializer
     lookup_field = 'article_category_id'
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get_queryset(self):
         return Article.objects.filter(article_category=self.kwargs['article_category_id'])

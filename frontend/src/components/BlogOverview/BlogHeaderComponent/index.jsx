@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Link } from 'react-router-dom'
 import { getAvatar } from "../../../store/utils"
 import { signoutAction } from "../../../store/actions/authActions"
+import { blogCategoryAction } from "../../../store/actions/blogAction"
 
 const BlogHeaderComponent = () => {
     const user = useSelector(state => state.authReducer.user)
@@ -12,6 +13,10 @@ const BlogHeaderComponent = () => {
     const logoutHandler = (e) => {
         localStorage.removeItem("currentUser")
         dispatch(signoutAction())
+    }
+
+    const blogCategoryHandler = (e) => {
+        dispatch(blogCategoryAction(e.target.id))
     }
 
     return(
@@ -24,10 +29,10 @@ const BlogHeaderComponent = () => {
                     </Link>
                 </ul>
                 <ul className="nav-center">
-                    <Link to="/blog/taxes"><li>Taxes</li></Link>
-                    <Link to="/blog/renting"><li>Renting</li></Link>
-                    <Link to="/blog/insurance"><li>Insurance</li></Link>
-                    <Link to="/blog/banking"><li>Banking</li></Link>
+                    <Link id="1" to="/blog/taxes" onClick={blogCategoryHandler}>Taxes</Link>
+                    <Link id="2" to="/blog/renting" onClick={blogCategoryHandler}>Renting</Link>
+                    <Link id="3" to="/blog/banking" onClick={blogCategoryHandler}>Banking</Link>
+                    <Link id="4" to="/blog/insurance" onClick={blogCategoryHandler}>Insurance</Link>
                 </ul> 
                 <ul className="nav-right">
                     {

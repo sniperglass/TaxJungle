@@ -1,22 +1,19 @@
-import { NEW_ARTICLE, FETCH_ALL_ARTICLES } from '../actionTypes'
+import { BLOG_CATEGORY, FETCH_ALL_ARTICLES } from '../actionTypes'
 
 const initialState = {
     articles: [],
-
+    category: ""
 }
 
 
 const blogReducer = (state = initialState, action) => {
-    console.log('state', state)
-
     switch (action.type) {
-        case NEW_ARTICLE: {
+        case BLOG_CATEGORY: {
             const newState = {...state}
-            newState.newArticle = action.payload
+            newState.category = action.payload
             return newState
         }
         case FETCH_ALL_ARTICLES: {
-            console.log('reducer',action.payload)
             return {...state, articles:action.payload}
             
         }
