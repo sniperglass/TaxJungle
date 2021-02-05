@@ -17,10 +17,7 @@ const BlogPageCreate =()=>{
     const dispatch = useDispatch()
     const history = useHistory()
 
-    // const [image, setImage] = useState([])
-
     const articleInputHandler = e => {
-        console.log(e.target.value)
         let{name, value}=e.target
         if (name==='article_category'){
             value = parseInt(value)
@@ -34,9 +31,7 @@ const BlogPageCreate =()=>{
     }
 
     const onSubmitHandler = e => {
-        console.log(article)
         e.preventDefault()
-        
         
         const formData = new FormData();
         formData.append('article_image', article.article_image);
@@ -45,20 +40,9 @@ const BlogPageCreate =()=>{
         formData.append('content', article.content);
         formData.append('article_category', article.article_category);
 
-        console.log(formData)
         dispatch(newArticleAction(formData, history))
     }
     
-    // const fileInputHandler = e => {
-    //     //console.log(e.target.files)
-    //     setImage(e.target.files)
-    //     // for (file in e.target.files){
-    //     //     setImage(file)
-    //     // }
-    // }
-
-    
-
 
     return(
         

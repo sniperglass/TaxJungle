@@ -10,9 +10,8 @@ import taxes5 from '../../../assets/categories/taxes5.jpg';
 //css
 import {BlogCardCompStyle} from './styles';
 
-const BlogCardComponent =()=>{
+const BlogCardComponent = () => {
 
-const str = ""
     return(
         <BlogCardCompStyle>
             <Link to ="/blog" draggable="false">
