@@ -41,10 +41,25 @@ export const fetchAllArticles = (category) => async (dispatch, getState) => {
     return null
 }
 
+export const searchOnArticlesByCategory = (category, toSearch) => async (dispatch, getState) => {
+    const config = {
+        method: "GET",
+    }
+
+    const response = await fetch (`${baseBackendURL}/article/${category}/?search=${toSearch}`, config)
+    if (response.ok) {
+        const json = await response.json()
+        dispatch(fetchAllArticlesAction(json))
+        return json
+    }
+    return null
+}
+
 export const blogCategoryAction = (category) => {
     return {
         type: BLOG_CATEGORY,
         payload: category,
     }
 }
+
 
