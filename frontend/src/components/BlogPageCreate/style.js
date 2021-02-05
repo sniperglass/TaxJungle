@@ -283,13 +283,19 @@ justify-content: flex-start;
 .confirmation {
     position: absolute;
     background-color: ${props => props.theme.backgrounds.greyLight};
-    width: 500px;
+    width: 600px;
     height: 200px;
     z-index: 99;
     margin-top: 23%;
     margin-left: 10%;
-    border-radius: 40%;
     padding: 5%;
+    border: 1px solid ${props => props.theme.text.mainColor};
+    text-align: center;
+    border-radius: 8px;
+    //border-style: outset;
+    box-shadow: 
+        0 1px 10px rgba(0,0,0,0.3), 
+        0 0 0 1px rgba(221,221,221,0.75);
     
     
 }
@@ -298,12 +304,14 @@ justify-content: flex-start;
 }
 
 .x-button {
-    height: 20px;
-    width: 20px;
-    margin-left: 42%;
-    margin-top: 12%;
+    margin-top: 7%;
+    width: 55px;
+    height: 30px;
+    background-color: ${props => props.theme.text.mainColor};
+    border: 1px solid ${props => props.theme.text.mainColor};
+    color: white;
+    border-radius: 6px;
     outline: none;
-    border: none;
 }
 .x-image {
     height: 20px;

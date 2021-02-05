@@ -17,7 +17,8 @@ const BlogPageCreate =()=>{
     });
     const dispatch = useDispatch()
     const history = useHistory()
-    const [showConfirmation, setShowConfirmation] = useState(false) 
+    const [showConfirmation, setShowConfirmation] = useState(false)
+    const [hideConfirmation, setHideConfirmation] = useState(true) 
 
     const articleInputHandler = e => {
         let{name, value}=e.target
@@ -34,6 +35,13 @@ const BlogPageCreate =()=>{
 
     const onSubmitHandler = e => {
         e.preventDefault()
+        setNewArticle({
+            title: '',
+            content: '',
+            article_category: 1,
+            article_video: '',
+            article_image: []
+        }) 
         
         const formData = new FormData();
         formData.append('article_image', article.article_image);
@@ -41,10 +49,16 @@ const BlogPageCreate =()=>{
         formData.append('title', article.title);
         formData.append('content', article.content);
         formData.append('article_category', article.article_category);
-
+            
         dispatch(newArticleAction(formData, history))
         setShowConfirmation(true)
+        setHideConfirmation(false)
+
     }
+
+    const onClicked = (e) => {
+        setShowConfirmation(false);
+    };
     
     return(
         
@@ -55,15 +69,6 @@ const BlogPageCreate =()=>{
             <ul className="nav-left">
                 <Link to="/blog"><li>all blogs</li></Link>
             </ul>
-            <div className="header-right-wrapper">
-                <ul className="nav-center">
-                    <Link to="/profile"><li>my profile</li></Link>
-                    <Link to="/blog/create"><li>create blog</li></Link>
-                </ul> 
-                <ul className="nav-right">
-                    <Link to=""><li>LogIn</li></Link>
-                </ul>
-            </div>
         </header>
         <div className="article-info">
             <div className="round-pic"><img className="blog-img" src={taxes3} alt=""/></div>
@@ -72,8 +77,8 @@ const BlogPageCreate =()=>{
                 <p className="headline">What is your article about?</p>
                 <p className="author"></p>
                 {<div className={`confirmation ${showConfirmation ? "" : "hidden"}`}>
-                    <p>Succes your article has been publish</p>
-                    <button className= 'x-button'><img className="x-image" src={xicon}/></button>
+                    <p>Success, your article has been published</p>
+                    <button className= {`x-button ${hideConfirmation ? "hidden" : ""}`} onClick={onClicked}>close</button>
                     </div>}
                 <div className="main-content">
                         <form className="form" onSubmit={onSubmitHandler}>
@@ -95,7 +100,7 @@ const BlogPageCreate =()=>{
                                     <input className="imageFile" onChange={articleInputHandler} name='article_image' type="file" accept="image/jpeg, image/png" multiple placeholder="Image" />
                                     <input className="videoFile" onChange={articleInputHandler} value={article.article_video}  name='article_video'   type="url" placeholder="Video url" />
                                 </div>
-                                <button type="submit" className="submit-btn">Submit</button>
+                                <button type="submit" className="submit-btn">submit</button>
 
                             </div>
                     </form> 
