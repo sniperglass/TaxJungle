@@ -1,7 +1,15 @@
-import { SIGNIN, SIGNOUT, SIGNUP_STEP, SIGNUP_REGISTRATION } from "../actionTypes"
+import { SIGNIN, SIGNOUT, SIGNUP_STEP, SIGNUP_REGISTRATION, UPDATE_USER } from "../actionTypes"
 
 const initialState = {
-    user: {},
+    user: {
+        first_name: "",
+        last_name: "",
+        location: "",
+        about: "",
+        username: "",
+        email: "",
+        profile_picture: ""
+    },
     accessToken: "",
     authenticated: false,
     signupStep: 1,
@@ -29,6 +37,11 @@ const authReducer = (state = initialState, action) => {
          case SIGNUP_REGISTRATION: {
             const newState = {...state}
             newState.signupEmail = action.email
+            return newState
+        }
+        case UPDATE_USER: {
+            const newState = {...state}
+            newState.user = action.payload
             return newState
         }
         default:

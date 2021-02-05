@@ -19,6 +19,7 @@ justify-content: flex-start;
     flex-direction: column;
     width: 30%;
     min-height: 100%;
+    background-color: ${props => props.theme.text.mainColor};
     /* border: 1px solid yellow; */
 }
 
@@ -35,40 +36,77 @@ a {
     opacity: 1;
     padding: 10px;
     color: white;
-    /* color: ${props => props.theme.text.mainColor}; */
     justify-content: center;
     font-size: 60px;
     font-weight: 700;
-    /* border: 1px solid red; */
-    /* text-shadow: 1px 1px 2px rgba(150, 150, 150, 1); */
-}
-
-.back-img {
-    position: absolute;
-    display: flex;
-    justify-content: flex-start;
-    width: 30%;
-    min-height: 100%;
-    z-index: -1;
-    top: 0;
-    /* opacity: 50%; */ 
-    background-color: ${props => props.theme.text.mainColor};
-    /* border: 1px solid yellow;  */
 }
 
 .round-pic {
     display: flex;
+    align-items: center;
     justify-content: flex-start;
     margin-left: 70%;
-    margin-top: 20%;
+    margin-top: 20%; 
     /* border: 1px solid yellow; */
+}
 
-    .blog-img {
-        border-radius: 50%;
-        height: 280px;
-        width: 300px;
-        /* border: 1px solid yellow; */
-    }
+.label-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    width: 300px;
+    background-color: transparent;
+    /* border: 1px solid red; */
+    border-style: none;
+    outline: none;
+    border-radius: 50%;
+}
+
+.change-pic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    width: 300px;
+    /* border: 1px solid green; */
+    background-color: transparent;
+}
+
+input.pic-input:focus {
+    outline-width: 0;
+}
+
+.blog-img {
+    display: flex;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    height: 280px;
+    width: 280px;
+    /* border: 1px solid red; */
+}
+
+.delete {
+    margin-top: 120px;
+    display: flex;
+    justify-content: flex-start;
+    /* border: 1px solid yellow; */
+    width: 100%;
+    height: 20px;
+}
+
+.delete-btn {
+    display: flex;
+    background-color: transparent;
+    color: white;
+    justify-content: flex-end;
+    border-style: none;
+    padding-right: 10px;
+    margin-top: 20px;
+    width: 150px;
+    height: 20px;
+    outline: none;
 }
 
 .right {
@@ -165,7 +203,22 @@ a {
     flex-direction: column;
     /* border: 1px solid red; */
 
-    .about {
+}
+
+.about-pic {
+    width: 115%;
+    height: 20%;
+    justify-content: space-between;
+    display: flex;
+    /* border: 1px solid yellow; */
+    outline: none;
+}
+
+.pic-input {
+    opacity: 0;
+}
+
+.about {
         margin-top: 20px;
         padding: 7px;
         width: 100%;
@@ -173,7 +226,6 @@ a {
         border: none;
         outline: none;
     }
-}
 
 
 .known-credentials {
