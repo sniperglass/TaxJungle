@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { SIGNIN, SIGNOUT, SIGNUP_STEP, SIGNUP_REGISTRATION, UPDATE_USER } from "../actionTypes"
+=======
+import { SIGNIN, SIGNOUT, SIGNUP_STEP, SIGNUP_REGISTRATION } from "../actionTypes"
+>>>>>>> c32b90048e7d1bc63007d3005d3557b9ef31d000
 
 const initialState = {
     user: {

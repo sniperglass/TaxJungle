@@ -16,11 +16,9 @@ const BlogPageCreate =()=>{
     });
     const dispatch = useDispatch()
     const history = useHistory()
-
-    // const [image, setImage] = useState([])
+    const [showConfirmation, setShowConfirmation] = useState(false) 
 
     const articleInputHandler = e => {
-        console.log(e.target.value)
         let{name, value}=e.target
         if (name==='article_category'){
             value = parseInt(value)
@@ -34,9 +32,7 @@ const BlogPageCreate =()=>{
     }
 
     const onSubmitHandler = e => {
-        console.log(article)
         e.preventDefault()
-        
         
         const formData = new FormData();
         formData.append('article_image', article.article_image);
@@ -45,21 +41,10 @@ const BlogPageCreate =()=>{
         formData.append('content', article.content);
         formData.append('article_category', article.article_category);
 
-        console.log(formData)
         dispatch(newArticleAction(formData, history))
+        setShowConfirmation(true)
     }
     
-    // const fileInputHandler = e => {
-    //     //console.log(e.target.files)
-    //     setImage(e.target.files)
-    //     // for (file in e.target.files){
-    //     //     setImage(file)
-    //     // }
-    // }
-
-    
-
-
     return(
         
         <BlogPageCreateStyle>
@@ -67,12 +52,12 @@ const BlogPageCreate =()=>{
         <header className="header">
             <div className="back-img"></div>
             <ul className="nav-left">
-                <Link to="/blogs"><li>all blogs</li></Link>
+                <Link to="/blog"><li>all blogs</li></Link>
             </ul>
             <div className="header-right-wrapper">
                 <ul className="nav-center">
-                    <Link to="/blogs"><li>my profile</li></Link>
-                    <Link to="/renting"><li>create blog</li></Link>
+                    <Link to="/profile"><li>my profile</li></Link>
+                    <Link to="/blog/create"><li>create blog</li></Link>
                 </ul> 
                 <ul className="nav-right">
                     <Link to=""><li>LogIn</li></Link>
@@ -85,6 +70,9 @@ const BlogPageCreate =()=>{
                 <p className="category">Your story starts here</p>
                 <p className="headline">What is your article about?</p>
                 <p className="author"></p>
+                {<div className={`confirmation ${showConfirmation ? "" : "hidden"}`}>
+                    <p>Succes your article has been publish</p>
+                    </div>}
                 <div className="main-content">
                         <form className="form" onSubmit={onSubmitHandler}>
                             <div className="title-inputs">

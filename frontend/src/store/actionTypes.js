@@ -15,3 +15,5 @@ export const NEW_ARTICLE = "NEW_ARTICLE"
 export const SAVE_PROFILE = "SAVE_PROFILE"
 
 
+export const FETCH_ALL_ARTICLES = "FETCH_ALL_ARTICLES"
+export const BLOG_CATEGORY = "BLOG_CATEGORY"

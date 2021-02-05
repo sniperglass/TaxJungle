@@ -88,7 +88,7 @@ const Profile=()=>{
         
         <ProfileStyle>
             <div className="left">
-                <Link to="/blogs">all blogs</Link>
+                <Link to="/blog">back</Link>
                 <p className="title">My Profile</p>
                 <div className="round-pic">
                 <img className="blog-img" src={jennifer} alt=""/>
