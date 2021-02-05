@@ -2,7 +2,7 @@ import React, { useState} from 'react';
 import {Link} from 'react-router-dom';
 //img
 import email from '../../../assets/icons/email.png';
-import lock1 from '../../../assets/icons/lock1.png';
+import lock from '../../../assets/icons/lock.svg';
 
 
 //css
@@ -19,7 +19,7 @@ const SignInFormComp =()=>{
                     <input type="text" placeholder="email" /* value={ email }  */className="email" /* onChange={ handleEmail } */></input>
                 </div>
                 <div className="input-field">
-                    <img className="input-field-img" src={lock1} alt="" height="50px"></img>
+                    <img className="input-field-img" src={lock} alt="" height="50px"></img>
                     <input type="password" placeholder="password"/* value={ password } */ className="password" /* onChange={ handlePassword } */></input>
                 </div>  
             </div>

@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-
 export const BlogPageStyle = styled.section`
-
 
 position: absolute;
 z-index: -1;
@@ -13,7 +11,6 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 background-color:${props => props.theme.backgrounds.greyLight};
-/* border: 1px solid red; */
 justify-content: flex-start;
 
 
@@ -24,8 +21,6 @@ justify-content: flex-start;
     z-index: -1;
     top: 0;
     background-image: linear-gradient(to right top, #3c1e59, #4b296b, #5a357d, #694190, #794ea4);
-    /* background-color: ${props => props.theme.text.mainColor}; */
-    /* border: 1px solid yellow;  */
 }
 
 .header {
@@ -35,7 +30,6 @@ justify-content: flex-start;
     justify-content: space-between;
     align-items: center;
     background-color: ${props => props.theme.backgrounds.greyLight};
-    /* border: 1px solid blue; */
 }
 
 .nav-left {
@@ -44,7 +38,6 @@ justify-content: flex-start;
     justify-content: space-between;
     align-items: center;
     padding-left: 20px;
-    /* border: 1px solid red; */
     list-style: none;
     text-decoration: none;
 
@@ -62,14 +55,12 @@ justify-content: flex-start;
             }
         }
     }
-
 }
 
 .header-right-wrapper {
     display: flex;
-    width: 35%;
+    width: 40%;
     justify-content: space-around;
-    /* border: 1px solid blue; */
     list-style: none;
     text-decoration: none;
 }
@@ -78,7 +69,6 @@ justify-content: flex-start;
     display: flex;
     width: 45%;
     justify-content: space-between;
-    /* border: 1px solid green; */
     list-style: none;
     text-decoration: none;
 
@@ -101,7 +91,6 @@ justify-content: flex-start;
     width: 10%;
     padding-right: 20px;
     justify-content: space-between;
-    /* border: 1px solid yellow; */
     list-style: none;
     text-decoration: none;
 
@@ -122,7 +111,6 @@ justify-content: flex-start;
 .article-info {
     display: flex;
     justify-content: center;
-    /* border: 1px solid yellow; */
     width: 90%;
     height: 60%;
 }
@@ -132,50 +120,44 @@ justify-content: flex-start;
     flex-direction: column;
     width: 100%;
     height: 50%;
-    /* border: 1px solid red; */
 }
 
 .category {
     padding-top: 20px;
-    /* border: 1px solid white; */
     color: white;
     font-size: 50px;
 }
 
 .headline {
     padding-top: 55px;
-    /* border: 1px solid white; */
     color: white;
     font-size: 25px;
 }
 
 .author {
-    /* border: 1px solid white; */
     color: white;
     padding-top: 15px;
     font-size: 11px;
 }
 
 .round-pic {
-    display: flex;
-    justify-content: flex-start;
+    display: inline-block;
+    text-align: center;
     width: 30%;
-    height: 300px;
+    height: 150px;
     padding-top: 110px;
-    /* border: 1px solid yellow; */
 
     .blog-img {
         border-radius: 800px;
         height: 300px;
         width: 300px;
-        /* border: 1px solid yellow; */
     }
+
 }
 
 .main-content {
     display: flex;
     justify-content: space-between;
-    /* border: 1px solid red; */
     width: 100%;
     height: auto;
 }
@@ -184,7 +166,6 @@ justify-content: flex-start;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* border: 1px solid blue; */
     width: 100%;
     height: 100%;
 }
@@ -194,17 +175,14 @@ justify-content: flex-start;
     padding-bottom: 20px;
     display: flex;
     justify-content: center;
-    /* border: 1px solid yellow; */
     width: 80%;
     height: auto;
     text-align: justify;
-    /* color: dimgray; */
 }
 
 .comment-section {
     display: flex;
     flex-direction: column;
-    /* border: 1px solid green; */
     width: 35%;
     height: 100%;
     padding-top: 100px;
@@ -212,7 +190,6 @@ justify-content: flex-start;
 
 .comment-title {
     display: flex;
-    /* border: 1px solid red; */
     width: 40%;
     height: 40px;
     color: ${props => props.theme.text.mainColor};
@@ -225,7 +202,6 @@ justify-content: flex-start;
     align-items: flex-end;
     height: 100px;
     width: 100%;
-    /* border: 1px solid green;  */
 }
 
 .comment-input {
@@ -255,7 +231,6 @@ justify-content: flex-start;
 .comment-box {
     display: flex;
     flex-direction: column;
-    /* border: 1px solid yellow; */
     width: 100%;
     height: auto;
     background-color: white;
@@ -271,4 +246,20 @@ justify-content: flex-start;
         color: ${props => props.theme.text.mainColor};
     }
 }
-`
+
+.social-media-icons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        .no-border {
+            outline: none;
+        }
+
+        .icon {
+            padding: 2px;
+        }
+}
+
+`;
