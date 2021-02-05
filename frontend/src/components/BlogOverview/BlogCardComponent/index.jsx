@@ -14,7 +14,7 @@ const BlogCardComponent =(props)=>{
 
     return(
         <BlogCardCompStyle>
-            <Link to ="/blog" draggable="false">
+            <Link to ={`/blog/${props.article.article_category.category}/${props.article.id}`} draggable="false">
             <div className="">
                 <img src={props.article.article_image.length ? props.article.article_image[0].image : taxes3} alt="taxes1" className="taxes1-img" draggable="false" />
             </div>

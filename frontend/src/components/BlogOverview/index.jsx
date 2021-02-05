@@ -12,14 +12,9 @@ import {BlogOverviewStyle} from '../BlogOverview/styles';
 
 const BlogOverview =()=>{
     const dispatch = useDispatch()
-    const articles = useSelector(state => state.articlesReducer.articles)
-
+    const articles = useSelector(state => state.blogReducer.articles)
 
     useEffect(() => dispatch(fetchAllArticles()), [])
-
-    // const selectFilterBlogsHandler = (e) => {
-    //     e
-    // }
 
     return(
         <BlogOverviewStyle>
@@ -31,16 +26,6 @@ const BlogOverview =()=>{
                     {
                         articles.map((article, id) => <BlogCardComponent key={id} article={article}/>)
                     }
-
-                        {/* <BlogCardComponent />
-                        <BlogCardComponent />
-                        <BlogCardComponent />
-                        <BlogCardComponent />
-                        <BlogCardComponent />
-                        <BlogCardComponent />
-                        <BlogCardComponent />
-                        <BlogCardComponent />
-                        <BlogCardComponent /> */}
                 </Carousel>
                 <div className="back-img"></div>
             </div>

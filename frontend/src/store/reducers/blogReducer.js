@@ -6,7 +6,7 @@ const initialState = {
 }
 
 
-const articlesReducer = (state = initialState, action) => {
+const blogReducer = (state = initialState, action) => {
     console.log('state', state)
 
     switch (action.type) {
@@ -25,4 +25,4 @@ const articlesReducer = (state = initialState, action) => {
     }
 }
 
-export default articlesReducer;
+export default blogReducer;

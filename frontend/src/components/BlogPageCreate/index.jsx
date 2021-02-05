@@ -52,12 +52,12 @@ const BlogPageCreate =()=>{
         <header className="header">
             <div className="back-img"></div>
             <ul className="nav-left">
-                <Link to="/blogs"><li>all blogs</li></Link>
+                <Link to="/blog"><li>all blogs</li></Link>
             </ul>
             <div className="header-right-wrapper">
                 <ul className="nav-center">
-                    <Link to="/blogs"><li>my profile</li></Link>
-                    <Link to="/renting"><li>create blog</li></Link>
+                    <Link to="/profile"><li>my profile</li></Link>
+                    <Link to="/blog/create"><li>create blog</li></Link>
                 </ul> 
                 <ul className="nav-right">
                     <Link to=""><li>LogIn</li></Link>
