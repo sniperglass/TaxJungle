@@ -1,4 +1,4 @@
-from rest_framework import status
+from rest_framework import status, filters, pagination
 from rest_framework.response import Response
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView, \
     GenericAPIView, RetrieveAPIView
@@ -31,11 +31,17 @@ class ArticleCreateView(CreateAPIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+class PaginationView(pagination.PageNumberPagination):
+    page_size = 5
+    page_size_query_param = 'page_size'
+
+
 class ListArticleView(ListAPIView):
     """
     List of all the articles in chronological order
     """
     serializer_class = ArticleSerializer
+    pagination_class = PaginationView
     permission_classes = [AllowAny]
 
     def get_queryset(self):
@@ -88,7 +94,11 @@ class ArticleCategoryView(ListAPIView):
     """
     serializer_class = ArticleSerializer
     lookup_field = 'article_category_id'
+    search_fields = ['content', 'title']
+    filter_backends = (filters.SearchFilter,)
+    pagination_class = PaginationView
     permission_classes = [AllowAny]
 
     def get_queryset(self):
+
         return Article.objects.filter(article_category=self.kwargs['article_category_id'])
