@@ -10,6 +10,7 @@ export const FETCH_TAXES = "FETCH_TAXES"
 
 //Blog
 export const NEW_ARTICLE = "NEW_ARTICLE"
+export const SINGLE_ARTICLE = "SINGLE_ARTICLE"
 
 //Profile
 export const SAVE_PROFILE = "SAVE_PROFILE"

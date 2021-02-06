@@ -1,5 +1,7 @@
-import React, { useState} from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect} from 'react';
+import {Link, useParams} from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
+
 //img
 import taxes3 from '../../assets/categories/taxes3.jpg';
 
@@ -14,9 +16,24 @@ import {CommentsStyledDown} from '../BlogPage/styles';
 import { FacebookShareButton, FacebookIcon, EmailShareButton,
 EmailIcon, LinkedinShareButton, LinkedinIcon, TwitterShareButton, 
 TwitterIcon, WhatsappShareButton, WhatsappIcon } from "react-share";
+import { fetchSingleArticle } from '../../store/actions/blogAction';
 
 
-const BlogPage =()=>{
+const BlogPage =(props)=>{
+    const singleArticle = useSelector(state => state.blogReducer.current)
+    const dispatch = useDispatch()
+    // const article_id = props.match.params.id
+    // const {handle, article_id} = props.match.params
+    const params = useParams()
+
+    useEffect(() => {     
+        console.log(params.title, params.id)
+        dispatch(fetchSingleArticle(params.id))
+    }, [])
+
+
+
+
 
     return(
         
@@ -37,42 +54,18 @@ const BlogPage =()=>{
             </div>
         </header>
         <div className="article-info">   
-            <div className="round-pic"><img className="blog-img" src={taxes3} alt=""/>
+            <div className="round-pic"><img className="blog-img" src={singleArticle.article_image[0].image} alt=""/>
             </div>
             <div className="header-info">
-                <p className="category">Taxes</p>
-                <p className="headline">What is tax deductible in Switzerland?</p>
-                <p className="author">by Credit Suisse, 12.01.21</p>
+                <p className="category">{singleArticle.article_category.category}</p>
+                <p className="headline">{singleArticle.title}</p>
+                <p className="author">by {`${singleArticle.user.first_name} ${singleArticle.user.last_name}`}</p>
                 <div className="main-content">
                     <div className="article-box">
-                        <p className="article">
-                            The interest deduction on equity capital will provide tax
-                            relief for financial and treasury income. Specifically, this
-                            means that the cantons can allow an interest deduction on
-                            equity capital for tax purposes. However, the interest deduction
-                            on equity capital will only be possible if a company’s corporate
-                            income tax charge (federal, cantonal, and municipal) in the
-                            cantonal capital exceeds 18%. Only in the Canton of Zurich is
-                            this condition likely to be met. <br/><br/>
-                            If you finance your companies via a holding, finance, or treasury
-                            company, the TRAF will mean that you lose the tax advantages
-                            you previously enjoyed. With the interest deduction on equity
-                            capital, it may be worth bundling or restructuring intragroup financial flows in Switzerland in order to reduce taxes on
-                            financial income over the long term...<br/><br/>
-                            The interest deduction on equity capital will provide tax
-                            relief for financial and treasury income. Specifically, this
-                            means that the cantons can allow an interest deduction on
-                            equity capital for tax purposes. However, the interest deduction
-                            on equity capital will only be possible if a company’s corporate
-                            income tax charge (federal, cantonal, and municipal) in the
-                            cantonal capital exceeds 18%. Only in the Canton of Zurich is
-                            this condition likely to be met. <br/><br/>
-                            If you finance your companies via a holding, finance, or treasury
-                            company, the TRAF will mean that you lose the tax advantages
-                            you previously enjoyed. With the interest deduction on equity
-                            capital, it may be worth bundling or restructuring intragroup financial flows in Switzerland in order to reduce taxes on
-                            financial income over the long term...
-                        </p>
+                            {
+                                <p className="article">{singleArticle.content}</p>
+                            }
+           
                     </div>
                         <div className="comment-section">
                             <div className="comment-title">Comments</div>
