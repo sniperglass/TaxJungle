@@ -308,12 +308,26 @@ const Map = () => {
     // TODO: Zoom/center map according to selected municipality?
     const selectMunicipality = () => {
         const cantonID = Object.keys(cantons).find(key => cantons[key] === searchedMunicipality.kanton_id)
+        const cantonSelection = d3.selectAll(`path.canton-boundaries.c${cantonID}`)
         const munID = searchedMunicipality.gemeinde_id
-        d3.selectAll(`path.canton-boundaries.c${cantonID}`).attr("style", "fill: none; stroke-width: 1.5;")
-        d3.selectAll(`path.municipality-boundaries.m${munID}`).classed("active", true)
+        const munSelection = d3.selectAll(`path.municipality-boundaries.m${munID}`)
+
+        cantonSelection.attr("style", "fill: none; stroke-width: 1.5;")
+        munSelection.classed("active", true)
+    
+        const bounds = munSelection.node().getBoundingClientRect()
+        const x = bounds.x + bounds.width / 2
+        const y = bounds.y + bounds.height / 2
+        
+        const rate = (searchedMunicipality.satz * 100).toFixed(2)
+
+        d3.select("#tooltip").classed("hidden", false)
+            .attr("style", "left:" + (x - 80) + "px; top:" + (y + 50) + "px")
+            .html(`${searchedMunicipality.gemeinde} ${rate}%`)
     }
 
     const resetSelection = () => {
+        d3.select("#tooltip").classed("hidden", true)
         d3.selectAll(".municipalities path").classed("active", false)
         colorizeCantons(taxData)
     }

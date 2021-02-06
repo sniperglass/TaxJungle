@@ -33,9 +33,9 @@ const Home =()=>{
     }
 
     const searchHandler = (e) => {
-        const query = e.target.value
+        const query = e.target.value.toLowerCase()
         setShowDropDown(query.length)
-        setOptions(municipalities.filter(mun => mun.includes(query)))
+        setOptions(municipalities.filter(mun => mun.toLowerCase().includes(query)))
     }
 
     const searchSubmitHandler = (e) => {
