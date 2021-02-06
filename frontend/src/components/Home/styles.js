@@ -124,7 +124,36 @@ export const HomeStyle = styled.section`
     align-items: center;
     outline: none;
     cursor: pointer;
-    background:${props => props.theme.backgrounds.purple};
+    background: ${props => props.theme.backgrounds.purple};
+}
+
+.close-btn {
+    height: 100%;
+    width: 50px;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    cursor: pointer;
+    background: ${props => props.theme.backgrounds.purple};
+
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20px;
+        width: 20px;
+        background-color: ${props => props.theme.backgrounds.purple};
+        overflow: hidden;
+
+        img {
+            height: 30px; 
+            background-color: white;  
+        }
+    }
 }
 
 .right-config-glimpse {

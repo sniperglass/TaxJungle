@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { searchMapAction } from "../../store/actions/mapActions"
 
@@ -6,6 +6,7 @@ import { searchMapAction } from "../../store/actions/mapActions"
 import filter from '../../assets/icons/filter.svg'
 import search from '../../assets/icons/search.svg'
 import location from '../../assets/icons/location.svg'
+import close from '../../assets/icons/x-icon.svg'
 
 //css
 import { HomeStyle } from '../Home/styles'
@@ -18,13 +19,13 @@ import DropDownMenu from '../Home/DropDownMenu'
 
 
 const Home =()=>{
-    const taxes = useSelector(state => state.mapReducer.taxes)
-    const municipalities = taxes.map(mun => mun.gemeinde).sort()
+    const taxData = useSelector(state => state.mapReducer.taxes)
+    const municipalities = taxData.map(mun => mun.gemeinde).sort()
     const dispatch = useDispatch()
     const [openTaxConfig, setOpenTaxConfig] = useState(false)
     const [options, setOptions] = useState(municipalities)
     const [showDropdown, setShowDropDown] = useState(false)
-    const [mapSelection, setMapSelection] = useState(null)
+    const searchFormRef = useRef()
 
     const taxConfigurationOpenButtonHandler = (e) => {
         e.preventDefault()
@@ -40,11 +41,19 @@ const Home =()=>{
     const searchSubmitHandler = (e) => {
         e.preventDefault()
         if (options.length === 1) {
-            const mun = taxes.filter(mun => mun.gemeinde === options[0])[0]
+            const mun = taxData.filter(mun => mun.gemeinde === options[0])[0]
             dispatch(searchMapAction(mun))
         } else {
             dispatch(searchMapAction(null))
         }
+    }
+
+    const searchCloseHandler = (e) => {
+        e.preventDefault()
+        searchFormRef.current.reset()
+        setShowDropDown(false)
+        dispatch(searchMapAction(null))
+        setOptions([])
     }
 
     return (
@@ -58,10 +67,13 @@ const Home =()=>{
                             <h1>Where do you pay the lowest taxes in Switzerland?</h1>
                         </div>
                         <div className="search-wrapperbox">
-                            <form onSubmit={searchSubmitHandler} className="search-form" autoComplete="off">
+                            <form ref={searchFormRef} onSubmit={searchSubmitHandler} className="search-form" autoComplete="off">
                                     <label htmlFor="search-input"><img src={location} alt="" className="location-pic"></img></label>
                                     <input id="search-input" className="search-input" type="text" placeholder="Check your city" name="search" onChange={searchHandler} />
-                                    <button type="submit" className="search-btn"><img src={search} height="18px" alt=""></img></button>
+                                    {showDropdown ?
+                                        <button type="button" className="close-btn"><div><img src={close} alt="close" onClick={searchCloseHandler}></img></div></button> :
+                                        <button type="submit" className="search-btn"><img src={search} alt="search" height="18px"></img></button>    
+                                    }
                                     <DropDownMenu id="dropdown" options={options} visible={showDropdown} />
                             </form>
                         </div>
