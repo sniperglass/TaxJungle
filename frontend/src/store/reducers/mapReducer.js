@@ -1,8 +1,10 @@
-import { FETCH_TAXES } from "../actionTypes"
+import { SEARCH_MAP, FETCH_TAXES } from "../actionTypes"
+
 
 const initialState = {
+    searchedMunicipality: null,
     taxes: [],
-    configuration: {
+    taxesConfiguration: {
         incomeOne: 100000,
         incomeTwo: null,
         status: "Single",
@@ -11,8 +13,13 @@ const initialState = {
     },
 }
 
-const taxesReducer = (state = initialState, action) => {
+const mapReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SEARCH_MAP: {
+            const newState = {...state}
+            newState.searchedMunicipality = action.payload
+            return newState
+        }
         case FETCH_TAXES: {
             const newState = {...state}
             newState.taxes = action.payload
@@ -23,4 +30,4 @@ const taxesReducer = (state = initialState, action) => {
     }
 } 
 
-export default taxesReducer
+export default mapReducer

@@ -5,7 +5,7 @@ import emailIcon from '../../../assets/icons/email.png';
 import lockIcon from '../../../assets/icons/lock.svg';
 import { useDispatch } from "react-redux"
 import { useState } from "react"
-import { useHistory, Link } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { signIn } from "../../../store/actions/authActions"
 
 
@@ -41,7 +41,7 @@ const SignIn = () => {
                         <label for="email">
                             <img id="input-img" src={emailIcon} alt="email" height="40px" />
                         </label>
-                        <input id="email" name="email" type="email" placeholder="email" autocomplete="email" required />
+                        <input id="email" name="email" type="email" placeholder="email" autoComplete="email" required />
                     </InputFieldStyle>
                     <InputFieldStyle>
                         <label for="password">

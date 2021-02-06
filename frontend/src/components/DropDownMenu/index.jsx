@@ -25,8 +25,8 @@ const DropDownMenu = () => {
                 <div className="required" onClick={ () => setToggleDropDownMenu(!toggleDropDownMenu)}>
                     <p className="select">{selectedOption}</p>
                     {!toggleDropDownMenu ? 
-                        <img src={DownArrow} className="down-arrow"/> 
-                        : <img src={UpArrow} className="down-arrow"/> 
+                        <img src={DownArrow} className="down-arrow" alt="arrow down" /> 
+                        : <img src={UpArrow} className="down-arrow" alt="arrow up" /> 
                     }   
                 </div>
             </nav>

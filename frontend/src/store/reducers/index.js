@@ -1,11 +1,11 @@
 import { combineReducers } from "redux"
 import authReducer from "./authReducer"
-import taxesReducer from "./taxesReducer"
+import mapReducer from "./mapReducer"
 import blogReducer from "./blogReducer"
 
 
 export default combineReducers({
     authReducer,
-    taxesReducer,
+    mapReducer,
     blogReducer,
 })
