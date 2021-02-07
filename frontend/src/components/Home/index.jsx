@@ -79,11 +79,7 @@ const Home =()=>{
                             </form>
                         </div>
                     </div>
-                    <div className="right-container">
-                        <div className="blog-link-container">
-                            <p>Some catchy phrase:</p>
-                            <Link to="/blog">Blog</Link>
-                        </div>
+                    {/* <div className="right-container"> */}
                         <div className="config-container">
                             <button type="submit" className="config-btn" onClick={taxConfigurationOpenButtonHandler}><img src={filter} height="50px" className="filter" alt="manage config"></img></button>
                             <div className="config-box">
@@ -98,8 +94,12 @@ const Home =()=>{
                                 <p className="category">Children</p>
                                 <p className="chosen-by-user">0</p>
                             </div>
+                            <div className="blog-link-container">
+                                <p>Some catchy phrase:</p>
+                                <Link to="/blog">Blog</Link>
+                            </div>
                         </div>
-                    </div>
+                    {/* </div> */}
                 </div>
                 <footer>
                     <div className="footer-bar-left">

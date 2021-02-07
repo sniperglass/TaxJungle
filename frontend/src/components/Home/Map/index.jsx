@@ -44,7 +44,7 @@ const Map = () => {
     // Axis dimensions
     const axisWidth = 345, axisHeight = 75
     const axisInnerWidth = 300, axisInnerHeight = 15
-    const axisMarginLeftMultiplier = 0.10825
+    const axisMarginLeftMultiplier = 0.115
     let axisMarginLeft = mapHeight > 450 ? mapWidth * axisMarginLeftMultiplier : -10000, axisMarginBottom = 150
 
     // Map projection, scale factor and path
@@ -101,7 +101,7 @@ const Map = () => {
             const map = d3.select(mapRef.current)
             mapWidth = parseInt(map.style("width"))
             mapHeight = parseInt(map.style("height"))
-            axisMarginLeft = mapHeight > 450 ? mapWidth * axisMarginLeftMultiplier : -10000
+            axisMarginLeft = mapHeight * mapWidth > 450 * 550 ? mapWidth * axisMarginLeftMultiplier : -10000
 
             // Upate projection
             projection

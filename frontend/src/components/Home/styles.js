@@ -43,23 +43,26 @@ export const HomeStyle = styled.section`
 
 .title-search-box {
     display: flex;
-    max-width: 70%;
+    width: 80%;
+    max-width: 725px;
     height: 100%;
     flex-direction: column;
     /* border: 1px solid blue; */
-    background-color: red;
 }
 
 .main-title {
     height: auto;
-    width: 100%;
-    font-size: 28px;
-    font-weight: 300;
+    font-size: 26px;
     color:${props => props.theme.text.mainColor};
     z-index: 1;
     pointer-events: none;
     display: flex;
     /* border: 1px solid green; */
+
+    h1 {
+        font-weight: 600;
+        text-align: left;
+    }
 }
 
 .search-wrapperbox {
@@ -84,8 +87,8 @@ export const HomeStyle = styled.section`
     border-radius: 8px;
     border: 1px solid ${props => props.theme.text.mainColor};
     pointer-events: initial;
-    /* border: 1px solid red; */
     position: relative;
+    /* border: 1px solid red; */
     
     div {
         width: 100%;
@@ -158,47 +161,15 @@ export const HomeStyle = styled.section`
     }
 }
 
-.right-container {
-    background-color: yellow;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    margin-bottom: auto;
-}
-
-.blog-link-container {
-    background: blue;
-    height: 40px;
-    margin-left: auto;
-    padding-top: 10px;
-    font-size: initial;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    pointer-events: none;
-    z-index: 1;
-
-    p {
-        white-space: nowrap;
-    }
-
-    a {
-        background-color: green;
-        pointer-events: initial;
-    }
-}
-
 .config-container {
-    background-color: orange;
     display: flex;
     flex-direction: column;
-    /* width: 20%; */
-    height: 40%;
+    width: 20%;
+    height: 100%;
     margin-bottom: auto;
     padding-top: 10px;
     align-items: flex-end;
-    justify-content: space-between;
+    justify-content: flex-start;
     pointer-events: none;
     /* border: 1px solid red; */
 
@@ -210,6 +181,7 @@ export const HomeStyle = styled.section`
 .config-btn {
     height: 50px;
     width: 50px;
+    margin-bottom: 10px;
     border-radius: 12px;
     border: none;
     outline: none;
@@ -222,7 +194,9 @@ export const HomeStyle = styled.section`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    width: 100px;
+    width: 100%;
+    height: auto;
+    margin: 10px 0;
     pointer-events: none;
     /* border: 1px solid yellow; */   
 }
@@ -236,6 +210,36 @@ export const HomeStyle = styled.section`
     font-size: 16px;
     color:${props => props.theme.text.mainColor};
     font-weight: 500;
+}
+
+.blog-link-container {
+    height: 100px;
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    pointer-events: none;
+    z-index: 1;
+
+    p {
+        margin: 10px 0;
+    }
+
+    a {
+        pointer-events: initial;
+        height: 50px;
+        width: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        background: ${props => props.theme.backgrounds.purple};
+        color: white;
+        border-radius: 8px;
+    }
 }
 
 footer {
