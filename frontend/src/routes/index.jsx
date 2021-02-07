@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom"
+import { BrowserRouter, Route, Switch, Redirect, useParams } from "react-router-dom"
 import { withAuth } from "../hoc/index"
 import Home from "../components/Home";
 import ConfigurationModal from "../components/Home/ConfigurationModal";
@@ -9,6 +9,9 @@ import BlogPageCreate from '../components/BlogPageCreate';
 import Profile from '../components/Profile';
 import SignIn from '../components/Authentication/SignIn/index'
 import SignUp from '../components/Authentication/SignUp/index'
+
+
+
 
 
 const Routes = () => {

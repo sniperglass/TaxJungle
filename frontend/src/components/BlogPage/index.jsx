@@ -24,22 +24,22 @@ const BlogPage =(props)=>{
     const dispatch = useDispatch()
     // const article_id = props.match.params.id
     // const {handle, article_id} = props.match.params
-    const params = useParams()
+    const {category, id} = useParams()
 
-    useEffect(() => {     
-        console.log(params.title, params.id)
-        dispatch(fetchSingleArticle(params.id))
+    useEffect(() => {    
+        //console.log(params.title, params.id)
+        dispatch(fetchSingleArticle(id))
     }, [])
 
-
-
-
+const onCommentSubmit = e => {
+    e.preventDefault()
+}
 
     return(
         
         <BlogPageStyle>
         <header className="header">
-            <div className="back-img"></div>
+            <div className="back-img"></div>onCommentSubmit
             <ul className="nav-left">
                 <Link to="/blog"><li>all blogs</li></Link>
             </ul>
@@ -54,7 +54,8 @@ const BlogPage =(props)=>{
             </div>
         </header>
         <div className="article-info">   
-            <div className="round-pic"><img className="blog-img" src={singleArticle.article_image[0].image} alt=""/>
+            <div className="round-pic"><img className="blog-img" src={singleArticle.article_image.image} alt=""/>
+  
             </div>
             <div className="header-info">
                 <p className="category">{singleArticle.article_category.category}</p>
@@ -69,7 +70,7 @@ const BlogPage =(props)=>{
                     </div>
                         <div className="comment-section">
                             <div className="comment-title">Comments</div>
-                            <form className="addcomment-box" onSubmit="onCommentSubmit">
+                            <form className="addcomment-box" onSubmit={onCommentSubmit}>
                                 <textarea className="comment-input" placeholder="add your comment here ... "/>
                                 <button className="comment-btn">Submit</button>
                             </form>
