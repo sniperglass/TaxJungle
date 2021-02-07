@@ -16,7 +16,7 @@ import { ConfigModalPageStyled } from '../Home/ConfigurationModal/styles'
 //components
 import Map from "./Map"
 import ConfigModal from '../Home/ConfigurationModal'
-import DropDownMenu from '../Home/DropDownMenu'
+import DropDownMenu from './SearchDropdown'
 
 
 const Home =()=>{
@@ -95,8 +95,7 @@ const Home =()=>{
                                 <p className="chosen-by-user">0</p>
                             </div>
                             <div className="blog-link-container">
-                                <p>Some catchy phrase:</p>
-                                <Link to="/blog">Blog</Link>
+                                <p>If you have further questions regarding taxes, renting, banking or insurance, then have a look at our  <Link to="/blog">Blog</Link></p>
                             </div>
                         </div>
                     {/* </div> */}

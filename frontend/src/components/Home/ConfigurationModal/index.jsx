@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ConfigModalStyled } from './styles';
-import DropDown from '../../Home/DropDownMenu/index';
+import DropDown from '../SearchDropdown/index';
 
 //IMAGES
 import CloseButton from '../../../assets/icons/x-icon.svg';
@@ -41,7 +41,6 @@ const ConfigModal = ({taxConfigurationOpenButtonHandler}) => {
     }    
 
     //MARITAL STATUS FIELD
-
     const partnerOneMaritalStatusSelector = (e) => {
         console.log(e.target.value);
         setPartnerOneMaritalStatus(e.target.value);

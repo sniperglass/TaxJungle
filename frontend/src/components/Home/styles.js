@@ -213,32 +213,36 @@ export const HomeStyle = styled.section`
 }
 
 .blog-link-container {
-    height: 100px;
+    /* height: 100px; */
     width: 100%;
     margin-top: auto;
     margin-bottom: 20px;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: flex-end; */
     pointer-events: none;
     z-index: 1;
 
     p {
         margin: 10px 0;
+        text-align: right;
+        color: ${props => props.theme.backgrounds.purple};
     }
 
     a {
         pointer-events: initial;
-        height: 50px;
-        width: 100px;
+        /* height: 50px;
+        width: 100px; */
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
-        text-decoration: none;
-        background: ${props => props.theme.backgrounds.purple};
-        color: white;
-        border-radius: 8px;
+        /* text-decoration: none; */
+        font-weight: bold;
+        font-size: 22px;
+        /* background: ${props => props.theme.backgrounds.purple}; */
+        color: ${props => props.theme.backgrounds.purple};
+        /* border-radius: 8px; */
     }
 }
 
