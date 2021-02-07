@@ -11,7 +11,7 @@ const setBlur = () => {
 }
 
 export const HomeStyle = styled.section`
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -35,6 +35,7 @@ export const HomeStyle = styled.section`
 
 .main-content {
     display: flex;
+    justify-content: space-between;
     height: 85%;
     width: 80%;
     /* border: 1px solid green; */
@@ -42,20 +43,22 @@ export const HomeStyle = styled.section`
 
 .title-search-box {
     display: flex;
-    width: 80%;
+    max-width: 70%;
     height: 100%;
     flex-direction: column;
     /* border: 1px solid blue; */
+    background-color: red;
 }
 
 .main-title {
     height: auto;
-    width: 70%;
+    width: 100%;
     font-size: 28px;
     font-weight: 300;
     color:${props => props.theme.text.mainColor};
     z-index: 1;
     pointer-events: none;
+    display: flex;
     /* border: 1px solid green; */
 }
 
@@ -68,7 +71,6 @@ export const HomeStyle = styled.section`
     z-index: 99;
     pointer-events: none;
     /* border: 1px solid orange; */
-
 }
 
 .search-form {
@@ -156,14 +158,48 @@ export const HomeStyle = styled.section`
     }
 }
 
-.right-config-glimpse {
+.right-container {
+    background-color: yellow;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: auto;
+}
+
+.blog-link-container {
+    background: blue;
+    height: 40px;
+    margin-left: auto;
+    padding-top: 10px;
+    font-size: initial;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    pointer-events: none;
+    z-index: 1;
+
+    p {
+        white-space: nowrap;
+    }
+
+    a {
+        background-color: green;
+        pointer-events: initial;
+    }
+}
+
+.config-container {
+    background-color: orange;
     display: flex;
     flex-direction: column;
-    width: 20%;
+    /* width: 20%; */
     height: 40%;
-    padding-top: 15px;
+    margin-bottom: auto;
+    padding-top: 10px;
     align-items: flex-end;
     justify-content: space-between;
+    pointer-events: none;
     /* border: 1px solid red; */
 
     button, p {
@@ -179,6 +215,7 @@ export const HomeStyle = styled.section`
     outline: none;
     z-index: 1;
     cursor: pointer;
+    pointer-events: initial;
 }
 
 .config-box {
@@ -205,7 +242,7 @@ footer {
     display: flex;
     width: 80%;
     justify-content: space-between;
-    padding-bottom: 50px;
+    align-items: center;
     /* border: 1px solid red; */
 
     div > * {
@@ -238,11 +275,19 @@ footer {
 }
 
 .footer-bar-right {
+    min-width: 40%;
     display: flex;
-    width: 50%;
     font-size: 12px;
     justify-content: space-between;
-    padding-right: 50px;
+    align-items: center;
     /* border: 1px solid green; */
+
+    a {
+        text-align: center;
+        margin-left: 15px;
+    }
+    a:first-child {
+        margin-left: 0;
+    }
 }
 `

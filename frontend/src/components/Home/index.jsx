@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom'
 import { searchMapAction } from "../../store/actions/mapActions"
 
 //img
@@ -35,7 +36,7 @@ const Home =()=>{
     const searchHandler = (e) => {
         const query = e.target.value.toLowerCase()
         setShowDropDown(query.length)
-        setOptions(municipalities.filter(mun => mun.toLowerCase().includes(query)))
+        setOptions(municipalities.filter(mun => mun.toLowerCase().startsWith(query)))
     }
 
     const searchSubmitHandler = (e) => {
@@ -78,19 +79,25 @@ const Home =()=>{
                             </form>
                         </div>
                     </div>
-                    <div className="right-config-glimpse">
-                        <button type="submit" className="config-btn" onClick={taxConfigurationOpenButtonHandler}><img src={filter} height="50px" className="filter" alt="manage config"></img></button>
-                        <div className="config-box">
-                            <p className="category">Income</p>
-                            <p className="chosen-by-user">CHF 100'000</p>
+                    <div className="right-container">
+                        <div className="blog-link-container">
+                            <p>Some catchy phrase:</p>
+                            <Link to="/blog">Blog</Link>
                         </div>
-                        <div className="config-box">
-                            <p className="category">Status</p>
-                            <p className="chosen-by-user">Single</p>
-                        </div>
-                        <div className="config-box">
-                            <p className="category">Children</p>
-                            <p className="chosen-by-user">0</p>
+                        <div className="config-container">
+                            <button type="submit" className="config-btn" onClick={taxConfigurationOpenButtonHandler}><img src={filter} height="50px" className="filter" alt="manage config"></img></button>
+                            <div className="config-box">
+                                <p className="category">Income</p>
+                                <p className="chosen-by-user">CHF 100'000</p>
+                            </div>
+                            <div className="config-box">
+                                <p className="category">Status</p>
+                                <p className="chosen-by-user">Single</p>
+                            </div>
+                            <div className="config-box">
+                                <p className="category">Children</p>
+                                <p className="chosen-by-user">0</p>
+                            </div>
                         </div>
                     </div>
                 </div>
