@@ -3,7 +3,7 @@ import { BLOG_CATEGORY, FETCH_ALL_ARTICLES, SINGLE_ARTICLE } from '../actionType
 const initialState = {
     articles: [],
     category: "",
-    current: {},
+    current: null,
 }
 
 

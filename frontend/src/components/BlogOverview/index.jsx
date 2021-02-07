@@ -5,7 +5,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {useEffect} from "react";
 import BlogHeaderComponent from '../BlogOverview/BlogHeaderComponent';
 import BlogCardComponent from './BlogCardComponent';
-import {fetchAllArticles} from '../../store/actions/blogAction'
+import {fetchAllArticles} from '../../store/actions/blogActions'
 
 //css
 import {BlogOverviewStyle} from '../BlogOverview/styles';

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Link } from 'react-router-dom'
 import { getAvatar } from "../../../store/utils"
 import { signoutAction } from "../../../store/actions/authActions"
-import { blogCategoryAction } from "../../../store/actions/blogAction"
+import { blogCategoryAction } from "../../../store/actions/blogActions"
 
 const BlogHeaderComponent = () => {
     const user = useSelector(state => state.authReducer.user)

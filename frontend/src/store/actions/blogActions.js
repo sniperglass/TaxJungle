@@ -81,14 +81,13 @@ export const fetchSingleArticle = (article_id) => async (dispatch, getState) => 
         headers: headers
     }
 
-    console.log('before request')
     const response = await fetch (`${baseBackendURL}/article/search/${article_id}`, config)
     if (response.ok) {
         const json = await response.json()
-        console.log('json', json)
         dispatch(fetchSingleArticleAction(json))
         return json
     }
+    
     return null
 }
 
