@@ -26,7 +26,6 @@ export const HomeStyle = styled.section`
     width: 100%;
     height: 100%;
     position: absolute;
-    z-index: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,8 +42,8 @@ export const HomeStyle = styled.section`
 
 .title-search-box {
     display: flex;
-    width: 80%;
     max-width: 725px;
+    width: 50%;
     height: 100%;
     flex-direction: column;
     /* border: 1px solid blue; */
@@ -164,7 +163,7 @@ export const HomeStyle = styled.section`
 .config-container {
     display: flex;
     flex-direction: column;
-    width: 20%;
+    max-width: 350px;
     height: 100%;
     margin-bottom: auto;
     padding-top: 10px;
@@ -213,36 +212,33 @@ export const HomeStyle = styled.section`
 }
 
 .blog-link-container {
-    /* height: 100px; */
     width: 100%;
     margin-top: auto;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     display: flex;
-    /* flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end; */
     pointer-events: none;
     z-index: 1;
+    line-height: 28px;
 
     p {
         margin: 10px 0;
         text-align: right;
         color: ${props => props.theme.backgrounds.purple};
+
+        span {
+            font-weight: bold;
+        }
     }
 
     a {
         pointer-events: initial;
-        /* height: 50px;
-        width: 100px; */
+        margin-top: 3px;
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        /* text-decoration: none; */
         font-weight: bold;
-        font-size: 22px;
-        /* background: ${props => props.theme.backgrounds.purple}; */
+        font-size: 24px;
         color: ${props => props.theme.backgrounds.purple};
-        /* border-radius: 8px; */
     }
 }
 

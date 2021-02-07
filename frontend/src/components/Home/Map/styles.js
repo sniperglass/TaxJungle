@@ -21,6 +21,7 @@ export const MapStyle = styled.div `
     color: ${props => props.theme.text.mainColor};
     background-color: ${props => props.theme.backgrounds.greyLight};
     box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.5);  
+    z-index: 999;
 }
   
   .canton-boundaries {

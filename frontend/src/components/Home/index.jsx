@@ -95,7 +95,7 @@ const Home =()=>{
                                 <p className="chosen-by-user">0</p>
                             </div>
                             <div className="blog-link-container">
-                                <p>If you have further questions regarding taxes, renting, banking or insurance, then have a look at our  <Link to="/blog">Blog</Link></p>
+                                <p>Do you have further questions regarding <span>taxes</span>, <span>renting</span>, <span>insurance</span> or <span>banking</span>?<br/>Then have a look at our <Link to="/blog">Blog</Link></p>
                             </div>
                         </div>
                     {/* </div> */}

@@ -101,7 +101,7 @@ const Map = () => {
             const map = d3.select(mapRef.current)
             mapWidth = parseInt(map.style("width"))
             mapHeight = parseInt(map.style("height"))
-            axisMarginLeft = mapHeight * mapWidth > 450 * 550 ? mapWidth * axisMarginLeftMultiplier : -10000
+            axisMarginLeft = (mapHeight * mapWidth) > (550 * 550) ? mapWidth * axisMarginLeftMultiplier : -10000
 
             // Upate projection
             projection
