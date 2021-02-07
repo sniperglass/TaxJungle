@@ -5,7 +5,7 @@ export const BlogHeaderCompStyle = styled.section`
 display: flex;
 flex-direction: row;
 width: 100%;
-height: 6%;
+height: 50px;
 background-color: white;
 /* border: 1px solid blue; */
 
@@ -20,7 +20,15 @@ background-color: white;
 
 .nav-left {
     display: flex;
-    width: 10%;
+    align-items: center;
+    justify-content: space-between;
+    width: 350px;
+    /* border: 1px solid yellow; */
+}
+
+.nav1 {
+    display: flex;
+    width: 60%;
     align-items: center;
     padding-left: 20px;
     /* border: 1px solid red; */
@@ -49,9 +57,9 @@ background-color: white;
 
 }
 
-.nav-center {
+.nav2 {
     display: flex;
-    width: 35%;
+    width: 78%;
     justify-content: space-between;
     /* border: 1px solid blue; */
     list-style: none;
@@ -68,6 +76,7 @@ background-color: white;
     }
 }
 
+
 .nav-right {
     display: flex;
     padding-right: 20px;
@@ -75,6 +84,15 @@ background-color: white;
     /* border: 1px solid yellow; */
     list-style: none;
     text-decoration: none;
+    width: 240px;
+
+    .nav3 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 55%;
+        /* border: 1px solid red; */
+    }
 
     a {
         color: ${props => props.theme.text.mainColor};

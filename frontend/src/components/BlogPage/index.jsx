@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 //img
 import taxes3 from '../../assets/categories/taxes3.jpg';
 
-import BlogHeaderComponent from '../BlogOverview/BlogHeaderComponent';
+import BlogHeaderComponent from '../../components/BlogHeaderComponent';
 import BlogCardComponent from '../BlogOverview/BlogCardComponent';
 
 //css
@@ -21,21 +21,8 @@ const BlogPage =()=>{
     return(
         
         <BlogPageStyle>
-        <header className="header">
+            <BlogHeaderComponent />
             <div className="back-img"></div>
-            <ul className="nav-left">
-                <Link to="/blog"><li>all blogs</li></Link>
-            </ul>
-            <div className="header-right-wrapper">
-                <ul className="nav-center">
-                    <Link to="/profile"><li>my profile</li></Link>
-                    <Link to="/blog/create"><li>create article</li></Link>
-                </ul> 
-                <ul className="nav-right">
-                    <Link to=""><li>LogIn</li></Link>
-                </ul>
-            </div>
-        </header>
         <div className="article-info">   
             <div className="round-pic"><img className="blog-img" src={taxes3} alt=""/>
             </div>

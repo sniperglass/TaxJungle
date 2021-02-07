@@ -13,7 +13,6 @@ align-items: center;
 background-color:${props => props.theme.backgrounds.greyLight};
 justify-content: flex-start;
 
-
 .back-img {
     position: absolute;
     width: 100%;
@@ -21,91 +20,6 @@ justify-content: flex-start;
     z-index: -1;
     top: 0;
     background-image: linear-gradient(to right top, #3c1e59, #4b296b, #5a357d, #694190, #794ea4);
-}
-
-.header {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-color: ${props => props.theme.backgrounds.greyLight};
-}
-
-.nav-left {
-    display: flex;
-    width: 10%;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 20px;
-    list-style: none;
-    text-decoration: none;
-
-    a {
-        text-decoration: none;
-        color: ${props => props.theme.text.mainColor};
-
-        li{
-        padding:22px 10px;
-        &:active, &:focus, &:hover{
-             font-weight: 700;
-             color:black;
-             
-             outline: none;
-            }
-        }
-    }
-}
-
-.header-right-wrapper {
-    display: flex;
-    width: 40%;
-    justify-content: space-around;
-    list-style: none;
-    text-decoration: none;
-}
-
-.nav-center {
-    display: flex;
-    width: 45%;
-    justify-content: space-between;
-    list-style: none;
-    text-decoration: none;
-
-    a {
-        text-decoration: none;
-        color: ${props => props.theme.text.mainColor};
-    li{
-        padding:22px 10px;
-        &:active, &:focus, &:hover{
-             font-weight: 700;
-             color:black;
-             text-decoration: none;
-            }
-        }
-    }
-}
-
-.nav-right {
-    display: flex;
-    width: 10%;
-    padding-right: 20px;
-    justify-content: space-between;
-    list-style: none;
-    text-decoration: none;
-
-    a {
-        text-decoration: none;
-        color: ${props => props.theme.text.mainColor};
-    li{
-        padding:22px 10px;
-        &:active, &:focus, &:hover{
-             font-weight: 700;
-             color:black;
-             text-decoration: none;
-            }
-        }
-    }
 }
 
 .article-info {

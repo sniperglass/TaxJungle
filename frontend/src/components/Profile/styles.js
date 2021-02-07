@@ -84,6 +84,7 @@ input.pic-input:focus {
     justify-content: center;
     height: 280px;
     width: 280px;
+    background-size: cover;
     /* border: 1px solid red; */
 }
 

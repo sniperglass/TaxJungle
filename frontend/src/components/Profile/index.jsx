@@ -7,7 +7,7 @@ import { signoutAction } from "../../store/actions/authActions";
 import {getAvatar} from '../../store/utils';
 //img
 
-import BlogHeaderComponent from '../BlogOverview/BlogHeaderComponent';
+import BlogHeaderComponent from '../../components/BlogHeaderComponent';
 import BlogCardComponent from '../BlogOverview/BlogCardComponent';
 
 //css
@@ -92,9 +92,10 @@ const Profile=()=>{
                 <div className="round-pic">
                 <button className="label-btn">
                     <label htmlFor="profile_picture" className="change-pic" style={ editMode ? {opacity: 1} : {backgroundColor: "white", borderRadius: "50%"}}>
-                        <img className="blog-img" 
+{/*                         <img className="blog-img" 
                             src={getAvatar(user)} alt="" 
-                            style={ editMode ? {opacity: 1} : {opacity: 0.2}}/>
+                            style={ editMode ? {opacity: 1} : {opacity: 0.2}}/> */}
+                            <div className="blog-img" style={{"backgroundImage": `url(${getAvatar(user)})`}} alt=""></div>
                     </label>
                 </button>
                 </div>
