@@ -9,7 +9,7 @@ def user_directory_path(instance, filename):
 
 class User(AbstractUser):
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=50, unique=True)
     first_name = models.CharField(max_length=80)

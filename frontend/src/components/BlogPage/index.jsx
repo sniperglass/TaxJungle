@@ -2,10 +2,8 @@ import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchSingleArticle } from '../../store/actions/blogActions';
-
 //css
 import {BlogPageStyle} from '../BlogPage/styles';
-
 //icons
 import { FacebookShareButton, FacebookIcon, EmailShareButton,
 EmailIcon, LinkedinShareButton, LinkedinIcon, TwitterShareButton, 
