@@ -6,6 +6,7 @@ import {newArticleAction} from '../../store/actions/blogAction'
 import taxes3 from '../../assets/categories/typewriter.jpeg';
 import xicon from '../../assets/icons/x-icon.svg'
 import {BlogPageCreateStyle} from '../BlogPageCreate/style'
+import BlogHeaderComponent from '../../components/BlogHeaderComponent';
 
 const BlogPageCreate =()=>{
     const [article, setNewArticle] = useState({
@@ -63,13 +64,8 @@ const BlogPageCreate =()=>{
     return(
         
         <BlogPageCreateStyle>
-            {console.log('article', article)}
-        <header className="header">
+        <BlogHeaderComponent />
             <div className="back-img"></div>
-            <ul className="nav-left">
-                <Link to="/blog"><li>blog</li></Link>
-            </ul>
-        </header>
         <div className="article-info">
             <div className="round-pic"><img className="blog-img" src={taxes3} alt=""/></div>
             <div className="header-info">

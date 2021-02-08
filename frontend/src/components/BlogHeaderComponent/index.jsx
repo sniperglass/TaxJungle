@@ -1,9 +1,12 @@
 import { BlogHeaderCompStyle } from '../BlogHeaderComponent/styles'
+import React, { useState} from 'react';
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from 'react-router-dom'
-import { getAvatar } from "../../../store/utils"
-import { signoutAction } from "../../../store/actions/authActions"
-import { blogCategoryAction } from "../../../store/actions/blogAction"
+import { getAvatar } from "../../store/utils"
+import { signoutAction } from "../../store/actions/authActions"
+import { blogCategoryAction } from "../../store/actions/blogAction"
+
+import search from '../../assets/icons/search.svg'
 
 const BlogHeaderComponent = () => {
     const user = useSelector(state => state.authReducer.user)
@@ -16,25 +19,28 @@ const BlogHeaderComponent = () => {
     }
 
     const blogCategoryHandler = (e) => {
-        dispatch(blogCategoryAction(e.target.id))
+        dispatch(blogCategoryAction(""))
     }
 
     return(
         <BlogHeaderCompStyle>
             <header className="header">
-                <ul className="nav-left">
-                    <Link to="/profile">
-                        <img src={getAvatar(user)} className="avatar" height="35px" alt="avatar"></img>
-                        <li>profile</li>
-                    </Link>
-                </ul>
-                <ul className="nav-center">
-                    <Link id="1" to="/blog/taxes" onClick={blogCategoryHandler}>Taxes</Link>
-                    <Link id="2" to="/blog/renting" onClick={blogCategoryHandler}>Renting</Link>
-                    <Link id="3" to="/blog/banking" onClick={blogCategoryHandler}>Banking</Link>
-                    <Link id="4" to="/blog/insurance" onClick={blogCategoryHandler}>Insurance</Link>
-                </ul> 
+                <div className="nav-left">
+                    <ul className="nav1">
+                        <Link to="/profile">
+                            <img src={getAvatar(user)} className="avatar" height="35px" alt="avatar"></img>
+                            <li>profile</li>
+                        </Link>
+                    </ul>
+                    <ul className="nav2">
+                        <Link to="/blog" onClick={blogCategoryHandler}>blog</Link>
+                        <Link to="/">tax-map</Link>
+                    </ul>
+                </div>
                 <ul className="nav-right">
+                    <ul className="nav3">
+                        <Link to="/blog/create">create blog</Link>
+                    </ul>
                     {
                         authenticated ? 
                             <Link to="/blog" onClick={logoutHandler}><li>logout</li></Link> :
@@ -49,4 +55,3 @@ const BlogHeaderComponent = () => {
     )
 }
 export default BlogHeaderComponent;
-
