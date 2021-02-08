@@ -19,8 +19,8 @@ export const HomeStyle = styled.section`
     align-items: center;
     background-color:${props => props.theme.backgrounds.greyLight};
     user-select: none;
-    /* border: 1px solid red; */
     ${props => props.blur ? setBlur : ''}
+    /* border: 1px solid red; */
 
 .map-container {
     width: 100%;

@@ -6,7 +6,17 @@ export const DropDownStyled = styled.div`
     flex-direction: column;
     max-height: 250px;
     background-color: rgba(255, 255, 255, 0);
+    margin-bottom: 40px;
 
+
+    .navigation {
+        border: 1px solid ${props => props.theme.text.mainColor};
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 50px;
+    }
 
     li {
         display: block;
@@ -39,13 +49,44 @@ export const DropDownStyled = styled.div`
         width: 100%;
     }
 
+    .required {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;    
+        background-color:${props => props.theme.backgrounds.greyLight};
+        color: ${props => props.theme.text.mainColor};
+        font-size: 15px;
+        font-weight: 100;
+        padding: 8px;
+        cursor: pointer;
+        border-radius: 8px;
+        border-color: ${props => props.theme.text.mainColor};
+        text-decoration: none;
+        width: 100%;
+        height: 100%;
+
+        .select {
+            margin: 0;
+            padding: 0;
+        }
+
+        .down-arrow {
+            color: ${props => props.theme.text.mainColor};
+            margin: 0;
+            padding: 0;
+            width: 15px;
+        }
+    }
+
     .dropdown {
         margin-top: 10px;  
         box-shadow: 0 0 10px ${props => props.theme.text.mainColor};
         border-radius: 8px;
         background-color: ${props => props.theme.backgrounds.greyLight};
+        z-index: 99;
     }
-  
+
     #border-wrapper {
         max-height: 180px;
         margin: 5px 0;

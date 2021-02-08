@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { searchMapAction } from '../../../store/actions/mapActions'
 
 
-const DropDownMenu = (props) => {
+const SearchDropdown = (props) => {
     const taxes = useSelector(state => state.mapReducer.taxes) 
     const dispatch = useDispatch()
 
@@ -28,5 +28,5 @@ const DropDownMenu = (props) => {
     )
 }
 
-export default DropDownMenu;
+export default SearchDropdown;
 

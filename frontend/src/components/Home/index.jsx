@@ -16,7 +16,7 @@ import { ConfigModalPageStyled } from '../Home/ConfigurationModal/styles'
 //components
 import Map from "./Map"
 import ConfigModal from '../Home/ConfigurationModal'
-import DropDownMenu from './SearchDropdown'
+import SearchDropdown from './SearchDropdown'
 
 
 const Home =()=>{
@@ -75,7 +75,7 @@ const Home =()=>{
                                         <button type="button" className="close-btn"><div><img src={close} alt="close" onClick={searchCloseHandler}></img></div></button> :
                                         <button type="submit" className="search-btn"><img src={search} alt="search" height="18px"></img></button>    
                                     }
-                                    <DropDownMenu id="dropdown" options={options} visible={showDropdown} />
+                                    <SearchDropdown id="dropdown" options={options} visible={showDropdown} />
                             </form>
                         </div>
                     </div>

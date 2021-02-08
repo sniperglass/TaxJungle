@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ConfigModalStyled } from './styles';
-import DropDown from '../SearchDropdown/index';
+import ConfigDropdown from './ConfigDropdown/index';
 
 //IMAGES
 import CloseButton from '../../../assets/icons/x-icon.svg';
@@ -8,11 +8,9 @@ import Check from '../../../assets/icons/check.svg';
 
 
 const ConfigModal = ({taxConfigurationOpenButtonHandler}) => {
-
-    
-    //SLIDER JS
-    const slider = document.getElementById("slider")
-    const selector = document.getElementById("selector")  
+    //SLIDER
+    // const slider = document.getElementById("slider")
+    // const selector = document.getElementById("selector")  
     const [partnerOneIncomeValue, setPartnerOneIncomeValue] = useState(10000);
     const [partnerTwoIncomeValue, setPartnerTwoIncomeValue] = useState(10000);
     const [partnerOneMaritalStatus, setPartnerOneMaritalStatus] = useState("Single");
@@ -31,19 +29,18 @@ const ConfigModal = ({taxConfigurationOpenButtonHandler}) => {
     const minAge = 18;
     const getYears = () => {
         let years = [];
-        let currentYear = new Date().getFullYear();
+        let currentYear = new Date().getFullYear() - minAge;
         let earliestYear = 1920;
         while (currentYear >= earliestYear) {
-        years.push(currentYear)
+            years.push(currentYear)
         currentYear -= 1
         } 
         return years;
     }    
 
     //MARITAL STATUS FIELD
-    const partnerOneMaritalStatusSelector = (e) => {
-        console.log(e.target.value);
-        setPartnerOneMaritalStatus(e.target.value);
+    const partnerOneMaritalStatusSelector = (status) => {
+        setPartnerOneMaritalStatus(status);
     }
 
     return (
@@ -52,8 +49,6 @@ const ConfigModal = ({taxConfigurationOpenButtonHandler}) => {
                 <div className="close-button">
                     <button type="submit" className="x-closebutton" onClick={taxConfigurationOpenButtonHandler}><img src={CloseButton} className="x-button" alt=""></img></button>
                 </div>
-               {/*<DropDown/>*/}
-
                 <div className="main-content">
                     <div className="main-header">
                         <p>Tax details</p>
@@ -81,67 +76,69 @@ const ConfigModal = ({taxConfigurationOpenButtonHandler}) => {
                                     </div>
                                 </div>    
                             </div>
-                        <div className="main-2">
-                            <input type="range" min="10000" max="1000000" value={partnerTwoIncomeValue} id="slider-2" onChange={partnerTwoIncomeSliderOnChange}/> 
-                        </div>  
-                    </> 
-                    : "" }      
+                            <div className="main-2">
+                                <input type="range" min="10000" max="1000000" value={partnerTwoIncomeValue} id="slider-2" onChange={partnerTwoIncomeSliderOnChange}/> 
+                            </div>  
+                        </> 
+                    : null}   
+
                     {/*Section 1*/}
                     <div className="section-1">
-                        <div className="year-of-birth-partner-one">
-                            <div className="dropdown">
+                        <div className="year-of-birth">
+                            {/* <div className="dropdown"> */}
                                 <label for="Category" className="category">Year of Birth (Partner 1)</label>
-                                    <select className="required" name="category">
+                                    {/* <select className="required" name="category">
                                         {getYears().map((year, id) => <option value={year}>{year - minAge}</option>)}
-                                    </select>
-                            </div>        
+                                    </select> */}
+                                <ConfigDropdown options={getYears()} />
+                            {/* </div>         */}
                         </div>  
                         {partnerOneMaritalStatus != "Single" ? 
-                        <>
-                        <div className="year-of-birth-partner-two">
-                            <label for="Category" className="category-2">Year of Birth (Partner 2)</label>
-                                <select className="required-2" name="category">
-                                {getYears().map((year, id) => <option value={year}>{year - minAge}</option>)}
-                                </select>   
-                        </div> 
-                        </> 
-                        : ""}
+                            <div className="year-of-birth">
+                                <label for="Category" className="category">Year of Birth (Partner 2)</label>
+                                    {/* <select className="required-2" name="category">
+                                    {getYears().map((year, id) => <option value={year}>{year - minAge}</option>)}
+                                    </select>    */}
+                                    <ConfigDropdown options={getYears()} />
+                            </div> 
+                        : null}
                    </div>
                 </div>
+
                 {/*Section 2*/}
                 <div className="section-2">
-                    <div className="dropdown">
+                    <div className="marital-status">
                         <label for="Category" className="category">Marital Status</label>
-                            <select className="required" id="status" onChange={partnerOneMaritalStatusSelector} name="category">
+                            {/* <select className="required" id="status" onChange={partnerOneMaritalStatusSelector} name="category">
                                 <option value="Single">Single</option>
                                 <option value="Married">Married</option>
                                 <option value="Cohabitation">Cohabitation</option>
-                            </select>
+                            </select> */}
+                        {/* <div className="required" id="status"> */}
+                        <ConfigDropdown options={["Single", "Married", "Cohabitation"]} optionClickHandler={partnerOneMaritalStatusSelector} />
+                        {/* </div> */}
                     </div>  
-
-                    <div className="dropdown-2">
-                            <label for="Category" className="children">Number of children</label>
-                                <input type="number" id="kids" className="required-2" name="tentacles" placeholder="0"
-                                min="0" max="10"/>
+                    <div className="children">
+                        <label for="Category" className="category">Number of children</label>
+                        <input type="number" className="required" placeholder="0" min="0" />
                     </div>
                 </div>
 
                 {/*Section-3*/}
                 <div className="section-3">      
-                    <div className="dropdown">
+                    <div className="church-affiliation">
                         <label for="Category" className="category">Church affiliation</label>
-                            <select className="required" id="status" name="category">
+                            {/* <select className="required" id="status" name="category">
                                 <option value="Roman Catholic">Roman Catholic</option>
                                 <option value="Protestant">Protestant</option>
                                 <option value="2003">Christian Catholic</option>
                                 <option value="2003">Other/None</option>
-                            </select>
+                            </select> */}
+                            <ConfigDropdown options={["Roman Catholic", "Protestant", "Christian Catholic", "Other/None"]} />
                     </div>  
-
-                    <div className="dropdown-2">
-                            <button className="apply-button">Apply<img src={Check}></img>
-                            </button>
-                    </div>
+                    {/* <div className="dropdown-2"> */}
+                        <button className="apply-button">Apply<img src={Check}></img></button>
+                    {/* </div> */}
                 </div>
                
         </ConfigModalStyled>      
