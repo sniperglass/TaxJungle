@@ -10,15 +10,15 @@ export const GlobalStyle = createGlobalStyle `
             background-color:${props => props.theme.backgrounds.greyLight};
         }
     }
-
-    
 `
 
 export const Theme = {
     text: {
-        mainColor: "#573E8C",
+        /* mainColor: "#573E8C", */
+        mainColor: "#0c5a75",
         secondaryColor: "#8073A5",
         defaultSize: "16px",
+        blueMaincolor: "#427D9F"
     },
 
     backgrounds: {

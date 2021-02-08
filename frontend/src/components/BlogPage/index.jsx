@@ -10,7 +10,8 @@ import {BlogPageStyle} from '../BlogPage/styles';
 import BlogHeaderComponent from '../../components/BlogHeaderComponent';
 
 //img
-import taxes3 from '../../assets/categories/taxes3.jpg';
+import defaultCardImage from '../../assets/categories/defaultCardImage.jpg';
+import taxes1 from '../../assets/categories/taxes1.jpg';
 
 //icons
 import { FacebookShareButton, FacebookIcon, EmailShareButton,
@@ -58,7 +59,7 @@ const BlogPage =()=>{
             <BlogHeaderComponent />
             <div className="back-img"></div>
             <div className="article-info">   
-                <div className="round-pic"><img className="blog-img" src={article.article_image[0].image} alt=""/></div>
+                <div className="round-pic"><img className="blog-img" src={article.article_image.length ? article.article_image[0].image : taxes1}/></div>
                 <div className="header-info">
                     <p className="category">{article.article_category.category}</p>
                     <p className="headline">{article.title}</p>
