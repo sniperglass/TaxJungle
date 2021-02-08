@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchSingleArticle } from '../../store/actions/blogActions';
+import { fetchSingleArticle, createCommentAction } from '../../store/actions/blogActions';
 //css
 import {BlogPageStyle} from '../BlogPage/styles';
 //icons
@@ -14,6 +14,8 @@ const BlogPage =()=>{
     const article = useSelector(state => state.blogReducer.current)
     const dispatch = useDispatch()
     const {category, id} = useParams()
+    const [content, setContent] = useState('')
+
 
     useEffect(() => {    
         dispatch(fetchSingleArticle(id))
@@ -21,6 +23,8 @@ const BlogPage =()=>{
 
     const onCommentSubmit = e => {
         e.preventDefault()
+        dispatch (createCommentAction(id, content))
+        
         // console.log(e.target.elements.content.value)
     }
 
@@ -74,7 +78,7 @@ const BlogPage =()=>{
                             <div className="comment-section">
                                 <div className="comment-title">Comments</div>
                                 <form className="addcomment-box" onSubmit={onCommentSubmit}>
-                                    <textarea name="content" className="comment-input" placeholder="add your comment here ... "/>
+                                    <textarea name="content" onChange={(e)=> setContent(e.target.value)} className="comment-input" placeholder="add your comment here ... "/>
                                     <button type="submit" className="comment-btn">Submit</button>
                                 </form>
                                 {
@@ -105,6 +109,7 @@ const BlogPage =()=>{
                             </div>
                     </div>
                 </div>
+               
             
             </div>
             </BlogPageStyle>
