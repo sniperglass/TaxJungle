@@ -9,6 +9,7 @@ export const ConfigModalPageStyled = styled.div`
     display: flex;
     justify-content: flex-end;
     z-index: 99;
+    user-select: none;
     /* border: 1px solid red; */
 `
 
@@ -18,13 +19,12 @@ export const ConfigModalStyled = styled.section`
     display: flex;
     flex-direction: column;
     background-color: ${props => props.theme.backgrounds.greyLight};
-    overflow-y: auto;
+    overflow-y: scroll;
     /* border: 1px solid red; */
-
     scrollbar-width: 5px;
-        scrollbar-color: ${props => props.theme.backgrounds.hover} initial;
-    }
-    ::-webkit-scrollbar {
+    scrollbar-color: ${props => props.theme.backgrounds.hover} initial;
+
+    ::-webkit-scrollbar { 
         width: 5px;
         border-radius: 8px;
     }
@@ -96,24 +96,24 @@ export const ConfigModalStyled = styled.section`
 
     .slidecontainer,
     .slidecontainer-2 {
-    width: 100%;
-    margin-top: 30px;
+        width: 100%;
+        margin-top: 30px;
     }
 
     #slider,
     #slider-2 {
-    width: 100%;
-    height: 2.5px;
-    background-color: #573E8C;
-    outline: none;
+        width: 100%;
+        height: 2.5px;
+        background-color: #573E8C;
+        outline: none;
     }
 
     .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
     }
 
     .main-2 {
@@ -121,7 +121,7 @@ export const ConfigModalStyled = styled.section`
         margin: 0 auto;
     }
 
-    #selector {
+    /* #selector {
         height: 104px;
         width: 48px;
         position: absolute;
@@ -130,7 +130,7 @@ export const ConfigModalStyled = styled.section`
         transform: translateX(-50%);
         color:  ${props => props.theme.text.mainColor};
         z-index: 2;
-    }
+    } */
 
     .slidecontainer-label {
         padding-bottom: 5px;
@@ -185,6 +185,8 @@ export const ConfigModalStyled = styled.section`
     .section-1 {
         display: flex;
         justify-content: space-between;
+        width: 100%;
+        height: auto;
         margin: 30px 0;
     }
 
@@ -210,7 +212,7 @@ export const ConfigModalStyled = styled.section`
         align-items: flex-start;
         height: auto;
         width: 480px;
-        margin: 30px auto 0 auto;
+        margin: 30px auto 30px auto;
         /* border: 1px solid red; */
     }
 
@@ -238,12 +240,9 @@ export const ConfigModalStyled = styled.section`
         align-items: flex-start;
         justify-content: flex-start;
 
-        input {
+        div {
             top: 30px;
             width: 100%;
-            height: 50px;
-            outline: none;
-            border: 1px solid ${props => props.theme.text.mainColor};    
         }
     }
 
@@ -266,17 +265,11 @@ export const ConfigModalStyled = styled.section`
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
-        background-color: red;
 
         div {
             top: 30px;
             width: 100%;
         }
-    }
-
-    #status {
-        margin-right: 35px;
-        width: 300px;
     }
 
     .apply-button {

@@ -7,30 +7,37 @@ import DownArrow from '../../../../assets/icons/down-arrow.svg'
 
 
 const ConfigDropdown = (props) => {
-    const [toggleDropDownMenu, setToggleDropDownMenu] = useState(false)
     const [selectedOption, setSelectedOption] = useState(props.options[0])
+
+    const onNavigationClicked = (e) => {
+        if (props.visible) {
+            props.activeHandler("")
+        } else {
+            props.activeHandler(props.title)
+        }
+    }
 
     const onOptionClicked = (e) => {
         const {id} = e.target
         setSelectedOption(id)
-        setToggleDropDownMenu(false)
+        props.activeHandler("")
         if (props.optionClickHandler) {
-            props.optionClickHandler(selectedOption)
+            props.optionClickHandler(id)
         }
     };
 
     return (
         <DropDownStyled>
             <nav className="navigation">
-                <div className="required" onClick={ () => setToggleDropDownMenu(!toggleDropDownMenu)}>
+                <div className="required" onClick={onNavigationClicked}>
                     <p className="select">{selectedOption}</p>
-                    {!toggleDropDownMenu ? 
+                    {!props.visible ? 
                         <img src={DownArrow} className="down-arrow" alt="arrow down" /> 
                         : <img src={UpArrow} className="down-arrow" alt="arrow up" /> 
                     }   
                 </div>
             </nav>
-            {toggleDropDownMenu ? 
+            {props.visible ? 
             <div className="dropdown">
                 <div id="border-wrapper">
                     <ul id="border">
