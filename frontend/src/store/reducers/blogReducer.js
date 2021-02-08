@@ -1,8 +1,9 @@
-import { BLOG_CATEGORY, FETCH_ALL_ARTICLES } from '../actionTypes'
+import { BLOG_CATEGORY, FETCH_ALL_ARTICLES, SINGLE_ARTICLE } from '../actionTypes'
 
 const initialState = {
     articles: [],
-    category: ""
+    category: "",
+    current: null,
 }
 
 
@@ -17,6 +18,10 @@ const blogReducer = (state = initialState, action) => {
             return {...state, articles:action.payload}
             
         }
+        case SINGLE_ARTICLE: {
+            return {...state, current:action.payload}
+        }
+
         default:
             return state
     }

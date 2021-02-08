@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux'
-import {newArticleAction} from '../../store/actions/blogAction'
+import {newArticleAction} from '../../store/actions/blogActions'
 //img
 import taxes3 from '../../assets/categories/typewriter.jpeg';
 import xicon from '../../assets/icons/x-icon.svg'

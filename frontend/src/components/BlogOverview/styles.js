@@ -5,7 +5,7 @@ export const BlogOverviewStyle = styled.section`
 
 position: absolute;
 z-index: -1;
-width: 100vw;
+width: 100%;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -44,7 +44,6 @@ background-color:${props => props.theme.backgrounds.greyLight};
 .overall-wrapper {
     display: flex;
     width: 100%;
-    height: 80%;
     justify-content: center;
     /* border: 1px solid green; */
 }
@@ -63,14 +62,13 @@ background-color:${props => props.theme.backgrounds.greyLight};
 .main-container {
     position: relative;
     display: flex;
-    margin-top: 80px;
+    margin: 2% 0;
     justify-content: center;
     align-items: center;
     width: 90%;
     height: 85%;
     /* border: 1px solid red; */
 }
-
 
 .back-img {
     position: fixed;

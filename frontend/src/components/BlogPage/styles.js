@@ -4,7 +4,7 @@ export const BlogPageStyle = styled.section`
 
 position: absolute;
 z-index: -1;
-width: 100vw;
+width: 100%;
 min-height: 100%; 
 display: flex;
 flex-direction: column;
@@ -88,7 +88,7 @@ justify-content: flex-start;
     padding-top: 100px;
     padding-bottom: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     width: 80%;
     height: auto;
     text-align: justify;
@@ -114,8 +114,10 @@ justify-content: flex-start;
     display: flex; 
     flex-direction: column;
     align-items: flex-end;
-    height: 100px;
+    height: 160px;
     width: 100%;
+    margin-bottom: 20px;
+
 }
 
 .comment-input {
@@ -124,6 +126,7 @@ justify-content: flex-start;
     padding: 10px;
     border: none;
     width: 100%;
+    height: 100px;
     resize: none;
     outline: none;
 }
@@ -140,40 +143,58 @@ justify-content: flex-start;
     color: white;
     border-radius: 6px;
     outline: none;
+    cursor: pointer;
 }
 
-.comment-box {
+.comment-container {
+    width: 100%;
+    max-height: 500px;
+    margin-bottom: 20px;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: auto;
-    background-color: white;
-    margin-top: 20px;
-    margin-bottom: 20px;
 
-    .single-comment {
-        padding: 10px;
-    }
+    .comment-box {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        background-color: white;
+        margin-bottom: 10px;
 
-    .comment-by {
-        padding: 10px;
-        color: ${props => props.theme.text.mainColor};
+        .single-comment {
+            padding: 10px;
+        }
+
+        .comment-footer {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-size: 12px;
+            color: ${props => props.theme.text.mainColor};
+            padding: 10px;
+
+            .timestamp {
+                margin-left: auto;
+            }
+        }
     }
 }
 
 .social-media-icons {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 
-        .no-border {
-            outline: none;
-        }
+    .no-border {
+        outline: none;
+    }
 
-        .icon {
-            padding: 2px;
-        }
+    .icon {
+        padding: 2px;
+    }
 }
 
 `;

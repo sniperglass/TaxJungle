@@ -206,7 +206,6 @@ justify-content: flex-start;
     border: 1px solid ${props => props.theme.text.mainColor};
     text-align: center;
     border-radius: 8px;
-    //border-style: outset;
     box-shadow: 
         0 1px 10px rgba(0,0,0,0.3), 
         0 0 0 1px rgba(221,221,221,0.75);

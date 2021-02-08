@@ -1,16 +1,12 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import Carousel from 'react-elastic-carousel';
 import {useSelector, useDispatch} from "react-redux";
 import {useEffect} from "react";
 import BlogHeaderComponent from '../../components/BlogHeaderComponent';
 import BlogCardComponent from './BlogCardComponent';
 import BlogNavComponent from './BlogNavComponent';
-import {fetchAllArticles} from '../../store/actions/blogAction';
-import { blogCategoryAction } from "../../store/actions/blogAction";
+import {fetchAllArticles} from '../../store/actions/blogActions'
 
-//img
-import location from '../../assets/icons/location.svg'
 //css
 import {BlogOverviewStyle} from '../BlogOverview/styles';
 

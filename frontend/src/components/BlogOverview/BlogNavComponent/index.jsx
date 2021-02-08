@@ -1,10 +1,8 @@
 import { BlogNavComponentStyle } from '../BlogNavComponent/styles'
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from 'react-router-dom'
-import React, { useState} from 'react';
-import { getAvatar } from "../../../store/utils"
-import { signoutAction } from "../../../store/actions/authActions"
-import { blogCategoryAction, searchOnArticlesByCategory } from "../../../store/actions/blogAction"
+import { useState} from 'react';
+import { blogCategoryAction, searchOnArticlesByCategory } from "../../../store/actions/blogActions"
 import search from '../../../assets/icons/search.svg'
 
 const BlogNavComponent = () => {

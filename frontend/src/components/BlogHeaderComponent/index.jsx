@@ -1,12 +1,10 @@
 import { BlogHeaderCompStyle } from '../BlogHeaderComponent/styles'
-import React, { useState} from 'react';
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from 'react-router-dom'
 import { getAvatar } from "../../store/utils"
 import { signoutAction } from "../../store/actions/authActions"
-import { blogCategoryAction } from "../../store/actions/blogAction"
+import { blogCategoryAction } from "../../store/actions/blogActions"
 
-import search from '../../assets/icons/search.svg'
 
 const BlogHeaderComponent = () => {
     const user = useSelector(state => state.authReducer.user)
