@@ -6,8 +6,6 @@ export const DropDownStyled = styled.div`
     flex-direction: column;
     max-height: 250px;
     background-color: rgba(255, 255, 255, 0);
-    margin-bottom: 40px;
-
 
     .navigation {
         border: 1px solid ${props => props.theme.text.mainColor};
@@ -80,7 +78,8 @@ export const DropDownStyled = styled.div`
     }
 
     .dropdown {
-        margin-top: 10px;  
+        margin-top: 10px; 
+        margin-bottom: 40px; 
         box-shadow: 0 0 10px ${props => props.theme.text.mainColor};
         border-radius: 8px;
         background-color: ${props => props.theme.backgrounds.greyLight};

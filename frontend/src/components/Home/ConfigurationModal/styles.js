@@ -18,8 +18,20 @@ export const ConfigModalStyled = styled.section`
     display: flex;
     flex-direction: column;
     background-color: ${props => props.theme.backgrounds.greyLight};
-    overflow-y: scroll;
+    overflow-y: auto;
     /* border: 1px solid red; */
+
+    scrollbar-width: 5px;
+        scrollbar-color: ${props => props.theme.backgrounds.hover} initial;
+    }
+    ::-webkit-scrollbar {
+        width: 5px;
+        border-radius: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: ${props => props.theme.backgrounds.hover};   
+        border-radius: 8px;    
+    }
 
     * {
         outline: none;
