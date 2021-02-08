@@ -6,7 +6,12 @@ export const GlobalStyle = createGlobalStyle `
         margin: 0;
         padding: 0;
         font-family: "Poppins", "Roboto", sans-serif; 
+        body {
+            background-color:${props => props.theme.backgrounds.greyLight};
+        }
     }
+
+    
 `
 
 export const Theme = {

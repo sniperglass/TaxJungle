@@ -22,7 +22,7 @@ const BlogNavComponent = () => {
             <header className="header">
                 <ul className="nav-center">
                     <div className="category-wrapper">
-                        <Link id="1" to="/blog/taxes" style={category === "1" ? {borderBottom: "1px solid #442A78"} :  {color: "#442A78"}} onClick={blogCategoryHandler}>Taxes</Link>
+                        <Link id="1" to="/blog/taxes" style={category === "1" ? {fontWeight: 700, borderBottom: "1px solid #442A78"} :  {color: "#442A78"}} onClick={blogCategoryHandler}>Taxes</Link>
                         <Link id="2" to="/blog/renting" style={category === "2" ? {fontWeight: 700, borderBottom: "1px solid #442A78"} :  {color: "#442A78"}} onClick={blogCategoryHandler}>Renting</Link>
                         <Link id="3" to="/blog/banking" style={category === "3" ? {fontWeight: 700, borderBottom: "1px solid #442A78"} :  {color: "#442A78"}} onClick={blogCategoryHandler}>Banking</Link>
                         <Link id="4" to="/blog/insurance" style={category === "4" ? {fontWeight: 700, borderBottom: "1px solid #442A78"} :  {color: "#442A78"}} onClick={blogCategoryHandler}>Insurance</Link>
