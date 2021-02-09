@@ -78,7 +78,6 @@ const BlogPage =()=>{
                                 width="675px"
                                 height="385px"
                                 controls="true"
-                                pip="true"
                                  />
                             </div>
                         </div>
