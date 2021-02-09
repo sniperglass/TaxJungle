@@ -80,6 +80,8 @@ const BlogHeaderComponent = () => {
 export default BlogHeaderComponent;
 
 
+//these lines kept as reference when implementing logout link-button
+
 /* {
     authenticated ? 
         <Link to="/blog" onClick={logoutHandler}><li>logout</li></Link> :
