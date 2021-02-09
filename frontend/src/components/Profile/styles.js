@@ -10,7 +10,7 @@ height: 100%;
 display: flex;
 justify-content: center;
 align-items: center;
-background-color:${props => props.theme.backgrounds.greyLight};
+background-color:${props => props.theme.backgrounds.secondaryColor};
 /* border: 1px solid red; */
 justify-content: flex-start;
 

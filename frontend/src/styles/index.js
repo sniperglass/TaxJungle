@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle `
         padding: 0;
         font-family: "Poppins", "Roboto", sans-serif; 
         body {
-            background-color:${props => props.theme.backgrounds.greyLight};
+            background-color:${props => props.theme.backgrounds.secondaryColor};
         }
     }
 `
@@ -15,24 +15,21 @@ export const GlobalStyle = createGlobalStyle `
 export const Theme = {
     text: {
         /* mainColor: "#573E8C", */
-        mainColor: "#0c5a75",
-        secondaryColor: "#8073A5",
+        mainColor: "#0c5a75", //blue-green
+        secondaryColor: "#345E70", //blue-green variation 1
+        ternaryColor: "#335A7F",  //blue-green variation 2
         defaultSize: "16px",
-        blueMaincolor: "#427D9F",
-        dazzledBlue: "#335A7F",
-        saphireBlue: "#345E70"
     },
 
     backgrounds: {
-        purple: "#573E8C",
-        greyLight: "#e7e7e7",
-        white: "#FFFFFF",
-        hover: "#D9CEEE",
+        mainColor: "#0c5a75", //blue-green
+        secondaryColor: "#e7e7e7", //grey
+        ternaryColor: "#FFFFFF", //white
+        hover: "#e1f2fe", //lighter-blue
         modal: "#E1E1E1",
     },
 
     borders: {
-        color: "rgba(87, 62, 140, 0.3)",
         radius: "8px",
     },
 }

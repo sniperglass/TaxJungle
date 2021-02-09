@@ -17,8 +17,9 @@ export const HomeStyle = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color:${props => props.theme.backgrounds.greyLight};
+    background-color:${props => props.theme.backgrounds.ternaryColor};
     user-select: none;
+    overflow: hidden;
     ${props => props.blur ? setBlur : ''}
     /* border: 1px solid red; */
 
@@ -82,7 +83,7 @@ export const HomeStyle = styled.section`
     height: 50px;
     width: 340px;
     color:${props => props.theme.text.mainColor};
-    background-color:${props => props.theme.backgrounds.greyLight};
+    background-color:${props => props.theme.backgrounds.ternaryColor};
     border-radius: 8px;
     border: 1px solid ${props => props.theme.text.mainColor};
     pointer-events: initial;
@@ -107,7 +108,7 @@ export const HomeStyle = styled.section`
     width: 260px;
     font-size: 16px;
     color:${props => props.theme.text.mainColor};
-    background-color:${props => props.theme.backgrounds.greyLight};
+    background-color:${props => props.theme.backgrounds.ternaryColor};
     border: none;
     outline: none;
     /* border: 1px solid yellow; */
@@ -128,7 +129,7 @@ export const HomeStyle = styled.section`
     align-items: center;
     outline: none;
     cursor: pointer;
-    background: ${props => props.theme.backgrounds.purple};
+    background: ${props => props.theme.text.mainColor};
 }
 
 .close-btn {
@@ -142,21 +143,12 @@ export const HomeStyle = styled.section`
     align-items: center;
     outline: none;
     cursor: pointer;
-    background: ${props => props.theme.backgrounds.purple};
+    background: ${props => props.theme.backgrounds.mainColor};
+    overflow: hidden;
 
-    div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 20px;
-        width: 20px;
-        background-color: ${props => props.theme.backgrounds.purple};
-        overflow: hidden;
-
-        img {
-            height: 30px; 
-            background-color: white;  
-        }
+    img {
+        height: 100%; 
+        padding: 10px;
     }
 }
 
@@ -223,7 +215,7 @@ export const HomeStyle = styled.section`
     p {
         margin: 10px 0;
         text-align: right;
-        color: ${props => props.theme.backgrounds.purple};
+        color: ${props => props.theme.text.mainColor};
 
         span {
             font-weight: bold;
@@ -238,7 +230,7 @@ export const HomeStyle = styled.section`
         align-items: center;
         font-weight: bold;
         font-size: 24px;
-        color: ${props => props.theme.backgrounds.purple};
+        color: ${props => props.theme.text.mainColor};
     }
 }
 
@@ -281,11 +273,17 @@ footer {
         /* border: 1px solid green; */
 
         a {
+            z-index: 99;
             text-align: center;
             margin-left: 15px;
+            color: ${props => props.theme.text.mainColor};
+            opacity: 75%;
         }
         a:first-child {
             margin-left: 0;
+        }
+        a:visited {
+            color: ${props => props.theme.text.secondaryColor};
         }
     }
 }

@@ -10,7 +10,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-background-color:${props => props.theme.backgrounds.greyLight};
+background-color:${props => props.theme.backgrounds.secondaryColor};
 justify-content: flex-start;
 
 .back-img {

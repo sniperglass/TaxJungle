@@ -20,7 +20,7 @@ background-color: transparent;
     justify-content: flex-start;
     align-items: center;
     padding-top: 30px;
-    background-color:${props => props.theme.backgrounds.greyLight};
+    background-color:${props => props.theme.backgrounds.secondaryColor};
     /* border: 1px solid blue;  */
 }
 
@@ -32,7 +32,7 @@ background-color: transparent;
     font-size: 20px;
     border: none;
     outline: none;
-    background-color: ${props => props.theme.backgrounds.greyLight};
+    background-color: ${props => props.theme.backgrounds.secondaryColor};
     /* border: 1px solid yellow; */
 }
 

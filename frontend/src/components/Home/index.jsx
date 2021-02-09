@@ -32,7 +32,7 @@ const Home =()=>{
     const taxConfigOpenHandler = (e) => {
         e.preventDefault()
         setOpenTaxConfig(!openTaxConfig)
-        // searchCloseHandler(e)
+        searchCloseHandler(e)
     }
 
     const searchHandler = (e) => {
@@ -55,8 +55,8 @@ const Home =()=>{
         e.preventDefault()
         searchFormRef.current.reset()
         setShowDropDown(false)
-        dispatch(searchMapAction(null))
         setOptions([])
+        dispatch(searchMapAction(null))
     }
 
     return (
@@ -74,7 +74,7 @@ const Home =()=>{
                                     <label htmlFor="search-input"><img src={location} alt="location" className="location-pic" draggable="false" /></label>
                                     <input id="search-input" className="search-input" type="text" placeholder="Check your city" name="search" onChange={searchHandler} />
                                     {showDropdown ?
-                                        <button type="button" className="close-btn"><div><img src={close} alt="close search" onClick={searchCloseHandler} draggable="false" /></div></button> 
+                                        <button type="button" className="close-btn"><img src={close} alt="close search" onClick={searchCloseHandler} draggable="false" /></button> 
                                         : <button type="submit" className="search-btn"><img src={search} alt="search" height="18px" draggable="false" /></button>    
                                     }
                                     <SearchDropdown id="dropdown" options={options} visible={showDropdown} />

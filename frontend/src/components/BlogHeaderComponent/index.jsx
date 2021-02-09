@@ -13,7 +13,6 @@ const BlogHeaderComponent = () => {
     let category = useSelector(state => state.blogReducer.category);
     const dispatch = useDispatch();
     const location = useLocation();
-    console.log(location.blog);
     /* const history = useHistory(); */
 
     const logoutHandler = (e) => {

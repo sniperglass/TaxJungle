@@ -3,15 +3,15 @@ import styled from "styled-components";
 
 export const BlogOverviewStyle = styled.section`
 
-position: absolute;
-z-index: -1;
-width: 100%;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-background-color:${props => props.theme.backgrounds.greyLight};
-/* border: 1px solid red; */
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:${props => props.theme.backgrounds.secondaryColor};
+    /* border: 1px solid red; */
 
 
 .upper-header {
