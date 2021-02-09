@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ConfigModalStyled } from './styles';
 import DropDown from '../../Home/DropDownMenu/index';
+import SettingsButton from '../../SettingsButton';
 
 //IMAGES
 import CloseButton from '../../../assets/icons/x-icon.svg';
@@ -51,7 +52,7 @@ const ConfigModal = ({taxConfigurationOpenButtonHandler}) => {
          
         <ConfigModalStyled>
                 <div className="close-button">
-                    <button type="submit" className="x-closebutton" onClick={taxConfigurationOpenButtonHandler}><img src={CloseButton} className="x-button" alt=""></img></button>
+                   <button type="submit" className="x-closebutton" onClick={taxConfigurationOpenButtonHandler}><img src={CloseButton} className="x-button" alt=""></img></button>
                 </div>
                {/*<DropDown/>*/}
 

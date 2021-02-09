@@ -11,7 +11,8 @@ import { ConfigModalPageStyled } from '../Home/ConfigurationModal/styles'
 
 //components
 import Map from "./Map"
-import ConfigModal from '../Home/ConfigurationModal'
+import ConfigModal from '../Home/ConfigurationModal';
+import SettingsButton from '../SettingsButton';
 //import DropDownMenu from '../Home/DropDownMenu';
 
 
@@ -20,6 +21,7 @@ const Home =()=>{
 
     const taxConfigurationOpenButtonHandler = (e) => {
         e.preventDefault();
+        console.log("clicked");
         setOpenTaxConfig(!openTaxConfig);
       };
 
@@ -42,7 +44,9 @@ const Home =()=>{
                     </div>
                 </div>
                 <div className="right-config-glimpse">
-                    <button type="submit" className="config-btn" onClick={taxConfigurationOpenButtonHandler}><img src={filter} height="50px" className="filter" alt="manage config"></img></button>
+                   
+                   <SettingsButton settingsButtonHandler={taxConfigurationOpenButtonHandler}/>
+                   {/*<button type="submit" className="config-btn" onClick={taxConfigurationOpenButtonHandler}><img src={filter} height="50px" className="filter" alt="manage config"></img></button> */} 
                     <div className="config-box">
                         <p className="category">Income</p>
                         <p className="chosen-by-user">CHF 100'000</p>
