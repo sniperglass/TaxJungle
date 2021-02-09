@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
-import ast
+# import ast
 from pathlib import Path
 from datetime import timedelta
 
@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'x*4gk95_9uyzn7s8t812qriti2$0!kz4j(nm@jigrey(ls1(!u'  # os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #ast.literal_eval(os.getenv('DJANGO_DEBUG'))
+DEBUG = True  # ast.literal_eval(os.getenv('DJANGO_DEBUG'))
 
 # SECURITY: restrict allowed hosts in production
 PRODUCTION_HOSTS = [
