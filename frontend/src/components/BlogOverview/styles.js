@@ -65,7 +65,6 @@ background-color:${props => props.theme.backgrounds.greyLight};
     z-index: -1;
     bottom: 0;
     background-color: ${props => props.theme.text.mainColor};
-    /* background-image: linear-gradient(to right top, #051937, #042847, #033857, #054967, #0c5a75); */
     /* border: 1px solid yellow;  */
 }
 .rec.rec-arrow:hover {
@@ -82,7 +81,6 @@ background-color:${props => props.theme.backgrounds.greyLight};
 }
 
 .rec.rec-dot {
-/*     background-color: ${props => props.theme.text.mainColor};; */
     box-shadow: none;
     border: 1px solid white;
 }

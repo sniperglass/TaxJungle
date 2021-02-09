@@ -1,7 +1,7 @@
 import { BlogHeaderCompStyle } from '../BlogHeaderComponent/styles';
 import { useSelector, useDispatch} from "react-redux";
 import React, { useState, useEffect, useHistory } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { getAvatar } from "../../store/utils";
 import { signoutAction } from "../../store/actions/authActions";
 import { blogCategoryAction } from "../../store/actions/blogActions";
@@ -12,6 +12,8 @@ const BlogHeaderComponent = () => {
     const authenticated = useSelector(state => state.authReducer.authenticated);
     let category = useSelector(state => state.blogReducer.category);
     const dispatch = useDispatch();
+    const location = useLocation();
+    console.log(location.blog);
     /* const history = useHistory(); */
 
     const logoutHandler = (e) => {
@@ -23,16 +25,39 @@ const BlogHeaderComponent = () => {
         dispatch(blogCategoryAction(""))
     }
 
+    const Title = () => {
+        let location = useLocation();
+        if (location.pathname === "/blog" || location.pathname === "/blog/taxes" 
+                || location.pathname === "/blog/insurance" || location.pathname === "/blog/renting" || location.pathname === "/blog/banking") {
+            return (
+                <ul className="nav-center">
+                    <p className="title">TaxJungle Blog</p> 
+                </ul>
+            );
+        } else {
+            return null
+        }
+      }
+
+    const ArticleLink = () => {
+        let location = useLocation();
+        if (location.pathname === "/blog") {
+            return (
+                <Link to="/blog" style={{fontWeight: 700}} onClick={blogCategoryHandler}>articles</Link> 
+            );
+        } else {
+            return <Link to="/blog" style={{color: "white"}} onClick={blogCategoryHandler}>articles</Link>
+        }
+    }
+
     return(
         <BlogHeaderCompStyle>
             <header className="header">
                 <ul className="nav-left">
                     <Link to="/">tax-map</Link>
-                    <Link to="/blog" style={category === "" ? {fontWeight: 700} :  {color: "white"}} onClick={blogCategoryHandler}>articles</Link>  
+                    <ArticleLink/>
                 </ul>
-                <ul className="nav-center">
-                   {/*  <p className="title">TaxJungle Blog</p>  */}
-                </ul>
+                <Title/>
                 <ul className="nav-right">
                     {
                         authenticated ? 
@@ -54,13 +79,6 @@ const BlogHeaderComponent = () => {
 }
 export default BlogHeaderComponent;
 
-
-{/* <ul className="nav1">
-<Link to="/profile">
-    <img src={getAvatar(user)} className="avatar" height="35px" alt="avatar"></img>
-    <li>profile</li>
-</Link>
-</ul> */}
 
 /* {
     authenticated ? 

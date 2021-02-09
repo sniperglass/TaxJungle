@@ -136,7 +136,7 @@ background-color: white;
     align-items: center;
     outline: none;
     cursor: pointer;
-    background:${props => props.theme.backgrounds.purple};
+    background:${props => props.theme.text.mainColor};
 }
 
 `

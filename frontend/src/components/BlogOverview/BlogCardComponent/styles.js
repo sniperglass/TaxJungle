@@ -17,7 +17,7 @@ export const BlogCardCompStyle = styled.section`
             0 0 0 1px rgba(221,221,221,0.75);
     :hover {
     transform: scale(1.05, 1.05);
-    -ms-transform: scale(1.05, 1.05)); /* IE 9 */
+    -ms-transform: scale(1.05, 1.05); /* IE 9 */
     -webkit-transform: scale(1.05, 1.05);
     transition: transform .5s ease;
 	}

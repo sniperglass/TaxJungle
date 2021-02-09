@@ -18,7 +18,9 @@ export const Theme = {
         mainColor: "#0c5a75",
         secondaryColor: "#8073A5",
         defaultSize: "16px",
-        blueMaincolor: "#427D9F"
+        blueMaincolor: "#427D9F",
+        dazzledBlue: "#335A7F",
+        saphireBlue: "#345E70"
     },
 
     backgrounds: {

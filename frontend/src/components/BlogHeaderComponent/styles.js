@@ -6,11 +6,8 @@ display: flex;
 flex-direction: row;
 width: 100%;
 height: 80px;
-/* background-image: linear-gradient(to right top, #3c1e59, #4b296b, #5a357d, #694190, #794ea4); */
-/* background-image: linear-gradient(to right top, #051937, #042847, #033857, #054967, #0c5a75); */
 background-color: ${props => props.theme.text.mainColor};
 /* border: 1px solid blue; */
-border-bottom: 1px solid white; 
 
 .header {
     width: 100%;
@@ -45,7 +42,7 @@ border-bottom: 1px solid white;
 
 .title {
     display: flex;
-    font-weight:300;
+    font-weight:400;
     font-size:36px;
     width: 100%;
     height: 100%;
@@ -94,8 +91,8 @@ border-bottom: 1px solid white;
             border: 1px solid ${props => props.theme.text.mainColor};
         }
 
+    }
 }
-
 
 
 `
