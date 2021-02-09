@@ -30,23 +30,39 @@ export const AuthHeaderStyle = styled.header`
         /* border: 1px solid red; */
     }
 
-    a {
+     a {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 40px;
         width: 130px;
-        border-radius: ${props => props.theme.borders.radius};
+        border-radius: 40px;
         border: none;
         outline: none;
         text-decoration: none;
         margin-top: 30px;
         margin-right: 20px;
-        background-color: ${props => props.theme.backgrounds.purple};
         font-size: 12px;
         color: white;
         cursor: pointer;
-        /* border: 1px solid red; */
+    } 
+
+    .sign-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 130px;
+        border-radius: 40px;
+        border: none;
+        outline: none;
+        text-decoration: none;
+        margin-top: 30px;
+        margin-right: 20px;
+        font-size: 12px;
+        color: white;
+        cursor: pointer;
+        border: 1px solid white;
     }
 
     div:first-child > a {

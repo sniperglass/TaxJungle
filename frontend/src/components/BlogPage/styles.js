@@ -36,6 +36,8 @@ justify-content: flex-start;
     flex-direction: column;
     width: 100%;
     height: 50%;
+    margin-left: 50px;
+    /* border: 1px solid yellow; */
 }
 
 .category {
@@ -64,9 +66,13 @@ justify-content: flex-start;
     padding-top: 110px;
 
     .blog-img {
-        border-radius: 800px;
+        display: flex;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
         height: 300px;
         width: 300px;
+        background-size: cover;
     }
 
 }
@@ -76,6 +82,7 @@ justify-content: flex-start;
     justify-content: space-between;
     width: 100%;
     height: auto;
+    /* border: 1px solid yellow; */
 }
 
 .article-box{
@@ -83,7 +90,8 @@ justify-content: flex-start;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    height: 100%;
+    height: auto;
+    /* border: 1px solid green; */
 }
 
 .article {
@@ -91,9 +99,31 @@ justify-content: flex-start;
     padding-bottom: 20px;
     display: flex;
     justify-content: flex-start;
-    width: 80%;
+    width: 90%;
     height: auto;
     text-align: justify;
+    /* border: 1px solid red; */
+}
+
+.image-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    //border: 1px solid purple;
+    height: auto;
+    width: 90%;
+   /*  border: 1px solid purple; */
+}
+
+.uploaded-pic {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    width: 150px;
+    background-size: cover;
+    /* border: 1px solid orange; */
 }
 
 .player {
@@ -103,7 +133,7 @@ justify-content: flex-start;
     margin-left: 5%;
     height: 100%;
     width: 70%;
-
+    /* border: 1px solid yellow; */
 }
 
 .comment-section {
@@ -129,7 +159,8 @@ justify-content: flex-start;
     height: 160px;
     width: 100%;
     margin-bottom: 20px;
-
+    border-radius: ${props => props.theme.borders.radius};
+    /* border: 1px solid red; */
 }
 
 .comment-input {
@@ -141,6 +172,7 @@ justify-content: flex-start;
     height: 100px;
     resize: none;
     outline: none;
+    border-radius: ${props => props.theme.borders.radius};
 }
 
 .comment-btn {
@@ -196,17 +228,15 @@ justify-content: flex-start;
 
 .social-media-icons {
     display: flex;
+    width: 100%;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 
     .no-border {
         outline: none;
     }
 
-    .icon {
-        padding: 2px;
-    }
 }
 
 `;

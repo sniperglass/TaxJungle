@@ -1,6 +1,6 @@
 import AuthBackground from "../AuthBackground"
 import AuthHeader from "../AuthHeader"
-import { Layout, MainStyle, FormStyle, TitleStyle, InputFieldStyle, ButtonStyle } from "../styles"
+import { Welcome, Layout, MainStyle, FormStyle, TitleStyle, InputFieldStyle, ButtonStyle } from "../styles"
 import emailIcon from '../../../assets/icons/email.png';
 import lockIcon from '../../../assets/icons/lock.svg';
 import { useDispatch } from "react-redux"
@@ -36,6 +36,7 @@ const SignIn = () => {
             <AuthHeader />
             <MainStyle>
                 <FormStyle id="sign-in-form" onSubmit={signInHandler}>
+                    <Welcome>Welcome to TaxJungle !</Welcome>
                     <TitleStyle>Sign In</TitleStyle>
                     <InputFieldStyle>
                         <label htmlFor="email">

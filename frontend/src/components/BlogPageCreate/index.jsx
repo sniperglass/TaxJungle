@@ -3,7 +3,7 @@ import {Link, useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux'
 import {newArticleAction} from '../../store/actions/blogActions'
 //img
-import taxes3 from '../../assets/categories/typewriter.jpeg';
+import bank1 from '../../assets/categories/bank1.jpg';
 import xicon from '../../assets/icons/x-icon.svg'
 import {BlogPageCreateStyle} from '../BlogPageCreate/style'
 import BlogHeaderComponent from '../../components/BlogHeaderComponent';
@@ -67,7 +67,10 @@ const BlogPageCreate =()=>{
         <BlogHeaderComponent />
             <div className="back-img"></div>
         <div className="article-info">
-            <div className="round-pic"><img className="blog-img" src={taxes3} alt=""/></div>
+            <div className="round-pic">
+                <div className="blog-img" style={{"backgroundImage": `url(${bank1})`}}></div>
+                {/* <img className="blog-img" src={taxes3} alt=""/> */}
+            </div>
             <div className="header-info">
                 <p className="category">Your story starts here</p>
                 <p className="headline">What is your article about?</p>

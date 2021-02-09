@@ -65,8 +65,11 @@ const BlogPage =()=>{
             <BlogPageStyle>
             <BlogHeaderComponent />
             <div className="back-img"></div>
-            <div className="article-info">   
-                <div className="round-pic"><img className="blog-img" src={article.article_image.length ? article.article_image[0].image : taxes1}/></div>
+            <div className="article-info">  
+                <div className="round-pic">
+                    <div className="blog-img" style={{"backgroundImage": `url(${article.article_image.length ? article.article_image[0].image : taxes1})`}}></div>
+                </div> 
+                {/* <div className="round-pic"><img className="blog-img" src={article.article_image.length ? article.article_image[0].image : taxes1}/></div> */}
                 <div className="header-info">
                     <p className="category">{article.article_category.category}</p>
                     <p className="headline">{article.title}</p>
@@ -74,13 +77,26 @@ const BlogPage =()=>{
                     <div className="main-content">
                         <div className="article-box">
                             <p className="article">{article.content}</p>
-                            <div className="player">
+                            <div className="image-container">
+                                <div className="uploaded-pic"></div>
+                                <div className="uploaded-pic"></div>
+                                <div className="uploaded-pic"></div>
+                                <div className="uploaded-pic"></div>
+                            </div>
+{/*                             { 
+                            ( article.article_image.image ) ? 
+                            (<div className="image-container">
+                                 <div className="uploaded-pic" style={{"backgroundImage": `url(${article.article_image.length ? article.article_image.map((data, index) => {key={index} image={data.article.article_image.image}}) : "Loading ..."})`}}></div>
+                            </div>): null} */}
+                            {/* { 
+                            ( article.article_video.video ) ? 
+                            (<div className="player">
                                 <ReactPlayer url={article.article_video.length ? article.article_video[0].video : ""}
                                 width="675px"
                                 height="385px"
                                 controls="true"
                                  />
-                            </div>
+                            </div>): null} */}
                         </div>
                             <div className="comment-section">
                                 <div className="comment-title">Comments</div>
