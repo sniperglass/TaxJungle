@@ -5,7 +5,7 @@ const AuthHeader = (props) => {
     return(
         <AuthHeaderStyle>
             <div>
-                <Link to="/">home</Link>
+                <Link to="/">map</Link>
                 <Link to="/blog">blog</Link>
             </div>
             <div>
