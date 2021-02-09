@@ -16,16 +16,14 @@ export const Theme = {
     text: {
         /* mainColor: "#573E8C", */
         mainColor: "#0c5a75",
-        secondaryColor: "#8073A5",
+        secondaryColor: "#345E70",
+        ternaryColor: "#335A7F",
         defaultSize: "16px",
-        blueMaincolor: "#427D9F",
-        dazzledBlue: "#335A7F",
-        saphireBlue: "#345E70"
     },
 
     backgrounds: {
-        purple: "#573E8C",
-        greyLight: "#e7e7e7",
+        mainColor: "#0c5a75",
+        secondaryColor: "#FFFFFF",
         white: "#FFFFFF",
         hover: "#D9CEEE",
         modal: "#E1E1E1",

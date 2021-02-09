@@ -18,7 +18,7 @@ export const ConfigModalStyled = styled.section`
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: ${props => props.theme.backgrounds.greyLight};
+    background-color: ${props => props.theme.backgrounds.secondaryColor};
     overflow-y: scroll;
     /* border: 1px solid red; */
     scrollbar-width: 5px;
@@ -143,7 +143,7 @@ export const ConfigModalStyled = styled.section`
 
     .text-field,
     .text-field-2 {
-        background-color:${props => props.theme.backgrounds.greyLight};
+        background-color:${props => props.theme.backgrounds.secondaryColor};
         border: none;
         text-align: right;
         width: 88px;

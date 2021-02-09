@@ -42,7 +42,7 @@ export const AuthHeaderStyle = styled.header`
         text-decoration: none;
         margin-top: 30px;
         margin-right: 20px;
-        background-color: ${props => props.theme.backgrounds.purple};
+        background-color: ${props => props.theme.backgrounds.mainColor};
         font-size: 12px;
         color: white;
         cursor: pointer;

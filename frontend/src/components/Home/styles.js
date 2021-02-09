@@ -128,7 +128,7 @@ export const HomeStyle = styled.section`
     align-items: center;
     outline: none;
     cursor: pointer;
-    background: ${props => props.theme.backgrounds.purple};
+    background: ${props => props.theme.text.mainColor};
 }
 
 .close-btn {
@@ -142,7 +142,7 @@ export const HomeStyle = styled.section`
     align-items: center;
     outline: none;
     cursor: pointer;
-    background: ${props => props.theme.backgrounds.purple};
+    background: ${props => props.theme.backgrounds.mainColor};
 
     div {
         display: flex;
@@ -150,7 +150,7 @@ export const HomeStyle = styled.section`
         align-items: center;
         height: 20px;
         width: 20px;
-        background-color: ${props => props.theme.backgrounds.purple};
+        background-color: ${props => props.theme.backgrounds.mainColor};
         overflow: hidden;
 
         img {
@@ -223,7 +223,7 @@ export const HomeStyle = styled.section`
     p {
         margin: 10px 0;
         text-align: right;
-        color: ${props => props.theme.backgrounds.purple};
+        color: ${props => props.theme.text.mainColor};
 
         span {
             font-weight: bold;
@@ -238,7 +238,7 @@ export const HomeStyle = styled.section`
         align-items: center;
         font-weight: bold;
         font-size: 24px;
-        color: ${props => props.theme.backgrounds.purple};
+        color: ${props => props.theme.text.mainColor};
     }
 }
 
@@ -281,11 +281,16 @@ footer {
         /* border: 1px solid green; */
 
         a {
+            z-index: 99;
             text-align: center;
             margin-left: 15px;
+            opacity: 75%;
         }
         a:first-child {
             margin-left: 0;
+        }
+        a:visited {
+            color: ${props => props.theme.text.mainColor}
         }
     }
 }

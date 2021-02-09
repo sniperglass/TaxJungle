@@ -110,7 +110,7 @@ export const ButtonStyle = styled.button `
   width: 200px;
   margin-top: auto;
   border-radius: ${props => props.theme.borders.radius};
-  background-color: ${props => props.theme.backgrounds.purple};
+  background-color: ${props => props.theme.backgrounds.mainColor};
   color: white;  
   font-size: 14px;
 `

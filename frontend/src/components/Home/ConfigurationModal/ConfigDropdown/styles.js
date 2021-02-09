@@ -82,7 +82,7 @@ export const DropDownStyled = styled.div`
         margin-bottom: 40px; 
         box-shadow: 0 0 10px ${props => props.theme.text.mainColor};
         border-radius: 8px;
-        background-color: ${props => props.theme.backgrounds.greyLight};
+        background-color: ${props => props.theme.backgrounds.secondaryColor};
         z-index: 99;
     }
 
