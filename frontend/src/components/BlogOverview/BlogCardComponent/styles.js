@@ -11,11 +11,16 @@ export const BlogCardCompStyle = styled.section`
     margin: 10px;
     background-color: white;
     /* border: 1px solid red; */
-    border-radius:3px;
+    border-radius: 8px;
     box-shadow: 
-            0 1px 10px rgba(0,0,0,0.3), 
+            0 1px 10px rgba(0,0,0,0.6), 
             0 0 0 1px rgba(221,221,221,0.75);
-
+    :hover {
+    transform: scale(1.05, 1.05);
+    -ms-transform: scale(1.05, 1.05); /* IE 9 */
+    -webkit-transform: scale(1.05, 1.05);
+    transition: transform .5s ease;
+	}
 
 a {
     display: flex;
@@ -36,6 +41,8 @@ a {
 .img{
     width: 100%;
     height: 40%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

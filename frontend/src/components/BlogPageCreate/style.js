@@ -22,8 +22,9 @@ justify-content: flex-start;
     height: 340px;
     z-index: -1;
     top: 0;
-    background-image: linear-gradient(to right top, #3c1e59, #4b296b, #5a357d, #694190, #794ea4);
-   
+    /* background-image: linear-gradient(to right top, #3c1e59, #4b296b, #5a357d, #694190, #794ea4); */
+    /* background-image: linear-gradient(to right top, #051937, #042847, #033857, #054967, #0c5a75); */
+    background-color: ${props => props.theme.text.mainColor};
 }
 
 .article-info {
