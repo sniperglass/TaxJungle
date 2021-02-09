@@ -93,7 +93,7 @@ const BlogPageCreate =()=>{
                             </div>
                             <div className="media-input">
                                 <div className="files">
-                                    <input className="imageFile" onChange={articleInputHandler} name='article_image' type="file" accept="image/jpeg, image/png" multiple placeholder="Image" />
+                                    <input className="imageFile" onChange={articleInputHandler} name='article_image' type="file" accept="image/jpeg, image/png" multiple placeholder="Image" required/>
                                     <input className="videoFile" onChange={articleInputHandler} value={article.article_video}  name='article_video'   type="url" placeholder="Video url" />
                                 </div>
                                 <button type="submit" className="submit-btn">submit</button>

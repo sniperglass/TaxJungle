@@ -94,6 +94,16 @@ justify-content: flex-start;
     text-align: justify;
 }
 
+.player {
+    display: flex;
+    //border: 1px solid purple;
+    margin-right: 7%;
+    margin-left: 5%;
+    height: 100%;
+    width: 70%;
+
+}
+
 .comment-section {
     display: flex;
     flex-direction: column;

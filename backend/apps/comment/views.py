@@ -1,5 +1,8 @@
+from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, DestroyAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+
 from apps.comment.permissions import IsUserOrReadOnly
 from apps.comment.serializer import CommentSerializer
 from apps.comment.models import Comment
@@ -14,8 +17,12 @@ class CreateCommentView(ListCreateAPIView):
     lookup_url_kwarg = 'article_id'
     permission_classes = [IsAuthenticated]
 
-    def perform_create(self, serializer):
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(
+            data={**request.data}, partial=True)
+        serializer.is_valid(raise_exception=True)
         serializer.save(user=self.request.user, article_id=self.kwargs['article_id'])
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class RemoveComment(DestroyAPIView):
