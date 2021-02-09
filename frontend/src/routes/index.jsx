@@ -20,6 +20,7 @@ const Routes = () => {
                 <Route exact path="/signup" component={SignUp} />
                 <Route exact path="/profile" component={withAuth(Profile)} />
                 <Route exact path="/blog" component={BlogOverview} />
+                <Route exact path="/blog/search" component={BlogOverview} />
                 <Route exact path="/blog/taxes" component={BlogOverview} />
                 <Route exact path="/blog/renting" component={BlogOverview} />
                 <Route exact path="/blog/insurance" component={BlogOverview} />

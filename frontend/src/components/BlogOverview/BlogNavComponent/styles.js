@@ -41,6 +41,8 @@ background-color: white;
         border: 1px solid ${props => props.theme.text.mainColor};
         background-color: ${props => props.theme.text.mainColor};
         color: white;
+        outline: none;
+        cursor: pointer;
     }
 
     a {

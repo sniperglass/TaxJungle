@@ -1,6 +1,6 @@
 import { BlogNavComponentStyle } from '../BlogNavComponent/styles'
 import { useSelector, useDispatch } from "react-redux"
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useState} from 'react';
 import { blogCategoryAction, searchOnArticlesByCategory } from "../../../store/actions/blogActions"
 import search from '../../../assets/icons/search.svg'
@@ -11,13 +11,26 @@ const BlogNavComponent = () => {
     let category = useSelector(state => state.blogReducer.category)
     const [searchText, setsearchText] = useState("")
     const dispatch = useDispatch()
-
+    const history = useHistory()
     const blogCategoryHandler = (e) => {
         dispatch(blogCategoryAction(e.target.id))
     }
 
     const searchHandler = (e) => {
-        dispatch(searchOnArticlesByCategory(e.target.id, ""))
+        e.preventDefault()
+        console.log(e.target.elements.search.id, e.target.elements.search.value)
+        dispatch(searchOnArticlesByCategory(e.target.elements.search.value)).then(result => {
+            history.push('/blog/search')
+        })
+        dispatch(blogCategoryAction('search'))
+
+    }
+
+    const textInputChange = (e) => {
+        const{value} = e.target;
+        setsearchText(value)
+        console.log('search',e.target.value)
+
     }
 
     return(
@@ -37,7 +50,7 @@ const BlogNavComponent = () => {
                 </ul>
                 <div className="search-wrapperbox">
                     <form onSubmit={ searchHandler } className="search-form" autoComplete="off">
-                            <input id="search-input" className="search-input" type="text" placeholder="search articles..." name="search" onChange={searchText}></input>
+                            <input id="search-input" onChange={textInputChange} value={searchText} className="search-input" type="text" placeholder="search articles..." name="search"></input>
                             <button type="submit" className="search-btn"><img src={search} height="18px" alt=""></img></button>
                     </form>
                 </div> 
