@@ -16,17 +16,26 @@ export const MainStyle = styled.main `
   justify-content: center;
   align-items: flex-start;
 `
+export const Welcome = styled.h1 `
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 50px;
+    text-align: center;  
+    font-size: 40px;
+    /* font-weight: lighter; */
+`
 
 export const FormStyle = styled.form `
   width: 100%;
   max-width: 600px;
-  height: 90%;
-  max-height: 450px;
+  width: 100%;
+  max-height: 550px;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  /* border: 1px solid green; */
 
   p {
     color: white;
@@ -40,9 +49,13 @@ export const FormStyle = styled.form `
 export const TitleStyle = styled.h1 `
   display: flex;
   font-size: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  justify-content: center;
+  text-align: center; 
   font-weight: lighter;
   color: white;
+  width: 50%;
+/*   border: 1px solid green; */
 `
 
 export const InputFieldStyle = styled.div `
@@ -109,8 +122,9 @@ export const ButtonStyle = styled.button `
   max-height: 60px;
   width: 200px;
   margin-top: auto;
-  border-radius: ${props => props.theme.borders.radius};
-  background-color: ${props => props.theme.backgrounds.purple};
+  border-radius: 40px;
+  border: 1px solid white;
+  background-color: transparent;
   color: white;  
   font-size: 14px;
 `

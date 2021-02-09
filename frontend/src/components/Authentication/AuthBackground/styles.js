@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import test3 from '../../../assets/background-auth.jpg'
+import backg10 from '../../../assets/backg10.jpg'
 
 
 export const BackgroundStyle = styled.div `
@@ -8,7 +8,7 @@ export const BackgroundStyle = styled.div `
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: url(${test3});
+    background-image: url(${backg10});
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -16,7 +16,7 @@ export const BackgroundStyle = styled.div `
     -moz-filter: blur(5px);
     -o-filter: blur(5px);
     -ms-filter: blur(5px);
-    filter: blur(5px);
-    opacity: 80%;
+    filter: blur(4px);
+    opacity: 100%;
     transform: scale(1.1)
 `
