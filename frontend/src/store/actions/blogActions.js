@@ -1,4 +1,4 @@
-import {BLOG_CATEGORY, FETCH_ALL_ARTICLES, SINGLE_ARTICLE, NEW_COMMENT} from '../actionTypes'
+import {BLOG_CATEGORY, FETCH_ALL_ARTICLES, SINGLE_ARTICLE, NEW_COMMENT, SEARCH_ARTICLE} from '../actionTypes'
 import {baseBackendURL} from '../constants'
 
 
@@ -41,12 +41,11 @@ export const fetchAllArticles = (category) => async (dispatch, getState) => {
     return null
 }
 
-export const searchOnArticlesByCategory = (category, toSearch) => async (dispatch, getState) => {
+export const searchOnArticlesByCategory = (toSearch) => async (dispatch, getState) => {
     const config = {
         method: "GET",
     }
-
-    const response = await fetch (`${baseBackendURL}/article/${category}/?search=${toSearch}`, config)
+    const response = await fetch (`${baseBackendURL}/article/?search=${toSearch}`, config)
     if (response.ok) {
         const json = await response.json()
         dispatch(fetchAllArticlesAction(json.results))
