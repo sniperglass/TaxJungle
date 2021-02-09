@@ -12,7 +12,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-background-color:${props => props.theme.backgrounds.greyLight};
+background-color:${props => props.theme.backgrounds.secondaryColor};
 justify-content: flex-start;
 
 
@@ -197,7 +197,7 @@ justify-content: flex-start;
 }
 .confirmation {
     position: absolute;
-    background-color: ${props => props.theme.backgrounds.greyLight};
+    background-color: ${props => props.theme.backgrounds.secondaryColor};
     width: 600px;
     height: 200px;
     z-index: 99;

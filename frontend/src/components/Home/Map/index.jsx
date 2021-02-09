@@ -42,14 +42,15 @@ const Map = () => {
     let mapWidth = window.innerWidth, mapHeight = window.innerHeight
 
     // Axis dimensions
-    const axisWidth = 345, axisHeight = 75
+    const axisWidth = 350, axisHeight = 75
     const axisInnerWidth = 300, axisInnerHeight = 15
-    const axisMarginLeftMultiplier = 0.115
-    let axisMarginLeft = (mapHeight * mapWidth) > (550 * 550) ? mapWidth * axisMarginLeftMultiplier : -10000
-    let axisMarginBottom = mapWidth > 1000 ? 90 : 135
+    const axisPaddingLeft = -25, axisPaddingBottom = -20
+    const axisMarginLeftMultiplier = 0.11
+    let axisMarginLeft = mapWidth * axisMarginLeftMultiplier //(mapHeight * mapWidth) > (600 * 600) ? mapWidth * axisMarginLeftMultiplier : -10000
+    let axisMarginBottom = mapWidth > 1000 ? 100 : 135
 
     // Map projection, scale factor and path
-    let projection, scaleFactor = 6, path
+    let projection, scaleFactor = 7, path
 
     // Multiplier applied to tax rates for better color distribution
     const colorMultiplier = 10000
@@ -103,8 +104,8 @@ const Map = () => {
             const map = d3.select(mapRef.current)
             mapWidth = parseInt(map.style("width"))
             mapHeight = parseInt(map.style("height"))
-            axisMarginLeft = (mapHeight * mapWidth) > (550 * 550) ? mapWidth * axisMarginLeftMultiplier : -10000
-            axisMarginBottom = mapWidth > 1000 ? 90 : 135
+            axisMarginLeft = mapWidth * axisMarginLeftMultiplier //(mapHeight * mapWidth) > (550 * 550) ? mapWidth * axisMarginLeftMultiplier : -10000
+            axisMarginBottom = mapWidth > 1000 ? 100 : 135
 
             // Upate projection
             projection
@@ -342,12 +343,12 @@ const Map = () => {
 
         // Draw background
         d3.select(".axis").append("rect")
-            .attr("x", "-20px")
-            .attr("y", "-20px")
+            .attr("x", `${axisPaddingLeft}`)
+            .attr("y", `${axisPaddingBottom}`)
             .attr("width", axisWidth)
             .attr("height", axisHeight)
             .style("rx", "8px")
-            .style("fill", Theme.backgrounds.greyLight)
+            .style("fill", Theme.backgrounds.ternaryColor)
 
         // Draw color gradient
         d3.select(".axis-defs").append("linearGradient").attr("id", "axis").selectAll("stop")

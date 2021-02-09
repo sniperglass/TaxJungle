@@ -52,7 +52,7 @@ export const DropDownStyled = styled.div`
         align-items: center;
         justify-content: space-between;
         padding: 20px;    
-        background-color:${props => props.theme.backgrounds.greyLight};
+        background-color:${props => props.theme.backgrounds.ternaryColor};
         color: ${props => props.theme.text.mainColor};
         font-size: 15px;
         font-weight: 100;
@@ -82,7 +82,7 @@ export const DropDownStyled = styled.div`
         margin-bottom: 40px; 
         box-shadow: 0 0 10px ${props => props.theme.text.mainColor};
         border-radius: 8px;
-        background-color: ${props => props.theme.backgrounds.secondaryColor};
+        background-color: ${props => props.theme.backgrounds.ternaryColor};
         z-index: 99;
     }
 
@@ -124,7 +124,7 @@ export const DropDownStyled = styled.div`
         align-items: center;
     }
     .selection:hover {
-        transition-duration: 0.5s;
+        /* transition-duration: 0.1s; */
         background-color: ${props => props.theme.backgrounds.hover};
         height: 40px;
     }

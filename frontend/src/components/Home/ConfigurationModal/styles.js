@@ -18,7 +18,7 @@ export const ConfigModalStyled = styled.section`
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: ${props => props.theme.backgrounds.secondaryColor};
+    background-color: ${props => props.theme.backgrounds.ternaryColor};
     overflow-y: scroll;
     /* border: 1px solid red; */
     scrollbar-width: 5px;
@@ -143,7 +143,7 @@ export const ConfigModalStyled = styled.section`
 
     .text-field,
     .text-field-2 {
-        background-color:${props => props.theme.backgrounds.secondaryColor};
+        background-color:${props => props.theme.backgrounds.ternaryColor};
         border: none;
         text-align: right;
         width: 88px;
@@ -160,7 +160,7 @@ export const ConfigModalStyled = styled.section`
 
     //Dropdown Sections
     .required {
-        background-color:${props => props.theme.backgrounds.greyLight};
+        background-color:${props => props.theme.backgrounds.ternaryColor};
         color: ${props => props.theme.text.mainColor};
         font-size: 15px;
         font-weight: 300;
@@ -268,7 +268,7 @@ export const ConfigModalStyled = styled.section`
         align-items: flex-end;
         justify-content: flex-end;
         background-color: ${props => props.theme.text.mainColor};
-        color: ${props => props.theme.backgrounds.white};
+        color: ${props => props.theme.backgrounds.ternaryColor};
         font-size: 16px;
         font-weight: 200;
         padding: 8px;
@@ -289,16 +289,6 @@ export const ConfigModalStyled = styled.section`
         width: 20px;
         height: 20px;
     }
-
-    /* input[type=number] {
-        line-height: 30px;
-        background-color:${props => props.theme.backgrounds.greyLight};
-    }
-
-    input[type=number]::-webkit-inner-spin-button {
-        width: 50px;
-        height: 50px;
-    } */
 
     .roman {
         background-color: orange !important;
