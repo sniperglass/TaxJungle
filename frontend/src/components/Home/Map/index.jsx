@@ -99,6 +99,7 @@ const Map = () => {
 
         // Make it responsive
         const resize = () => {
+            if (!mapRef.current) {return}
             const map = d3.select(mapRef.current)
             mapWidth = parseInt(map.style("width"))
             mapHeight = parseInt(map.style("height"))
