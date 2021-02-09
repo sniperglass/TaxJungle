@@ -1,9 +1,20 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchSingleArticle, createCommentAction } from '../../store/actions/blogActions';
+import { useParams } from 'react-router-dom';
+
+//player
+import ReactPlayer from 'react-player';
+
 //css
 import {BlogPageStyle} from '../BlogPage/styles';
+
+//components
+import BlogHeaderComponent from '../../components/BlogHeaderComponent';
+
+//img
+import taxes3 from '../../assets/categories/taxes3.jpg';
+
 //icons
 import { FacebookShareButton, FacebookIcon, EmailShareButton,
 EmailIcon, LinkedinShareButton, LinkedinIcon, TwitterShareButton, 
@@ -20,6 +31,7 @@ const BlogPage =()=>{
     useEffect(() => {    
         dispatch(fetchSingleArticle(id))
     }, [])
+
 
     const onCommentSubmit = e => {
         e.preventDefault()
@@ -50,21 +62,8 @@ const BlogPage =()=>{
     return article ? 
         (
             <BlogPageStyle>
-            <header className="header">
-                <div className="back-img"></div>
-                <ul className="nav-left">
-                    <Link to="/blog"><li>all blogs</li></Link>
-                </ul>
-                <div className="header-right-wrapper">
-                    <ul className="nav-center">
-                        <Link to="/profile"><li>my profile</li></Link>
-                        <Link to="/blog/create"><li>create article</li></Link>
-                    </ul> 
-                    <ul className="nav-right">
-                        <Link to=""><li>LogIn</li></Link>
-                    </ul>
-                </div>
-            </header>
+            <BlogHeaderComponent />
+            <div className="back-img"></div>
             <div className="article-info">   
                 <div className="round-pic"><img className="blog-img" src={article.article_image[0].image} alt=""/></div>
                 <div className="header-info">
@@ -74,6 +73,14 @@ const BlogPage =()=>{
                     <div className="main-content">
                         <div className="article-box">
                             <p className="article">{article.content}</p>
+                            <div className="player">
+                                <ReactPlayer url={article.article_video.length ? article.article_video[0].video : ""}
+                                width="675px"
+                                height="385px"
+                                controls="true"
+                                pip="true"
+                                 />
+                            </div>
                         </div>
                             <div className="comment-section">
                                 <div className="comment-title">Comments</div>

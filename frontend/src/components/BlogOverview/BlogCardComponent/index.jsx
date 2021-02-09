@@ -16,10 +16,7 @@ const BlogCardComponent =(props)=>{
     return(
         <BlogCardCompStyle>
             <Link to ={`/blog/${props.article.article_category.category.toLowerCase()}/${props.article.id}`} draggable="false">
-            <div className="">
-                <img src={props.article.article_image.length ? props.article.article_image[0].image : taxes3} alt="taxes1" className="taxes1-img" draggable="false" />
-            </div>
-            
+            <div style={{"backgroundImage": `url(${props.article.article_image[0].image})`}} className="img" draggable="false" />
             <div className="text-box">
                 <p className="blog-question">{props.article.title}</p>
                 <p className="author">{`${props.article.user.first_name} ${props.article.user.last_name}`}</p>

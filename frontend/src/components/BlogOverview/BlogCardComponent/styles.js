@@ -2,18 +2,19 @@ import styled from "styled-components";
 
 export const BlogCardCompStyle = styled.section`
 
-display: flex;
-flex-direction: column;
-align-items: center;
-width: 85%;
-max-width: 350px;
-height: 450px;
-background-color: white;
-/* border: 1px solid red; */
-border-radius:3px;
-box-shadow: 
-        0 1px 10px rgba(0,0,0,0.3), 
-        0 0 0 1px rgba(221,221,221,0.75);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85%;
+    max-width: 300px;
+    height: 400px;
+    margin: 10px;
+    background-color: white;
+    /* border: 1px solid red; */
+    border-radius:3px;
+    box-shadow: 
+            0 1px 10px rgba(0,0,0,0.3), 
+            0 0 0 1px rgba(221,221,221,0.75);
 
 
 a {
@@ -32,8 +33,12 @@ a {
     box-shadow: -11px -18px 17px -2px rgba(0,0,0,0.63);
 }
  */
-.taxes1-img{
-    width: 100%
+.img{
+    width: 100%;
+    height: 40%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     /* border: 1px solid orange; */
 }
 
