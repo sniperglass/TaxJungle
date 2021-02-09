@@ -1,5 +1,19 @@
-import { FETCH_TAXES } from "../actionTypes"
+import { SEARCH_MAP, CONFIGURE_TAXES, FETCH_TAXES } from "../actionTypes"
 
+
+export const searchMapAction = (municipality) => {
+    return {
+        type: SEARCH_MAP,
+        payload: municipality,
+    }
+}
+
+export const configureTaxesAction = (configuration) => {
+    return {
+        type: CONFIGURE_TAXES,
+        payload: configuration,
+    }
+}
 
 const fetchTaxesAction = (taxData) => {
     return {
