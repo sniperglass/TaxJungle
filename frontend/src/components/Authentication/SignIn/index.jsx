@@ -38,13 +38,13 @@ const SignIn = () => {
                 <FormStyle id="sign-in-form" onSubmit={signInHandler}>
                     <TitleStyle>Sign In</TitleStyle>
                     <InputFieldStyle>
-                        <label for="email">
+                        <label htmlFor="email">
                             <img id="input-img" src={emailIcon} alt="email" height="40px" />
                         </label>
                         <input id="email" name="email" type="email" placeholder="email" autoComplete="email" required />
                     </InputFieldStyle>
                     <InputFieldStyle>
-                        <label for="password">
+                        <label htmlFor="password">
                             <img src={lockIcon} alt="password" height="45px" style={{opacity: "80%", marginLeft: "5px"}}/>
                         </label>
                         <input id="password" name="password" type="password" placeholder="password" required />
