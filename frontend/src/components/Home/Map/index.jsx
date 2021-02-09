@@ -5,38 +5,48 @@ import * as d3 from "d3"
 import * as topojson from "topojson-client"
 import { useRef, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { fetchTaxes } from "../../../store/actions/taxesActions"
+import { searchMapAction, fetchTaxes } from "../../../store/actions/mapActions"
 
 
 const Map = () => {
-    // <-- React -->
-    const taxes = useSelector(state => state.taxesReducer.taxes)
+    // TODO: Refactor map into own file/class (seperate from react part) and make functions less coupled
+    const taxData = useSelector(state => state.mapReducer.taxes)
+    const searchedMunicipality = useSelector(state => state.mapReducer.searchedMunicipality)
     const dispatch = useDispatch()
     const mapRef = useRef(null)
     const firstRender = useRef(false)
 
     useEffect(() => {
+        // Dispatch taxes fetch, setup svg, draw map and axis (only on mounting)
         if (!firstRender.current) {
-            // Dispatch taxes fetch, setup svg, draw map and axis (only on mounting)
             setupSVG()
             dispatch(fetchTaxes()).then(result => { if (result) {drawAxis()} })
             drawMap()
             firstRender.current = true
             return
-        }
+        } 
         // Update map and axis on state changes in taxes (execpt on mounting)
-        updateMap()
-        updateAxis()
-    }, [taxes])
+        updateMap(taxData)
+        updateAxis(taxData)
+    }, [taxData])
 
-    // <--- D3 --->
+    useEffect(() => {
+        // Update search selection
+        resetSelection()
+        if (searchedMunicipality) {
+            selectMunicipality()
+        }
+    }, [searchedMunicipality])
+
     // SVG dimensions (must be same as in MapStyle div)
     let mapWidth = window.innerWidth, mapHeight = window.innerHeight
 
     // Axis dimensions
     const axisWidth = 345, axisHeight = 75
     const axisInnerWidth = 300, axisInnerHeight = 15
-    let axisMarginLeft = mapHeight > 450 ? mapWidth * 0.115 : -10000, axisMarginBottom = axisHeight - axisInnerHeight + 100
+    const axisMarginLeftMultiplier = 0.115
+    let axisMarginLeft = (mapHeight * mapWidth) > (550 * 550) ? mapWidth * axisMarginLeftMultiplier : -10000
+    let axisMarginBottom = mapWidth > 1000 ? 90 : 135
 
     // Map projection, scale factor and path
     let projection, scaleFactor = 6, path
@@ -61,7 +71,8 @@ const Map = () => {
             .style("pointer-events", "visible")
             .on("click", function(e) {
                 e.preventDefault()
-                colorizeCantons()
+                dispatch(searchMapAction(null))
+                colorizeCantons(taxData)
             })
 
         // Add groups for map and axis
@@ -88,10 +99,12 @@ const Map = () => {
 
         // Make it responsive
         const resize = () => {
+            if (!mapRef.current) {return}
             const map = d3.select(mapRef.current)
             mapWidth = parseInt(map.style("width"))
             mapHeight = parseInt(map.style("height"))
-            axisMarginLeft = mapHeight > 450 ? mapWidth * 0.115 : -10000
+            axisMarginLeft = (mapHeight * mapWidth) > (550 * 550) ? mapWidth * axisMarginLeftMultiplier : -10000
+            axisMarginBottom = mapWidth > 1000 ? 90 : 135
 
             // Upate projection
             projection
@@ -139,48 +152,52 @@ const Map = () => {
         })
     }
 
-    const updateMap = () => {
-        updateMunicipalities()
-        updateCantons()
+    const updateMap = (data) => {
+        updateMunicipalities(data)
+        updateCantons(data)
     }
 
-    const updateMunicipalities = () => {
+    const updateMunicipalities = (data) => {
+        if (!data) {return}
+
         d3.selectAll(".municipalities path")
-            .on('mouseover', function(e, d) {
-                const mun = taxes.filter(m => m.gemeinde_id === d.id)[0]
+            .on("mouseover", function(e, d) {
+                const mun = data.filter(m => m.gemeinde_id === d.id)[0]
                 if (!mun) { return }
                 d3.select(this)
-                    .classed("active",true)
+                    .classed("active", true)
                 // Display tooltip
                 const rate = (mun.satz * 100).toFixed(2)
-                d3.select("#tooltip").classed('hidden', false)
-                    .attr('style', 'left:' + (e.pageX - 80) +'px; top:' + (e.pageY + 50) + 'px')
+                d3.select("#tooltip").classed("hidden", false)
+                    .attr("style", "left:" + (e.pageX - 80) + "px; top:" + (e.pageY + 50) + "px")
                     .html(`${mun.gemeinde} ${rate}%`)
             })
-            .on('mouseout', function(d) {
+            .on("mouseout", function(d) {
                 d3.select(this)
                     .classed("active",false)
                 // Hide tooltip
-                d3.select("#tooltip").classed('hidden', true)
+                d3.select("#tooltip").classed("hidden", true)
             })
             .on("click", function(e, d) {
                 e.preventDefault()
                 // TODO: Trigger tax detail modal display
             })
 
-        colorizeMunicipalites()
+        colorizeMunicipalites(data)
     }
 
-    const colorizeMunicipalites = () => {
+    const colorizeMunicipalites = (data) => {
+        if (!data || d3.selectAll(`.municipality-boundaries`).empty()) {return}
+
         // Compare tax rate of municipalty to all rates in given canton
-        const rates = taxes.map(m => parseInt(m.satz * colorMultiplier))
+        const rates = data.map(m => parseInt(m.satz * colorMultiplier))
         const lowest = rates.sort((a, b) => a - b)[0]
         const heighest = rates.sort((a, b) => a - b)[rates.length - 1]
         const range = heighest - lowest
         const interval = Math.round(range / (Object.keys(colors).length))
 
         // Set fill color for municipalities depending on its tax rate
-        for (let municipality of taxes) {
+        for (let municipality of data) {
             const rate = parseInt(municipality.satz * colorMultiplier)
 
             d3.select(`.municipality-boundaries.m${municipality.gemeinde_id}`)
@@ -211,45 +228,50 @@ const Map = () => {
         }
     }
 
-    const updateCantons = () => {
+    const updateCantons = (data) => {
+        if (!data) {return}
+
         d3.selectAll(".cantons path")
             .attr("averageRate", function(d) {
                 const canton = cantons[d.id]
-                const muns = taxes.filter(m => m.kanton_id === canton)
+                const muns = data.filter(m => m.kanton_id === canton)
                 const averageRate = muns.map(m => m.satz).reduce((a, b) => a + b) / muns.length
                 return averageRate
             })
-            .on('mouseover', function(e, d) {
+            .on("mouseover", function(e, d) {
                 d3.select(this)
                     .classed("active",true)
                 // Display tooltip
                 const canton = cantons[d.id]
-                const muns = taxes.filter(m => m.kanton_id === canton)
+                const muns = data.filter(m => m.kanton_id === canton)
                 const averageRate = (d3.select(this).attr("averageRate") * 100).toFixed(2)
                 d3.select("#tooltip").classed('hidden', false)
-                    .attr('style', 'left:' + (e.pageX - 80) +'px; top:' + (e.pageY + 50) + 'px')
+                    .attr("style", "left:" + (e.pageX - 80) + "px; top:" + (e.pageY + 50) + "px")
                     .html(`${muns[0].kanton_name} ${averageRate}% (⌀)`);
                 })
-            .on('mouseout', function(d) {
+            .on("mouseout", function(d) {
                 d3.select(this)
                     .classed("active",false)
                 // Hide tooltip
-                d3.select("#tooltip").classed('hidden', true)
+                d3.select("#tooltip").classed("hidden", true)
             })
-            .on('click', function(e, d) {
+            .on("click", function(e, d) {
                 e.preventDefault()
-                colorizeCantons()
+                dispatch(searchMapAction(null))
+                colorizeCantons(data)
                 d3.select(this)
                     .attr("style", "fill: none; stroke-width: 1.5;")
             })
 
-        colorizeCantons()
+        colorizeCantons(data)
     }
 
-    const colorizeCantons = () => {
+    const colorizeCantons = (data) => {
+        if (!data || d3.selectAll(`.canton-boundaries`).empty()) {return}
+
         // Compare average tax rate of all cantons
         const averageRates = []
-        d3.selectAll(".canton-boundaries").each(function() {  averageRates.push(parseInt(d3.select(this).attr("averageRate") * colorMultiplier)) })
+        d3.selectAll(".canton-boundaries").each(function() { averageRates.push(parseInt(d3.select(this).attr("averageRate") * colorMultiplier)) })
         const lowest = averageRates.sort((a, b) => a - b)[0]
         const heighest = averageRates.sort((a, b) => a - b)[averageRates.length - 1]
         const range = heighest - lowest
@@ -287,6 +309,33 @@ const Map = () => {
         }
     }
 
+    // TODO: Zoom/center map according to selected municipality?
+    const selectMunicipality = () => {
+        const cantonID = Object.keys(cantons).find(key => cantons[key] === searchedMunicipality.kanton_id)
+        const cantonSelection = d3.selectAll(`path.canton-boundaries.c${cantonID}`)
+        const munID = searchedMunicipality.gemeinde_id
+        const munSelection = d3.selectAll(`path.municipality-boundaries.m${munID}`)
+
+        cantonSelection.attr("style", "fill: none; stroke-width: 1.5;")
+        munSelection.classed("active", true)
+    
+        const bounds = munSelection.node().getBoundingClientRect()
+        const x = bounds.x + bounds.width / 2
+        const y = bounds.y + bounds.height / 2
+        
+        const rate = (searchedMunicipality.satz * 100).toFixed(2)
+
+        d3.select("#tooltip").classed("hidden", false)
+            .attr("style", "left:" + (x - 80) + "px; top:" + (y + 50) + "px")
+            .html(`${searchedMunicipality.gemeinde} ${rate}%`)
+    }
+
+    const resetSelection = () => {
+        d3.select("#tooltip").classed("hidden", true)
+        d3.selectAll(".municipalities path").classed("active", false)
+        colorizeCantons(taxData)
+    }
+
     const drawAxis = () => {
         // Position axis
         d3.select(".axis").attr("transform", `translate(${axisMarginLeft}, ${mapHeight - axisMarginBottom})`)
@@ -314,8 +363,10 @@ const Map = () => {
             .style("fill", "url(#axis)")
     }
 
-    const updateAxis = () => {
-        const rates = taxes.map(m => m.satz)
+    const updateAxis = (data) => {
+        if (!data) {return}
+
+        const rates = data.map(m => m.satz)
         const scaleMin = d3.min(rates)
         const scaleMax = d3.max(rates)
         const scaleInterval = (scaleMax - scaleMin) / 6

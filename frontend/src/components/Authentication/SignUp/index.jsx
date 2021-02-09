@@ -1,6 +1,6 @@
 import AuthBackground from "../AuthBackground"
 import AuthHeader from "../AuthHeader"
-import { Layout, MainStyle, FormStyle, TitleStyle, InputFieldStyle, InputStyle, ButtonStyle } from "../styles"
+import { Layout, MainStyle, FormStyle, TitleStyle, InputFieldStyle, ButtonStyle } from "../styles"
 import { SignupFormTwoStyle, SignupFormThreeStyle, InputSmallStyle} from "./styles"
 import emailIcon from "../../../assets/icons/email.png"
 import { useState } from "react"
@@ -75,10 +75,10 @@ const SignUp = () => {
                         <FormStyle id="sign-up-form" onSubmit={signUpHandler}>
                             <TitleStyle>Sign Up</TitleStyle>
                             <InputFieldStyle>
-                                <label for="email">
+                                <label htmlFor="email">
                                     <img id="input-img" src={emailIcon} alt="email" height="40px" />
                                 </label>
-                                <input id="email" name="email" type="email" placeholder="email" required />
+                                <input id="email" name="email" type="email" placeholder="email" autoComplete="email" required />
                             </InputFieldStyle>  
                             <p>{userFeedback}</p>                          
                             <ButtonStyle>sign up</ButtonStyle>
@@ -102,10 +102,10 @@ const SignUp = () => {
                         <SignupFormThreeStyle id="sign-up-form" onSubmit={signUpHandler}>
                             <TitleStyle>Validation</TitleStyle>
                             <div>
-                                <InputSmallStyle name="firstname" type="text" placeholder="first name" required />
-                                <InputSmallStyle name="lastname" type="text" placeholder="last name" required />
-                                <InputSmallStyle name="username" type="text" placeholder="username" onChange={usernameInputHandler} required />
-                                <InputSmallStyle name="code" type="number" placeholder="validation code" required />
+                                <InputSmallStyle name="firstname" type="text" placeholder="first name" autoComplete="family-name" required />
+                                <InputSmallStyle name="lastname" type="text" placeholder="last name" autoComplete="given-name" required />
+                                <InputSmallStyle name="username" type="text" placeholder="username" autoComplete="username" onChange={usernameInputHandler} required />
+                                <InputSmallStyle name="code" type="text" placeholder="validation code" required />
                                 <InputSmallStyle name="password" type="password" placeholder="Password" onChange={passwordInputHandler} required />
                                 <InputSmallStyle name="passwordrepeat" type="password" placeholder="Password repeat" onChange={passwordRepeatInputHandler} required />
                             </div>

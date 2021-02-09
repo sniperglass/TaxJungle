@@ -1,8 +1,4 @@
-import React, { useState} from 'react';
-import {Link} from 'react-router-dom';
-//img
-
-import { BackgroundStyle } from './styles';
+import { BackgroundStyle } from './styles'
 
 const AuthBackground = () => {
     return(
@@ -10,4 +6,4 @@ const AuthBackground = () => {
     )
 }
 
-export default AuthBackground;
+export default AuthBackground

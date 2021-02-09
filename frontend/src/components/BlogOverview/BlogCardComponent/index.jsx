@@ -8,6 +8,7 @@ import taxes1 from '../../../assets/categories/taxes1.jpg';
 //css
 import {BlogCardCompStyle} from './styles';
 
+
 const BlogCardComponent =(props)=>{
 
     return(
