@@ -6,6 +6,7 @@ export const SIGNUP_REGISTRATION = "SIGNUP_REGISTRATION"
 
 // Map
 export const SEARCH_MAP = "SEARCH_MAP"
+export const CONFIGURE_TAXES = "CONFIGURE_TAXES"
 export const FETCH_TAXES = "FETCH_TAXES"
 
 //Blog

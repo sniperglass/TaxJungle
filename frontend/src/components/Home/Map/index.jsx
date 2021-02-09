@@ -45,7 +45,8 @@ const Map = () => {
     const axisWidth = 345, axisHeight = 75
     const axisInnerWidth = 300, axisInnerHeight = 15
     const axisMarginLeftMultiplier = 0.115
-    let axisMarginLeft = mapHeight > 450 ? mapWidth * axisMarginLeftMultiplier : -10000, axisMarginBottom = 150
+    let axisMarginLeft = (mapHeight * mapWidth) > (550 * 550) ? mapWidth * axisMarginLeftMultiplier : -10000
+    let axisMarginBottom = mapWidth > 1000 ? 90 : 135
 
     // Map projection, scale factor and path
     let projection, scaleFactor = 6, path
@@ -102,6 +103,7 @@ const Map = () => {
             mapWidth = parseInt(map.style("width"))
             mapHeight = parseInt(map.style("height"))
             axisMarginLeft = (mapHeight * mapWidth) > (550 * 550) ? mapWidth * axisMarginLeftMultiplier : -10000
+            axisMarginBottom = mapWidth > 1000 ? 90 : 135
 
             // Upate projection
             projection

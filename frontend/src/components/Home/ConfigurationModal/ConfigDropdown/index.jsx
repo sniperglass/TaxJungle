@@ -7,7 +7,7 @@ import DownArrow from '../../../../assets/icons/down-arrow.svg'
 
 
 const ConfigDropdown = (props) => {
-    const [selectedOption, setSelectedOption] = useState(props.options[0])
+    const [selectedOption, setSelectedOption] = useState(props.initialValue ? props.initialValue : props.options[0])
 
     const onNavigationClicked = (e) => {
         if (props.visible) {
@@ -18,11 +18,11 @@ const ConfigDropdown = (props) => {
     }
 
     const onOptionClicked = (e) => {
-        const {id} = e.target
-        setSelectedOption(id)
+        const option = e.target.id
+        setSelectedOption(option)
         props.activeHandler("")
         if (props.optionClickHandler) {
-            props.optionClickHandler(id)
+            props.optionClickHandler(option)
         }
     };
 

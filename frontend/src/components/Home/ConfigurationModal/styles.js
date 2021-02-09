@@ -14,7 +14,7 @@ export const ConfigModalPageStyled = styled.div`
 `
 
 export const ConfigModalStyled = styled.section`
-    width: 775px;
+    width: 700px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -90,8 +90,7 @@ export const ConfigModalStyled = styled.section`
         height: 16px;
         width: 16px;
         border-radius: 50%;
-        background: #573E8C;
-        margin-top: -4px;
+        background: ${props => props.theme.text.mainColor};
     }
 
     .slidecontainer,
@@ -104,7 +103,7 @@ export const ConfigModalStyled = styled.section`
     #slider-2 {
         width: 100%;
         height: 2.5px;
-        background-color: #573E8C;
+        background-color: ${props => props.theme.text.mainColor};
         outline: none;
     }
 
@@ -120,17 +119,6 @@ export const ConfigModalStyled = styled.section`
         width: 100%;
         margin: 0 auto;
     }
-
-    /* #selector {
-        height: 104px;
-        width: 48px;
-        position: absolute;
-        bottom: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        color:  ${props => props.theme.text.mainColor};
-        z-index: 2;
-    } */
 
     .slidecontainer-label {
         padding-bottom: 5px;
