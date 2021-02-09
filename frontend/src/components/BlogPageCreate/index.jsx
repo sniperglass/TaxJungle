@@ -26,7 +26,10 @@ const BlogPageCreate =()=>{
         if (name==='article_category'){
             value = parseInt(value)
         }else if(name === 'article_image'){
-            value = e.target.files[0]
+            value = []
+            for (const image of e.target.files) {
+                value.push(image)
+            }
         }
         setNewArticle({
             ...article, 
@@ -43,13 +46,17 @@ const BlogPageCreate =()=>{
             article_video: '',
             article_image: []
         }) 
-        
+
         const formData = new FormData();
-        formData.append('article_image', article.article_image);
+        for (let i in article.article_image) {
+            formData.append('article_images', article.article_image[i]);
+        }
+
         formData.append('article_video', article.article_video);
         formData.append('title', article.title);
         formData.append('content', article.content);
         formData.append('article_category', article.article_category);
+
             
         dispatch(newArticleAction(formData, history))
         setShowConfirmation(true)

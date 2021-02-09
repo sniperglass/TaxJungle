@@ -11,6 +11,7 @@ const initialState = {
         profile_picture: ""
     },
     accessToken: "",
+    refreshToken: "",
     authenticated: false,
     signupStep: 1,
     signupEmail: "",
@@ -22,6 +23,7 @@ const authReducer = (state = initialState, action) => {
             const newState = {...state}
             newState.user = action.user
             newState.accessToken = action.accessToken
+            newState.refreshToken = action.refreshToken
             newState.authenticated = action.authenticated
             return newState
         }
