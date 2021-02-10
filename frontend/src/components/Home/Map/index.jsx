@@ -190,6 +190,7 @@ const Map = () => {
                 const cantonHighestMun = cantonMunsSorted[cantonMunsSorted.length - 1]
                 d3.select(this).classed("active", true)
                 // Display detailed tooltip
+                console.log(e.pageY)
                 d3.select("#tooltip").classed("hidden", false)
                     .attr("style", "left:" + (e.pageX - 80) + "px; top:" + (e.pageY + 50) + "px")
                     .html(`

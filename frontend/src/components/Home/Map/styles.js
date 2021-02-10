@@ -29,29 +29,26 @@ export const MapStyle = styled.div `
 
     .main-row {
       width: 100%;
-      margin-top: 15px;
+      margin-top: 10px;
       display: flex;
       justify-content: space-between;
       border-bottom: 0.5px solid ${props => props.theme.text.mainColor};
       font-size: 14px;
 
-      p {
-        padding: 5px 0;
-      }
       p:first-child {
         padding-right: 20px;
-      }
-      p:last-child {
         font-weight: 200;
       }
+      p:last-child {
+      }
     }
-
+  
     footer {
       margin-top: 20px;
       width: 100%;
       display: flex;
       flex-direction: column;
-      font-size: 12px;
+      font-size: 14px;
       
       .footer-subcontainer {
         width: 100%;
@@ -66,7 +63,7 @@ export const MapStyle = styled.div `
       .footer-section {
         width: 100%;
         height: 100%;
-        margin-top: 10px;
+        margin: 5px 0;
         display: flex;
         flex-direction: column;
         border-bottom: 0.5px solid ${props => props.theme.text.mainColor};
@@ -78,6 +75,10 @@ export const MapStyle = styled.div `
         margin-top: 5px;
         display: flex;
         justify-content: space-between;
+
+        p:first-child {
+          font-weight: 200;
+        }
       }
     }
   }
