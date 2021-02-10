@@ -38,7 +38,7 @@ background-color:${props => props.theme.backgrounds.greyLight};
 .category-flexcontainer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
     padding-top: 40px;
     width: 90%;
@@ -53,7 +53,7 @@ background-color:${props => props.theme.backgrounds.greyLight};
     /* margin: 2% 0; */
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 90%;
     height: 85%;
     /* border: 1px solid red; */
 }

@@ -43,10 +43,10 @@ const BlogHeaderComponent = () => {
         let location = useLocation();
         if (location.pathname === "/blog") {
             return (
-                <Link to="/blog" style={{fontWeight: 700}} onClick={blogCategoryHandler}>articles</Link> 
+                <Link to="/blog" style={{fontWeight: 700}} onClick={blogCategoryHandler}>latest articles</Link> 
             );
         } else {
-            return <Link to="/blog" style={{color: "white"}} onClick={blogCategoryHandler}>articles</Link>
+            return <Link to="/blog" style={{color: "white"}} onClick={blogCategoryHandler}>latest articles</Link>
         }
     }
 
@@ -54,7 +54,7 @@ const BlogHeaderComponent = () => {
         <BlogHeaderCompStyle>
             <header className="header">
                 <ul className="nav-left">
-                    <Link to="/">tax-map</Link>
+                    <Link to="/">map</Link>
                     <ArticleLink/>
                 </ul>
                 <Title/>

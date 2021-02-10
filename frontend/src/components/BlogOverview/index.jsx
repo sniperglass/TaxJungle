@@ -1,5 +1,4 @@
 import React from 'react';
-import Carousel from 'react-elastic-carousel';
 import {useSelector, useDispatch} from "react-redux";
 import {useEffect} from "react";
 import BlogHeaderComponent from '../../components/BlogHeaderComponent';
@@ -27,11 +26,11 @@ const BlogOverview =()=>{
                     (category === "") ?  
                     (
                         <div className="main-container">
-                            <Carousel itemsToShow={3} itemsToScroll={3} enableMouseSwipe={false}> 
+                            
                                 {
                                     articles.map((article, id) => <BlogCardComponent key={id} article={article}/>)
                                 }
-                            </Carousel>
+                            
                             <div className="back-img"></div>
                         </div>
                     ) : (
