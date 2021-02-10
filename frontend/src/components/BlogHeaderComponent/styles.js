@@ -81,6 +81,7 @@ background-color: ${props => props.theme.text.mainColor};
             color: white;
             justify-content: center;
             outline: none;
+            cursor: pointer;
         }
 
             li{
@@ -105,13 +106,16 @@ background-color: ${props => props.theme.text.mainColor};
     }
 
 .positionSettingsButton {
-    border: 1px solid red;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    width: 120px;
     z-index: 99;
     padding-top: 20px;
-    padding-right: 20px;
-    display: flex;
-    /* border: 1px solid yellow; */
+    margin-right: -60px;
+    cursor: pointer;
+    /* border: 1px solid red; */
 }
 
     a {

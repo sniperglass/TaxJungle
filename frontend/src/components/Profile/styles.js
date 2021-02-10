@@ -96,6 +96,7 @@ input.pic-input:focus {
     height: 280px;
     width: 280px;
     background-size: cover;
+    cursor: pointer;
     /* border: 1px solid red; */
 }
 
@@ -252,7 +253,6 @@ input.pic-input:focus {
     align-items: flex-start;
     height: 10%;
     width: 400px;
-    
     /* border: 1px solid red; */
 }
 
@@ -266,6 +266,7 @@ input.pic-input:focus {
     width: 120px;
     height: 40px;
     outline: none;
+    cursor: pointer;
 }
 
 .positionSettingsButton {
@@ -283,6 +284,7 @@ input.pic-input:focus {
     width: 200px;
     /* border: 1px solid red; */
 }
+
 
 #confirmOverlay{
     width:100%;
