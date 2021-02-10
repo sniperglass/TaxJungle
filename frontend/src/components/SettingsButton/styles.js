@@ -1,7 +1,6 @@
+import styled from "styled-components"
 
-
-
-.config-btn {
+export const SettingsButtonStyle = styled.button `
     height: 50px;
     width: 50px;
     border-radius: 12px;
@@ -9,11 +8,4 @@
     outline: none;
     z-index: 1;
     cursor: pointer;
-}
-
-
-
-
- 
-
-
+`

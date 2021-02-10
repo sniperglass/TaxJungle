@@ -9,7 +9,7 @@ def user_directory_path(instance, filename):
 class ArticleImage(models.Model):
     image = models.ImageField(upload_to=user_directory_path, blank=True, null=True)
     article_image = models.ForeignKey(to=Article, related_name='article_image',
-                                      blank=True, null=True, on_delete=models.CASCADE)
+                                      blank=False, null=True, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

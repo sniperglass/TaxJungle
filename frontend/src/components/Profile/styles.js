@@ -10,7 +10,7 @@ height: 100%;
 display: flex;
 justify-content: center;
 align-items: center;
-background-color: #F4F6F6;
+background-color:${props => props.theme.backgrounds.secondaryColor};
 /* border: 1px solid red; */
 justify-content: flex-start;
 
@@ -84,6 +84,7 @@ input.pic-input:focus {
     justify-content: center;
     height: 280px;
     width: 280px;
+    background-size: cover;
     /* border: 1px solid red; */
 }
 

@@ -15,24 +15,36 @@ class ArticleCreateView(CreateAPIView):
     Create article by admin only
     """
     serializer_class = ArticleSerializer
-    permission_classes = [IsAdminUser]
+    # permission_classes = [IsAdminUser]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         article_category = ArticleCategory.objects.filter(id=request.data['article_category'])[0]
         new_article = serializer.save(article_category=article_category, user=self.request.user)
-        if request.data['article_image'] != '':
-            article_image = ArticleImage(image=request.data['article_image'], article_image=new_article)
-            article_image.save()
+        uploaded_images = request.FILES.getlist('article_images')
+        if uploaded_images:
+            for image in uploaded_images:
+                article_image = ArticleImage(image=image, article_image=new_article)
+                article_image.save()
         if request.data['article_video'] != '':
             article_video = ArticleVideo(video=request.data['article_video'], article_video=new_article)
             article_video.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+    # uploaded_images = self.context.get('request').FILES.getlist('images')
+    # if uploaded_images:
+    #     for image in uploaded_images:
+    #         article_image = ArticleImage.objects.create(
+    #             article_image=article,
+    #             image=image
+    #         )
+
+
+
 
 class PaginationView(pagination.PageNumberPagination):
-    page_size = 5
+    page_size = 9
     page_size_query_param = 'page_size'
 
 
@@ -42,6 +54,8 @@ class ListArticleView(ListAPIView):
     """
     serializer_class = ArticleSerializer
     pagination_class = PaginationView
+    search_fields = ['content', 'title']
+    filter_backends = (filters.SearchFilter,)
     permission_classes = [AllowAny]
 
     def get_queryset(self):
@@ -94,11 +108,8 @@ class ArticleCategoryView(ListAPIView):
     """
     serializer_class = ArticleSerializer
     lookup_field = 'article_category_id'
-    search_fields = ['content', 'title']
-    filter_backends = (filters.SearchFilter,)
     pagination_class = PaginationView
     permission_classes = [AllowAny]
 
     def get_queryset(self):
-
         return Article.objects.filter(article_category=self.kwargs['article_category_id'])

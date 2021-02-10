@@ -1,16 +1,12 @@
-import React, { useState} from 'react';
-import {Link} from 'react-router-dom';
-import { useHistory} from 'react-router-dom';
-import { useDispatch, useSelector} from 'react-redux';
-import {updateUser} from '../../store/actions/authActions';
+import { useState} from 'react';
+import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUser } from '../../store/actions/authActions';
 import { signoutAction } from "../../store/actions/authActions";
-import {getAvatar} from '../../store/utils';
+import { getAvatar } from '../../store/utils';
 import SettingsButton from '../SettingsButton';
-import PopUp from '../PopUp';
-//img
-
-import BlogHeaderComponent from '../BlogOverview/BlogHeaderComponent';
-import BlogCardComponent from '../BlogOverview/BlogCardComponent';
+import PopUp from '../SettingsPopUp';
 
 //css
 import {ProfileStyle} from '../Profile/styles';
@@ -55,9 +51,6 @@ const Profile=()=>{
         }
     };
 
-    
-
-
     const deleteHandler = () => {
         if (window.confirm('Are you sure you want to delete your account?')) {
             dispatch(updateUser("DELETE", user)).then(result => {
@@ -65,7 +58,6 @@ const Profile=()=>{
                 dispatch(signoutAction())
             })
         }
-
     }
 
     const onSubmitHandler = e => {
@@ -91,10 +83,10 @@ const Profile=()=>{
     const profileConfigurationOpenButtonHandler = (e) => {
         e.preventDefault();
         setOpenConfig(!openConfig);
-      };
+    };
 
 
-      const profileSettings = [ 
+    const profileSettings = [ 
         {
             feature: "edit profile", 
             eventHandler: editHandler
@@ -103,17 +95,15 @@ const Profile=()=>{
             feature: "delete profile", 
             eventHandler: deleteHandler
         }
-     ]
+    ]
 
-     const closePopUp = () => {
+    const closePopUp = () => {
         if (openConfig) {
             setOpenConfig(false)
         }
-
-     }
+    }
         
     return (
-        
         <ProfileStyle>
             <div className="left" onClick={closePopUp}>
                 <Link to="/blog">back</Link>
@@ -121,9 +111,10 @@ const Profile=()=>{
                 <div className="round-pic">
                 <button className="label-btn">
                     <label htmlFor="profile_picture" className="change-pic" style={ editMode ? {opacity: 1} : {backgroundColor: "white", borderRadius: "50%"}}>
-                        <img className="blog-img" 
-                            src={getAvatar(user)} alt="" 
-                            style={ editMode ? {opacity: 1} : {opacity: 0.2}}/>
+                    {/* <img className="blog-img" 
+                        src={getAvatar(user)} alt="" 
+                        style={ editMode ? {opacity: 1} : {opacity: 0.2}}/> */}
+                            <div className="blog-img" style={{"backgroundImage": `url(${getAvatar(user)})`}} alt=""></div>
                     </label>
                 </button>
                 </div>

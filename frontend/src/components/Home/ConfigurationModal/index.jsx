@@ -1,153 +1,166 @@
-import React, { useState } from 'react';
-import { ConfigModalStyled } from './styles';
-import DropDown from '../../Home/DropDownMenu/index';
-import SettingsButton from '../../SettingsButton';
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { configureTaxesAction, fetchTaxes } from "../../../store/actions/mapActions"
+
+//components
+import ConfigDropdown from './ConfigDropdown/index'
+
+//css
+import { ConfigModalStyled } from './styles'
 
 //IMAGES
-import CloseButton from '../../../assets/icons/x-icon.svg';
-import Check from '../../../assets/icons/check.svg';
+import CloseButton from '../../../assets/icons/x-icon.svg'
+import Check from '../../../assets/icons/check.svg'
 
 
-const ConfigModal = ({taxConfigurationOpenButtonHandler}) => {
+const ConfigModal = ({taxConfigOpenHandler}) => {
+    const currentConfig = useSelector(state => state.mapReducer.taxesConfiguration)
+    const [partnerOneIncome, setpartnerOneIncome] = useState(currentConfig.einkommen1)
+    const [partnerTwoIncome, setpartnerTwoIncome] = useState(currentConfig.einkommen2 ? currentConfig.einkommen2 : 100000)
+    const [partnerOneBirthYear, setPartnerOneBirthYear] = useState(currentConfig.jahrgang1)
+    const [partnerTwoBirthYear, setPartnerTwoBirthYear] = useState(currentConfig.jahrgang2 ? currentConfig.jahrgang2 : 1990)
+    const [maritalStatus, setMaritalStatus] = useState(currentConfig.zivilstand)
+    const [numberOfChildren, setNumberOfChildren] = useState(currentConfig.kinder)
+    const [churchAffiliation, setChurchAffiliation] = useState(currentConfig.kirche)
 
-    
-    //SLIDER JS
-    const slider = document.getElementById("slider")
-    const selector = document.getElementById("selector")  
-    const [partnerOneIncomeValue, setPartnerOneIncomeValue] = useState(10000);
-    const [partnerTwoIncomeValue, setPartnerTwoIncomeValue] = useState(10000);
-    const [partnerOneMaritalStatus, setPartnerOneMaritalStatus] = useState("Single");
+    const [activeDropdown, setActiveDropdown] = useState("")
+    const dispatch = useDispatch()
+
+    const dropdownHandler = (title) => {
+        setActiveDropdown(title)
+    }
 
     const partnerOneIncomeSliderOnChange = (e) => {
-        console.log(e.target.value);
-        setPartnerOneIncomeValue(e.target.value);
+        setpartnerOneIncome(e.target.value);
     }
 
     const partnerTwoIncomeSliderOnChange = (e) => {
-        console.log(e.target.value);
-        setPartnerTwoIncomeValue(e.target.value);
+        setpartnerTwoIncome(e.target.value);
     }
 
-    //AGE OF PARTNER FIELD
-    const minAge = 18;
+    const minAge = 18
     const getYears = () => {
         let years = [];
-        let currentYear = new Date().getFullYear();
+        let currentYear = new Date().getFullYear() - minAge;
         let earliestYear = 1920;
         while (currentYear >= earliestYear) {
-        years.push(currentYear)
-        currentYear -= 1
+            years.push(currentYear)
+            currentYear -= 1
         } 
         return years;
-    }    
+    }  
 
-    //MARITAL STATUS FIELD
+    const maritalStatusOptions = ["Single", "Married", "Cohabitation"]
+    const churchAffiliationOptions = ["Roman Catholic", "Protestant", "Christian Catholic", "Other / None"]
+    
+    const applyHandler = (e) => {
+        const config = {
+            einkommen1: partnerOneIncome,
+            einkommen2: maritalStatus !== "Single" ? partnerTwoIncome : null,
+            jahrgang1: partnerOneBirthYear,
+            jahrgang2: maritalStatus !== "Single" ? partnerTwoBirthYear : null,
+            zivilstand: maritalStatus,
+            kinder: numberOfChildren,
+            kirche: churchAffiliation,
+            plz: 0,
+        }
 
-    const partnerOneMaritalStatusSelector = (e) => {
-        console.log(e.target.value);
-        setPartnerOneMaritalStatus(e.target.value);
+        let queryString = ""
+        for (let [key, value] of Object.entries(config)) {
+            if (value === null) {continue}
+            if (key === "zivilstand") {
+                value = maritalStatusOptions.indexOf(value)
+            }
+            if (key === "kirche") {
+                value = churchAffiliationOptions.indexOf(value)
+            }
+            queryString += `${key}=${value}`
+            if (key !== "plz") {
+                queryString += "&"
+            }
+        }
+
+        dispatch(configureTaxesAction(config)) 
+        dispatch(fetchTaxes(queryString)) 
+        taxConfigOpenHandler(e) 
     }
 
     return (
-         
         <ConfigModalStyled>
-                <div className="close-button">
-                   <button type="submit" className="x-closebutton" onClick={taxConfigurationOpenButtonHandler}><img src={CloseButton} className="x-button" alt=""></img></button>
+            <div className="close-button">
+                <button className="x-closebutton" onClick={taxConfigOpenHandler}><img src={CloseButton} className="x-button" alt="close configuration" draggable="false" /></button>
+            </div>
+            <div className="main-content">
+                {/*Sliders*/}
+                <div className="main-header">
+                    <p>Tax details</p>
                 </div>
-               {/*<DropDown/>*/}
-
-                <div className="main-content">
-                    <div className="main-header">
-                        <p>Tax details</p>
-                    </div>
-                    <div className="slidecontainer">
-                        <div className="text-n-numbers">
-                            <label className="slidecontainer-label">Gross Income (Partner 1)</label>
-                            <div className="underline">
-                                <span className="cash-money">CHF</span>
-                                <input type="text" value={partnerOneIncomeValue} className="text-field" onChange={partnerOneIncomeSliderOnChange}/>
-                            </div>
-                            </div> 
-                    </div>
-                    <div className="main">
-                        <input type="range" min="10000" max="1000000" value={partnerOneIncomeValue} id="slider" onChange={partnerOneIncomeSliderOnChange}/>
-                    </div>                  
-                    {partnerOneMaritalStatus != "Single" ? 
-                        <>
-                            <div className="slidecontainer">
-                                <div className="text-n-numbers">
-                                    <label className="slidecontainer-label">Gross Income (Partner 2)</label>
-                                    <div className="underline">
-                                        <span className="cash-money-2">CHF</span>
-                                        <input type="text" value={partnerTwoIncomeValue} id="text-field-2" className="text-field-2" onChange={partnerTwoIncomeSliderOnChange}/>
-                                    </div>
-                                </div>    
-                            </div>
+                <div className="slidecontainer">
+                    <div className="text-n-numbers">
+                        <label className="slidecontainer-label">Gross Income (Partner 1)</label>
+                        <div className="underline">
+                            <span className="cash-money">CHF</span>
+                            <input type="text" value={partnerOneIncome} className="text-field" onChange={partnerOneIncomeSliderOnChange}/>
+                        </div>
+                        </div> 
+                </div>
+                <div className="main">
+                    <input type="range" min="10000" max="1000000" step="100" value={partnerOneIncome} id="slider" onChange={partnerOneIncomeSliderOnChange}/>
+                </div>                  
+                {maritalStatus !== "Single" ? 
+                    <>
+                        <div className="slidecontainer">
+                            <div className="text-n-numbers">
+                                <label className="slidecontainer-label">Gross Income (Partner 2)</label>
+                                <div className="underline">
+                                    <span className="cash-money-2">CHF</span>
+                                    <input type="text" value={partnerTwoIncome} id="text-field-2" className="text-field-2" onChange={partnerTwoIncomeSliderOnChange}/>
+                                </div>
+                            </div>    
+                        </div>
                         <div className="main-2">
-                            <input type="range" min="10000" max="1000000" value={partnerTwoIncomeValue} id="slider-2" onChange={partnerTwoIncomeSliderOnChange}/> 
+                            <input type="range" min="10000" max="1000000" step="100" value={partnerTwoIncome} id="slider-2" onChange={partnerTwoIncomeSliderOnChange}/> 
                         </div>  
                     </> 
-                    : "" }      
-                    {/*Section 1*/}
-                    <div className="section-1">
-                        <div className="year-of-birth-partner-one">
-                            <div className="dropdown">
-                                <label for="Category" className="category">Year of Birth (Partner 1)</label>
-                                    <select className="required" name="category">
-                                        {getYears().map((year, id) => <option value={year}>{year - minAge}</option>)}
-                                    </select>
-                            </div>        
-                        </div>  
-                        {partnerOneMaritalStatus != "Single" ? 
-                        <>
-                        <div className="year-of-birth-partner-two">
-                            <label for="Category" className="category-2">Year of Birth (Partner 2)</label>
-                                <select className="required-2" name="category">
-                                {getYears().map((year, id) => <option value={year}>{year - minAge}</option>)}
-                                </select>   
+                : null}   
+
+                {/*Section 1*/}
+                <div className="section-1">
+                    <div className="year-of-birth">
+                            <label>Year of Birth (Partner 1)</label>
+                            <ConfigDropdown title="yearOne" options={getYears()} optionClickHandler={setPartnerOneBirthYear} initialValue={partnerOneBirthYear} activeHandler={dropdownHandler} visible={activeDropdown === "yearOne"} />
+                    </div> 
+                    {maritalStatus !== "Single" ? 
+                        <div className="year-of-birth">
+                            <label>Year of Birth (Partner 2)</label>
+                            <ConfigDropdown title="yearTwo" options={getYears()} optionClickHandler={setPartnerTwoBirthYear} initialValue={partnerTwoBirthYear} activeHandler={dropdownHandler} visible={activeDropdown === "yearTwo"} />
                         </div> 
-                        </> 
-                        : ""}
-                   </div>
+                    : null}
                 </div>
+
                 {/*Section 2*/}
                 <div className="section-2">
-                    <div className="dropdown">
-                        <label for="Category" className="category">Marital Status</label>
-                            <select className="required" id="status" onChange={partnerOneMaritalStatusSelector} name="category">
-                                <option value="Single">Single</option>
-                                <option value="Married">Married</option>
-                                <option value="Cohabitation">Cohabitation</option>
-                            </select>
+                    <div className="marital-status">
+                        <label>Marital Status</label>
+                        <ConfigDropdown title="status" options={maritalStatusOptions} optionClickHandler={setMaritalStatus} initialValue={maritalStatus} activeHandler={dropdownHandler} visible={activeDropdown === "status"} />
                     </div>  
-
-                    <div className="dropdown-2">
-                            <label for="Category" className="children">Number of children</label>
-                                <input type="number" id="kids" className="required-2" name="tentacles" placeholder="0"
-                                min="0" max="10"/>
-                    </div>
+                    <div className="children">
+                        <label>Number of children</label>
+                        <ConfigDropdown title="children" options={[...Array(21).keys()]} optionClickHandler={setNumberOfChildren} initialValue={numberOfChildren} activeHandler={dropdownHandler} visible={activeDropdown === "children"} />
+                    </div> 
                 </div>
 
                 {/*Section-3*/}
                 <div className="section-3">      
-                    <div className="dropdown">
-                        <label for="Category" className="category">Church affiliation</label>
-                            <select className="required" id="status" name="category">
-                                <option value="Roman Catholic">Roman Catholic</option>
-                                <option value="Protestant">Protestant</option>
-                                <option value="2003">Christian Catholic</option>
-                                <option value="2003">Other/None</option>
-                            </select>
+                    <div className="church-affiliation">
+                        <label>Church affiliation</label>
+                        <ConfigDropdown title="church" options={churchAffiliationOptions} optionClickHandler={setChurchAffiliation} initialValue={churchAffiliation} activeHandler={dropdownHandler} visible={activeDropdown === "church"} />
                     </div>  
-
-                    <div className="dropdown-2">
-                            <button className="apply-button">Apply<img src={Check}></img>
-                            </button>
-                    </div>
+                    <button className="apply-button" onClick={applyHandler} >Apply<img src={Check} alt="apply configuration" /></button>
                 </div>
-               
+            </div>
         </ConfigModalStyled>      
     )
 }
 
-export default ConfigModal;
+export default ConfigModal

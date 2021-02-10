@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
-//import { SettingsButtonStyled } from './styles';
-import "./styles.css";
+//css
+import { SettingsButtonStyle } from './styles';
 
-
-//IMAGES
+//images
 import filter from '../../assets/icons/filter.svg';
 
 
 const SettingsButton = ({settingsButtonHandler}) => {
-
-   
     return (                
-        <button className="config-btn"  onClick={settingsButtonHandler}><img src={filter} height="50px" className="filter" alt="manage config"></img></button>                                      
+        <SettingsButtonStyle onClick={settingsButtonHandler}><img src={filter} height="50px" className="filter" alt="manage config"></img></SettingsButtonStyle>                                      
     )
 }
 
