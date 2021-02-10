@@ -1,10 +1,9 @@
 import React, { useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux'
 import {newArticleAction} from '../../store/actions/blogActions'
 //img
 import bank1 from '../../assets/categories/bank1.jpg';
-import xicon from '../../assets/icons/x-icon.svg'
 import {BlogPageCreateStyle} from '../BlogPageCreate/style'
 import BlogHeaderComponent from '../../components/BlogHeaderComponent';
 
@@ -19,7 +18,6 @@ const BlogPageCreate =()=>{
     const dispatch = useDispatch()
     const history = useHistory()
     const [showConfirmation, setShowConfirmation] = useState(false)
-    const [hideConfirmation, setHideConfirmation] = useState(true) 
 
     const articleInputHandler = e => {
         let{name, value}=e.target
@@ -36,6 +34,8 @@ const BlogPageCreate =()=>{
             [name]:value
         })
     }
+
+   
 
     const onSubmitHandler = e => {
         e.preventDefault()
@@ -60,11 +60,10 @@ const BlogPageCreate =()=>{
             
         dispatch(newArticleAction(formData, history))
         setShowConfirmation(true)
-        setHideConfirmation(false)
 
     }
 
-    const onClicked = (e) => {
+    const closeHandler = (e) => {
         setShowConfirmation(false);
     };
     
@@ -76,16 +75,24 @@ const BlogPageCreate =()=>{
         <div className="article-info">
             <div className="round-pic">
                 <div className="blog-img" style={{"backgroundImage": `url(${bank1})`}}></div>
-                {/* <img className="blog-img" src={taxes3} alt=""/> */}
             </div>
             <div className="header-info">
                 <p className="category">Your story starts here</p>
                 <p className="headline">What is your article about?</p>
                 <p className="author"></p>
-                {<div className={`confirmation ${showConfirmation ? "" : "hidden"}`}>
-                    <p>Success, your article has been published</p>
-                    <button className= {`x-button ${hideConfirmation ? "hidden" : ""}`} onClick={onClicked}>close</button>
-                    </div>}
+                { showConfirmation ? 
+                        <div id="confirmOverlay">
+                            <div id="confirmBox">
+                                <h1>Congratulations!</h1>
+                                <p>Your article has been published</p>
+                                <div id="confirmButtons">
+                                    <a className="close-btn" onClick={closeHandler}>close<span></span></a>
+                                </div>
+                            </div>
+                        </div> : null
+                    }
+
+                
                 <div className="main-content">
                         <form className="form" onSubmit={onSubmitHandler}>
                             <div className="title-inputs">
@@ -103,7 +110,7 @@ const BlogPageCreate =()=>{
                             </div>
                             <div className="media-input">
                                 <div className="files">
-                                    <input className="imageFile" onChange={articleInputHandler} name='article_image' type="file" accept="image/jpeg, image/png" multiple placeholder="Image" required/>
+                                    <input className="imageFile" onChange={articleInputHandler} name='article_image' type="file" id="upload"  accept="image/jpeg, image/png" multiple placeholder="Image" />
                                     <input className="videoFile" onChange={articleInputHandler} value={article.article_video}  name='article_video'   type="url" placeholder="Video url" />
                                 </div>
                                 <button type="submit" className="submit-btn">submit</button>

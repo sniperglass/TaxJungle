@@ -8,7 +8,8 @@ export const BlogCardCompStyle = styled.section`
     width: 85%;
     max-width: 300px;
     height: 400px;
-    margin: 10px;
+    margin: 30px;
+    margin-left: 43px;
     background-color: white;
     /* border: 1px solid red; */
     border-radius: 8px;

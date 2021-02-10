@@ -42,7 +42,7 @@ class ArticleCreateView(CreateAPIView):
 
 
 class PaginationView(pagination.PageNumberPagination):
-    page_size = 9
+    page_size = 4
     page_size_query_param = 'page_size'
 
 
@@ -106,7 +106,7 @@ class ArticleCategoryView(ListAPIView):
     """
     serializer_class = ArticleSerializer
     lookup_field = 'article_category_id'
-    pagination_class = PaginationView
+    """ pagination_class = PaginationView """
     permission_classes = [AllowAny]
 
     def get_queryset(self):

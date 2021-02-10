@@ -107,21 +107,20 @@ justify-content: flex-start;
 
 .image-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    //border: 1px solid purple;
     height: auto;
-    width: 90%;
-   /*  border: 1px solid purple; */
+    max-width: 90%;
+    /* border: 1px solid purple; */
 }
 
 .uploaded-pic {
-    margin: 10px;
+    margin: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 150px;
-    width: 150px;
+    height: 160px;
+    width: 160px;
     background-size: cover;
     /* border: 1px solid orange; */
 }
