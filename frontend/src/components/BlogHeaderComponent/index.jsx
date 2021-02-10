@@ -1,10 +1,12 @@
 import { BlogHeaderCompStyle } from '../BlogHeaderComponent/styles';
 import { useSelector, useDispatch} from "react-redux";
-import React, { useState, useEffect, useHistory } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { getAvatar } from "../../store/utils";
 import { signoutAction } from "../../store/actions/authActions";
 import { blogCategoryAction } from "../../store/actions/blogActions";
+import SettingsButton from '../SettingsButton';
+import PopUp from '../SettingsPopUp';
 
 
 const BlogHeaderComponent = () => {
@@ -13,7 +15,8 @@ const BlogHeaderComponent = () => {
     let category = useSelector(state => state.blogReducer.category);
     const dispatch = useDispatch();
     const location = useLocation();
-    /* const history = useHistory(); */
+    const history = useHistory();
+    const [openConfig, setOpenConfig] = useState(false);
 
     const logoutHandler = (e) => {
         localStorage.removeItem("currentUser")
@@ -49,6 +52,32 @@ const BlogHeaderComponent = () => {
         }
     }
 
+
+    const profileConfigurationOpenButtonHandler = (e) => {
+        e.preventDefault();
+        setOpenConfig(!openConfig);
+    };
+
+
+    const profileSettings = [ 
+
+        {
+            feature: "profile", 
+            eventHandler: () => {history.push("/profile")}
+        },
+
+        {
+            feature: "logout", 
+            eventHandler: logoutHandler
+        }
+    ]
+
+    const closePopUp = () => {
+        if (openConfig) {
+            setOpenConfig(false)
+        }
+    }
+
     return(
         <BlogHeaderCompStyle>
             <header className="header">
@@ -61,16 +90,25 @@ const BlogHeaderComponent = () => {
                     {
                         authenticated ? 
                             <div className="nav-profile-info">
-                                <Link to="/profile">
-                                    <li className="username">Welcome { user.first_name}!</li>
+                                {/* <Link to="/profile"> */}
+                                <button className="profile-btn" onClick={profileConfigurationOpenButtonHandler}>
+                                    <li className="username" >Welcome { user.first_name}!</li>
                                     <img src={getAvatar(user)} className="avatar" height="35px" alt="avatar"></img>
-                                </Link>
+                                </button>
+                                <div className="positionSettingsButton"> 
+                                    {openConfig ? <PopUp settings={profileSettings}/> : ""} 
+                                </div> 
+                                {/* </Link> */}
                             </div> :
                             <>
-                                <Link to="/signin"><li>sign in</li></Link>
-                                <Link to="/signup"><li>sign up</li></Link>
+                                <Link className="sign-btn" to="/signin"><li>sign in</li></Link>
+                                <Link className="sign-btn" to="/signup"><li>sign up</li></Link>
                             </>
                     }
+                    <div className="positionSettingsButton"> 
+                        {/* {openConfig ? <PopUp settings={profileSettings}/> : ""}  */}
+                        {/* <SettingsButton settingsButtonHandler={profileConfigurationOpenButtonHandler}/> */}
+                    </div> 
                 </ul>
             </header>
         </BlogHeaderCompStyle>   
