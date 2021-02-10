@@ -18,7 +18,6 @@ const BlogPageCreate =()=>{
     const dispatch = useDispatch()
     const history = useHistory()
     const [showConfirmation, setShowConfirmation] = useState(false)
-    // const [hideConfirmation, setHideConfirmation] = useState(true) 
 
     const articleInputHandler = e => {
         let{name, value}=e.target
@@ -36,23 +35,7 @@ const BlogPageCreate =()=>{
         })
     }
 
-    // const articleImageHandler = e => {
-    //     if (window.alert('Please note: If you upload more than one picture, the first picture will be shown as article picture, whereas the other ones will be displayed in a gallery view underneath the article text !')) {
-    //         let{name, value}=e.target
-    //         if (name==='article_category'){
-    //             value = parseInt(value)
-    //         }else if(name === 'article_image'){
-    //             value = []
-    //             for (const image of e.target.files) {
-    //                 value.push(image)
-    //             }
-    //         }
-    //         setNewArticle({
-    //             ...article, 
-    //             [name]:value
-    //         })
-    //     }
-    // }
+   
 
     const onSubmitHandler = e => {
         e.preventDefault()
@@ -77,7 +60,6 @@ const BlogPageCreate =()=>{
             
         dispatch(newArticleAction(formData, history))
         setShowConfirmation(true)
-        // setHideConfirmation(false)
 
     }
 
@@ -93,7 +75,6 @@ const BlogPageCreate =()=>{
         <div className="article-info">
             <div className="round-pic">
                 <div className="blog-img" style={{"backgroundImage": `url(${bank1})`}}></div>
-                {/* <img className="blog-img" src={taxes3} alt=""/> */}
             </div>
             <div className="header-info">
                 <p className="category">Your story starts here</p>
@@ -111,11 +92,7 @@ const BlogPageCreate =()=>{
                         </div> : null
                     }
 
-                {/* {<div className={`confirmation ${showConfirmation ? "" : "hidden"}`}>
-                    
-                    <p>Success, your article has been published</p>
-                    <button className= {`x-button ${hideConfirmation ? "hidden" : ""}`} onClick={onClicked}>close</button>
-                    </div>} */}
+                
                 <div className="main-content">
                         <form className="form" onSubmit={onSubmitHandler}>
                             <div className="title-inputs">
@@ -133,7 +110,7 @@ const BlogPageCreate =()=>{
                             </div>
                             <div className="media-input">
                                 <div className="files">
-                                    <input className="imageFile" onChange={articleInputHandler} name='article_image' type="file" id="upload"  accept="image/jpeg, image/png" multiple placeholder="Image" title="First selected picture will be displayed as main one, other pictures will appear on the bottom." required/>
+                                    <input className="imageFile" onChange={articleInputHandler} name='article_image' type="file" id="upload"  accept="image/jpeg, image/png" multiple placeholder="Image" />
                                     <input className="videoFile" onChange={articleInputHandler} value={article.article_video}  name='article_video'   type="url" placeholder="Video url" />
                                 </div>
                                 <button type="submit" className="submit-btn">submit</button>
