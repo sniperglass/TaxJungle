@@ -4,48 +4,44 @@ export const PopUpStyled = styled.section`
 
 position: absolute;
 width: 120px;
-height: auto;
+height: 75px;
 background-color: white;
 display: flex;
-flex-direction: row;
-align-items: flex-end;
-justify-content: flex-end;
-margin-top: auto;
-padding-left: 5px;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 margin-bottom: 60px;
-margin-right: 15px;
-border: 1px solid ${props => props.theme.text.mainColor};
+border: 1px solid ${props => props.theme.text.mainColor}; 
 border-radius: 8px;
 
-.style-component {
+
+
+.main-content {
     display: flex;
     flex-direction: column;
-    height: 120px;
-    width: 120px;
-    border: 1px solid red;
+    height: auto;
+    width: 118px;
+    align-items: center;
+    justify-content: flex-start;
+    /* border: 1px solid green;  */
+    background-color: white;
+    border-radius: 8px;
+}
 
-    .main-content {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        border: 1px solid ${props => props.theme.text.mainColor};
-
-    }
-} 
 
 .styling-buttons {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
     background-color: white;
     color: ${props => props.theme.text.mainColor};
-    border-radius: 4px;
-    width: 94%;
+    border-radius: 8px;
+    width: 115px;
     padding: 8px;
     border: none;
     outline: none;
-    margin-right: 35px;
-    /* border: 1px solid red; */
+    cursor: pointer;
+   /*  border: 1px solid blue; */
 }
 
 `;
