@@ -5,14 +5,14 @@ const AuthHeader = (props) => {
     return(
         <AuthHeaderStyle>
             <div>
-                <Link to="/">home</Link>
+                <Link to="/">map</Link>
                 <Link to="/blog">blog</Link>
             </div>
             <div>
                 <p className="no-account">{props.signup ? "Already have an account?" : "Don't have an account?"}</p>
                 {props.signup ? 
-                    <Link to='/signin'>sign in</Link> :
-                    <Link to='/signup'>sign up</Link>
+                    <Link className="sign-btn" to='/signin'>sign in</Link> :
+                    <Link className="sign-btn" to='/signup'>sign up</Link>
                 }
             </div>
         </AuthHeaderStyle>

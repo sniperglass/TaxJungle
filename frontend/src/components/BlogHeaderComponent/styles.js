@@ -5,8 +5,8 @@ export const BlogHeaderCompStyle = styled.section`
 display: flex;
 flex-direction: row;
 width: 100%;
-height: 50px;
-background-color: white;
+height: 80px;
+background-color: ${props => props.theme.text.mainColor};
 /* border: 1px solid blue; */
 
 .header {
@@ -20,56 +20,15 @@ background-color: white;
 
 .nav-left {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 350px;
-    /* border: 1px solid yellow; */
-}
-
-.nav1 {
-    display: flex;
-    width: 60%;
-    align-items: center;
-    padding-left: 20px;
-    /* border: 1px solid red; */
+    justify-content: space-evenly;
     list-style: none;
     text-decoration: none;
-
-    a {
-        text-decoration: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: ${props => props.theme.text.mainColor};
-
-        li{
-            padding: 22px 10px;
-            &:active, &:focus, &:hover {
-                outline: none;
-            }
-        }
-    }
-
-    img {
-        border-radius: 50%;
-        border: 1px solid ${props => props.theme.text.mainColor}
-    }
-
-}
-
-.nav2 {
-    display: flex;
-    width: 78%;
-    justify-content: space-between;
     /* border: 1px solid blue; */
-    list-style: none;
-    text-decoration: none;
 
     a {
-        color: ${props => props.theme.text.mainColor};
+        color: white;
         text-decoration: none;
-    
-        padding: 22px 10px;
+        margin-left: 30px;
         &:active, &:focus, &:hover {
              text-decoration: none;
         }
@@ -77,34 +36,57 @@ background-color: white;
 }
 
 
+.title {
+    display: flex;
+    font-weight:400;
+    font-size:36px;
+    width: 100%;
+    height: 100%;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid green; */
+}
+
 .nav-right {
     display: flex;
-    padding-right: 20px;
+    flex-direction: row;
     justify-content: space-between;
-    /* border: 1px solid yellow; */
     list-style: none;
     text-decoration: none;
-    width: 240px;
+    /* border: 1px solid green; */
 
-    .nav3 {
+    .nav-profile-info {
         display: flex;
+        width: 100%;
         align-items: center;
-        justify-content: space-between;
-        width: 55%;
-        /* border: 1px solid red; */
-    }
-
-    a {
-        color: ${props => props.theme.text.mainColor};
+        list-style: none;
         text-decoration: none;
+        /* border: 1px solid red; */
 
-        li {
-            padding:22px 10px;
-            &:active, &:focus, &:hover{
-             text-decoration: none;
+        a {
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            margin-right: 30px;
+
+            li{
+                &:active, &:focus, &:hover {
+                    outline: none;
+                }
             }
         }
+
+        img {
+            margin-left: 10px;
+            border-radius: 50%;
+            border: 1px solid ${props => props.theme.text.mainColor};
+        }
+
     }
 }
+
 
 `

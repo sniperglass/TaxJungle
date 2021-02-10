@@ -19,9 +19,6 @@ const BlogOverview =()=>{
    
         return(
             <BlogOverviewStyle>
-                <div className="upper-header">
-                    <h1 className="title">Keen Blog</h1>
-                </div>
                     <BlogHeaderComponent />
                     <BlogNavComponent />
                 <div className="overall-wrapper">

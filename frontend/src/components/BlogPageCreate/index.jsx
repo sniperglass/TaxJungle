@@ -3,7 +3,7 @@ import {Link, useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux'
 import {newArticleAction} from '../../store/actions/blogActions'
 //img
-import taxes3 from '../../assets/categories/typewriter.jpeg';
+import bank1 from '../../assets/categories/bank1.jpg';
 import xicon from '../../assets/icons/x-icon.svg'
 import {BlogPageCreateStyle} from '../BlogPageCreate/style'
 import BlogHeaderComponent from '../../components/BlogHeaderComponent';
@@ -26,7 +26,10 @@ const BlogPageCreate =()=>{
         if (name==='article_category'){
             value = parseInt(value)
         }else if(name === 'article_image'){
-            value = e.target.files[0]
+            value = []
+            for (const image of e.target.files) {
+                value.push(image)
+            }
         }
         setNewArticle({
             ...article, 
@@ -43,13 +46,17 @@ const BlogPageCreate =()=>{
             article_video: '',
             article_image: []
         }) 
-        
+
         const formData = new FormData();
-        formData.append('article_image', article.article_image);
+        for (let i in article.article_image) {
+            formData.append('article_images', article.article_image[i]);
+        }
+
         formData.append('article_video', article.article_video);
         formData.append('title', article.title);
         formData.append('content', article.content);
         formData.append('article_category', article.article_category);
+
             
         dispatch(newArticleAction(formData, history))
         setShowConfirmation(true)
@@ -67,7 +74,10 @@ const BlogPageCreate =()=>{
         <BlogHeaderComponent />
             <div className="back-img"></div>
         <div className="article-info">
-            <div className="round-pic"><img className="blog-img" src={taxes3} alt=""/></div>
+            <div className="round-pic">
+                <div className="blog-img" style={{"backgroundImage": `url(${bank1})`}}></div>
+                {/* <img className="blog-img" src={taxes3} alt=""/> */}
+            </div>
             <div className="header-info">
                 <p className="category">Your story starts here</p>
                 <p className="headline">What is your article about?</p>
@@ -93,7 +103,7 @@ const BlogPageCreate =()=>{
                             </div>
                             <div className="media-input">
                                 <div className="files">
-                                    <input className="imageFile" onChange={articleInputHandler} name='article_image' type="file" accept="image/jpeg, image/png" multiple placeholder="Image" />
+                                    <input className="imageFile" onChange={articleInputHandler} name='article_image' type="file" accept="image/jpeg, image/png" multiple placeholder="Image" required/>
                                     <input className="videoFile" onChange={articleInputHandler} value={article.article_video}  name='article_video'   type="url" placeholder="Video url" />
                                 </div>
                                 <button type="submit" className="submit-btn">submit</button>

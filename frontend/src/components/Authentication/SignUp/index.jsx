@@ -75,7 +75,7 @@ const SignUp = () => {
                         <FormStyle id="sign-up-form" onSubmit={signUpHandler}>
                             <TitleStyle>Sign Up</TitleStyle>
                             <InputFieldStyle>
-                                <label for="email">
+                                <label htmlFor="email">
                                     <img id="input-img" src={emailIcon} alt="email" height="40px" />
                                 </label>
                                 <input id="email" name="email" type="email" placeholder="email" autoComplete="email" required />
@@ -105,7 +105,7 @@ const SignUp = () => {
                                 <InputSmallStyle name="firstname" type="text" placeholder="first name" autoComplete="family-name" required />
                                 <InputSmallStyle name="lastname" type="text" placeholder="last name" autoComplete="given-name" required />
                                 <InputSmallStyle name="username" type="text" placeholder="username" autoComplete="username" onChange={usernameInputHandler} required />
-                                <InputSmallStyle name="code" type="number" placeholder="validation code" required />
+                                <InputSmallStyle name="code" type="text" placeholder="validation code" required />
                                 <InputSmallStyle name="password" type="password" placeholder="Password" onChange={passwordInputHandler} required />
                                 <InputSmallStyle name="passwordrepeat" type="password" placeholder="Password repeat" onChange={passwordRepeatInputHandler} required />
                             </div>

@@ -19,7 +19,7 @@ export const MapStyle = styled.div `
     border-radius: 8px;
     font-weight: 600;
     color: ${props => props.theme.text.mainColor};
-    background-color: ${props => props.theme.backgrounds.greyLight};
+    background-color: ${props => props.theme.backgrounds.ternaryColor};
     box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.5);  
     z-index: 999;
 }

@@ -43,7 +43,7 @@ export const DropDownStyled = styled.div`
         margin-top: 10px;  
         box-shadow: 0 0 10px ${props => props.theme.text.mainColor};
         border-radius: 8px;
-        background-color: ${props => props.theme.backgrounds.greyLight};
+        background-color: ${props => props.theme.backgrounds.ternaryColor};
     }
   
     #border-wrapper {
@@ -84,7 +84,7 @@ export const DropDownStyled = styled.div`
         align-items: center;
     }
     .selection:hover {
-        transition-duration: 0.5s;
+        /* transition-duration: 0.1s; */
         background-color: ${props => props.theme.backgrounds.hover};
         height: 40px;
     }

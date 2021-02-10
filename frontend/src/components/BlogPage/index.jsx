@@ -1,7 +1,10 @@
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchSingleArticle } from '../../store/actions/blogActions';
+import { fetchSingleArticle, createCommentAction } from '../../store/actions/blogActions';
+import { useParams } from 'react-router-dom';
+
+//player
+import ReactPlayer from 'react-player';
 
 //css
 import {BlogPageStyle} from '../BlogPage/styles';
@@ -10,7 +13,8 @@ import {BlogPageStyle} from '../BlogPage/styles';
 import BlogHeaderComponent from '../../components/BlogHeaderComponent';
 
 //img
-import taxes3 from '../../assets/categories/taxes3.jpg';
+import defaultCardImage from '../../assets/categories/defaultCardImage.jpg';
+import taxes1 from '../../assets/categories/taxes1.jpg';
 
 //icons
 import { FacebookShareButton, FacebookIcon, EmailShareButton,
@@ -22,6 +26,8 @@ const BlogPage =()=>{
     const article = useSelector(state => state.blogReducer.current)
     const dispatch = useDispatch()
     const {category, id} = useParams()
+    const [content, setContent] = useState('')
+
 
     useEffect(() => {    
         dispatch(fetchSingleArticle(id))
@@ -30,6 +36,8 @@ const BlogPage =()=>{
 
     const onCommentSubmit = e => {
         e.preventDefault()
+        dispatch (createCommentAction(id, content))
+        
         // console.log(e.target.elements.content.value)
     }
 
@@ -57,8 +65,11 @@ const BlogPage =()=>{
             <BlogPageStyle>
             <BlogHeaderComponent />
             <div className="back-img"></div>
-            <div className="article-info">   
-                <div className="round-pic"><img className="blog-img" src={article.article_image[0].image} alt=""/></div>
+            <div className="article-info">  
+                <div className="round-pic">
+                    <div className="blog-img" style={{"backgroundImage": `url(${article.article_image.length ? article.article_image[0].image : taxes1})`}}></div>
+                </div> 
+                {/* <div className="round-pic"><img className="blog-img" src={article.article_image.length ? article.article_image[0].image : taxes1}/></div> */}
                 <div className="header-info">
                     <p className="category">{article.article_category.category}</p>
                     <p className="headline">{article.title}</p>
@@ -66,11 +77,31 @@ const BlogPage =()=>{
                     <div className="main-content">
                         <div className="article-box">
                             <p className="article">{article.content}</p>
+                            <div className="image-container">
+                                <div className="uploaded-pic"></div>
+                                <div className="uploaded-pic"></div>
+                                <div className="uploaded-pic"></div>
+                                <div className="uploaded-pic"></div>
+                            </div>
+{/*                             { 
+                            ( article.article_image.image ) ? 
+                            (<div className="image-container">
+                                 <div className="uploaded-pic" style={{"backgroundImage": `url(${article.article_image.length ? article.article_image.map((data, index) => {key={index} image={data.article.article_image.image}}) : "Loading ..."})`}}></div>
+                            </div>): null} */}
+                            {/* { 
+                            ( article.article_video.video ) ? 
+                            (<div className="player">
+                                <ReactPlayer url={article.article_video.length ? article.article_video[0].video : ""}
+                                width="675px"
+                                height="385px"
+                                controls="true"
+                                 />
+                            </div>): null} */}
                         </div>
                             <div className="comment-section">
                                 <div className="comment-title">Comments</div>
                                 <form className="addcomment-box" onSubmit={onCommentSubmit}>
-                                    <textarea name="content" className="comment-input" placeholder="add your comment here ... "/>
+                                    <textarea name="content" onChange={(e)=> setContent(e.target.value)} className="comment-input" placeholder="add your comment here ... "/>
                                     <button type="submit" className="comment-btn">Submit</button>
                                 </form>
                                 {
@@ -101,6 +132,7 @@ const BlogPage =()=>{
                             </div>
                     </div>
                 </div>
+               
             
             </div>
             </BlogPageStyle>

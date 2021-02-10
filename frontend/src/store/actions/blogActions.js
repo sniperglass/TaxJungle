@@ -1,4 +1,4 @@
-import {BLOG_CATEGORY, FETCH_ALL_ARTICLES, SINGLE_ARTICLE} from '../actionTypes'
+import {BLOG_CATEGORY, FETCH_ALL_ARTICLES, SINGLE_ARTICLE, NEW_COMMENT, SEARCH_ARTICLE} from '../actionTypes'
 import {baseBackendURL} from '../constants'
 
 
@@ -41,12 +41,11 @@ export const fetchAllArticles = (category) => async (dispatch, getState) => {
     return null
 }
 
-export const searchOnArticlesByCategory = (category, toSearch) => async (dispatch, getState) => {
+export const searchOnArticlesByCategory = (toSearch) => async (dispatch, getState) => {
     const config = {
         method: "GET",
     }
-
-    const response = await fetch (`${baseBackendURL}/article/${category}/?search=${toSearch}`, config)
+    const response = await fetch (`${baseBackendURL}/article/?search=${toSearch}`, config)
     if (response.ok) {
         const json = await response.json()
         dispatch(fetchAllArticlesAction(json.results))
@@ -89,5 +88,24 @@ export const fetchSingleArticle = (article_id) => async (dispatch, getState) => 
     }
     
     return null
+}
+
+export const createCommentAction = (article_id, content) => (dispatch, getState) => {
+    const token = getState().authReducer.accessToken
+    const headers = new Headers ({
+        'Authorization': `Bearer ${token}`,
+        "Content-type": "application/json"    
+    })
+    const config = {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({content:content})
+    }
+
+     fetch(`${baseBackendURL}/article/comment/${article_id}/`, config)
+    .then(response => response.json())
+    .then(data => {
+       dispatch(fetchSingleArticle(article_id))
+    })
 }
 

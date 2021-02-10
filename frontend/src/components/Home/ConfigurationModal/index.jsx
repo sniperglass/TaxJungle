@@ -69,12 +69,9 @@ const ConfigModal = ({taxConfigOpenHandler}) => {
         for (let [key, value] of Object.entries(config)) {
             if (value === null) {continue}
             if (key === "zivilstand") {
-                console.log(value)
-                console.log()
                 value = maritalStatusOptions.indexOf(value)
             }
             if (key === "kirche") {
-                console.log(value)
                 value = churchAffiliationOptions.indexOf(value)
             }
             queryString += `${key}=${value}`
