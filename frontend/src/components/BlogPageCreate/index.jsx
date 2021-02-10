@@ -1,10 +1,9 @@
 import React, { useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux'
 import {newArticleAction} from '../../store/actions/blogActions'
 //img
 import bank1 from '../../assets/categories/bank1.jpg';
-import xicon from '../../assets/icons/x-icon.svg'
 import {BlogPageCreateStyle} from '../BlogPageCreate/style'
 import BlogHeaderComponent from '../../components/BlogHeaderComponent';
 
