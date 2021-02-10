@@ -17,7 +17,9 @@ const Profile=()=>{
     const history = useHistory();
     const user = useSelector(state => state.authReducer.user);
     const [openConfig, setOpenConfig] = useState(false);
+    const [showConfirmation, setShowConfirmation] = useState(false) 
     const [editMode, setEditMode] = useState(true)
+
     const [userInfo, setUserInfo] = useState({
         first_name: user.first_name,
         last_name: user.last_name,
@@ -36,10 +38,7 @@ const Profile=()=>{
         setUserInfo({...userInfo, [name]: value})
     }
     
-/*     useEffect(() => {
-        setEditMode(!editMode)
-    }, [])
- */
+
     const editHandler = (event) => {
         setEditMode(!editMode)
         if (event.target.value === "cancel") {
@@ -56,12 +55,18 @@ const Profile=()=>{
     };
 
     const deleteHandler = () => {
-        if (window.confirm('Are you sure you want to delete your account?')) {
-            dispatch(updateUser("DELETE", user)).then(result => {
-                localStorage.removeItem("currentUser")
-                dispatch(signoutAction())
-            })
-        }
+            setShowConfirmation(true)
+    }
+
+    const yesConfirmationHandler = () => {
+        setShowConfirmation(false)
+            dispatch(updateUser("DELETE", user))
+            localStorage.clear()
+            history.push("/signin")
+    }
+
+    const noConfirmationHandler = () => {
+        setShowConfirmation(false)
     }
 
     const onSubmitHandler = e => {
@@ -106,7 +111,7 @@ const Profile=()=>{
             setOpenConfig(false)
         }
     }
-        
+
     return (
         <ProfileStyle>
             <div className="left" onClick={closePopUp}>
@@ -115,9 +120,6 @@ const Profile=()=>{
                 <div className="round-pic">
                     <button className="label-btn">
                         <label htmlFor="profile_picture" className="change-pic" style={ editMode ? {opacity: 1} : {backgroundColor: "white", borderRadius: "50%"}}>
-                        {/* <img className="blog-img" 
-                            src={getAvatar(user)} alt="" 
-                            style={ editMode ? {opacity: 1} : {opacity: 0.2}}/> */}
                                 <div className="blog-img" style={{"backgroundImage": `url(${getAvatar(user)})`}} alt=""></div>
                         </label>
                     </button>
@@ -141,6 +143,18 @@ const Profile=()=>{
                     </div>
                 </div>
                 <div className="about-box">
+                { showConfirmation ? 
+                        <div id="confirmOverlay">
+                            <div id="confirmBox">
+                                <h1>Delete Confirmation</h1>
+                                <p>Are you sure you want to delete your account ?</p>
+                                <div id="confirmButtons">
+                                    <a className="yes-btn" onClick={ yesConfirmationHandler }>Yes<span></span></a>
+                                    <a className="no-btn" onClick={ noConfirmationHandler }>No<span></span></a>
+                                </div>
+                            </div>
+                        </div> : null
+                    }
                     <div className="about-pic">
                         <label htmlFor="about-label">About</label>
                         <input className="pic-input" name='profile_picture' id="profile_picture" type="file" accept="image/jpeg, image/png" 
