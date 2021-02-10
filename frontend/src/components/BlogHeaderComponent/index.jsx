@@ -105,10 +105,6 @@ const BlogHeaderComponent = () => {
                                 <Link className="sign-btn" to="/signup"><li>sign up</li></Link>
                             </>
                     }
-                    <div className="positionSettingsButton"> 
-                        {/* {openConfig ? <PopUp settings={profileSettings}/> : ""}  */}
-                        {/* <SettingsButton settingsButtonHandler={profileConfigurationOpenButtonHandler}/> */}
-                    </div> 
                 </ul>
             </header>
         </BlogHeaderCompStyle>   

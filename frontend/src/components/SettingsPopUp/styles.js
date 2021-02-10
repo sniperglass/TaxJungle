@@ -25,10 +25,11 @@ border-radius: 8px;
     border: 1px solid red;
 
     .main-content {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    border: 1px solid ${props => props.theme.text.mainColor};
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        border: 1px solid ${props => props.theme.text.mainColor};
 
     }
 } 

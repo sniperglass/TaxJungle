@@ -105,6 +105,7 @@ background-color: ${props => props.theme.text.mainColor};
     }
 
 .positionSettingsButton {
+    border: 1px solid red;
     position: relative;
     z-index: 99;
     padding-top: 20px;
