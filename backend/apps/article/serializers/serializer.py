@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from apps.article.models import Article
-from apps.article_image.models import ArticleImage
 from apps.user.serializer import UserSerializer
 from apps.article_category.serializer import ArticleCategorySerializer
 from apps.article_image.serializer import ArticleImageSerializer
@@ -22,8 +21,6 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     def get_amount_of_likes(self, obj):
         return obj.liked_by.all().count()
-
-
 
     class Meta:
         model = Article

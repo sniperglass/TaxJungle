@@ -24,7 +24,6 @@ build:
 
 lint:
   stage: lint
-  allow_failure: true
   only:
     - master
   script:
