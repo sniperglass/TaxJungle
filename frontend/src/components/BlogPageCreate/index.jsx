@@ -103,7 +103,7 @@ const BlogPageCreate =()=>{
                 {<div className={`confirmation ${showConfirmation ? "" : "hidden"}`}>
                     <p>Success, your article has been published</p>
                     <button className= {`x-button ${hideConfirmation ? "hidden" : ""}`} onClick={onClicked}>close</button>
-                    </div>}
+                </div>}
                 <div className="main-content">
                         <form className="form" onSubmit={onSubmitHandler}>
                             <div className="title-inputs">
