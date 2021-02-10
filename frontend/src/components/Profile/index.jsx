@@ -118,9 +118,9 @@ const Profile=()=>{
                     </label>
                 </button>
                 </div>
-                <div className="delete">
+{/*                 <div className="delete">
                     <button className="delete-btn" onClick={deleteHandler}>delete account</button>
-                </div>
+                </div> */}
             </div>
             <form className="right" onClick={closePopUp} onSubmit={ onSubmitHandler }>
                 <div className="personal-info">

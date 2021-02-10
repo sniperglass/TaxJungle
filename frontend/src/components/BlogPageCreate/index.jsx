@@ -36,6 +36,24 @@ const BlogPageCreate =()=>{
         })
     }
 
+    const articleImageHandler = e => {
+        if (window.alert('Please note: If you upload more than one picture, the first picture will be shown as article picture, whereas the other ones will be displayed in a gallery view underneath the article text !')) {
+            let{name, value}=e.target
+            if (name==='article_category'){
+                value = parseInt(value)
+            }else if(name === 'article_image'){
+                value = []
+                for (const image of e.target.files) {
+                    value.push(image)
+                }
+            }
+            setNewArticle({
+                ...article, 
+                [name]:value
+            })
+        }
+    }
+
     const onSubmitHandler = e => {
         e.preventDefault()
         setNewArticle({
@@ -102,7 +120,7 @@ const BlogPageCreate =()=>{
                             </div>
                             <div className="media-input">
                                 <div className="files">
-                                    <input className="imageFile" onChange={articleInputHandler} name='article_image' type="file" accept="image/jpeg, image/png" multiple placeholder="Image" required/>
+                                    <input className="imageFile" onChange={articleImageHandler} name='article_image' type="file" accept="image/jpeg, image/png" multiple placeholder="Image" required/>
                                     <input className="videoFile" onChange={articleInputHandler} value={article.article_video}  name='article_video'   type="url" placeholder="Video url" />
                                 </div>
                                 <button type="submit" className="submit-btn">submit</button>

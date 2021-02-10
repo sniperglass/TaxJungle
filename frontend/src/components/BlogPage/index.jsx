@@ -77,18 +77,24 @@ const BlogPage =()=>{
                     <div className="main-content">
                         <div className="article-box">
                             <p className="article">{article.content}</p>
-                            <div className="image-container">
+{/*                             <div className="image-container">
                                 <div className="uploaded-pic"></div>
                                 <div className="uploaded-pic"></div>
                                 <div className="uploaded-pic"></div>
                                 <div className="uploaded-pic"></div>
-                            </div>
-{/*                             { 
-                            ( article.article_image.image ) ? 
-                            (<div className="image-container">
-                                 <div className="uploaded-pic" style={{"backgroundImage": `url(${article.article_image.length ? article.article_image.map((data, index) => {key={index} image={data.article.article_image.image}}) : "Loading ..."})`}}></div>
-                            </div>): null} */}
-                            {/* { 
+                            </div> */}
+                            { 
+                             article.article_image.length  ? 
+                                <div className="image-container">
+                                    {article.article_image.slice(1).map((image, index) => {
+                                        console.log("check the images", article.article_image)
+                                        return <div key={index} className="uploaded-pic" style={{"backgroundImage": `url(${ image.image })`}}></div>
+                                        
+                                    })}
+                                </div>  : null 
+                            }
+
+                            {    
                             ( article.article_video.video ) ? 
                             (<div className="player">
                                 <ReactPlayer url={article.article_video.length ? article.article_video[0].video : ""}
@@ -96,7 +102,7 @@ const BlogPage =()=>{
                                 height="385px"
                                 controls="true"
                                  />
-                            </div>): null} */}
+                            </div>): null }
                         </div>
                             <div className="comment-section">
                                 <div className="comment-title">Comments</div>

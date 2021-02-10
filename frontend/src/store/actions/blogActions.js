@@ -35,8 +35,13 @@ export const fetchAllArticles = (category) => async (dispatch, getState) => {
     const response = await fetch (`${baseBackendURL}/article/${category ? "category/" + category : ""}`, config)
     if (response.ok) {
         const json = await response.json()
-        dispatch(fetchAllArticlesAction(json.results))
-        return json
+        if (json.results) {
+            dispatch(fetchAllArticlesAction(json.results))
+            return json.results
+        } else {
+            dispatch(fetchAllArticlesAction(json))
+            return json
+        }
     }
     return null
 }
