@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,7 +17,7 @@ const Profile=()=>{
     const history = useHistory();
     const user = useSelector(state => state.authReducer.user);
     const [openConfig, setOpenConfig] = useState(false);
-    const [editMode, setEditMode] = useState(false)
+    const [editMode, setEditMode] = useState(true)
     const [userInfo, setUserInfo] = useState({
         first_name: user.first_name,
         last_name: user.last_name,
@@ -35,7 +35,11 @@ const Profile=()=>{
         }
         setUserInfo({...userInfo, [name]: value})
     }
-
+    
+/*     useEffect(() => {
+        setEditMode(!editMode)
+    }, [])
+ */
     const editHandler = (event) => {
         setEditMode(!editMode)
         if (event.target.value === "cancel") {
@@ -106,36 +110,33 @@ const Profile=()=>{
     return (
         <ProfileStyle>
             <div className="left" onClick={closePopUp}>
-                <Link to="/blog">back</Link>
+                <Link className="back-btn" to="/blog">back</Link>
                 <p className="title">My Profile</p>
                 <div className="round-pic">
-                <button className="label-btn">
-                    <label htmlFor="profile_picture" className="change-pic" style={ editMode ? {opacity: 1} : {backgroundColor: "white", borderRadius: "50%"}}>
-                    {/* <img className="blog-img" 
-                        src={getAvatar(user)} alt="" 
-                        style={ editMode ? {opacity: 1} : {opacity: 0.2}}/> */}
-                            <div className="blog-img" style={{"backgroundImage": `url(${getAvatar(user)})`}} alt=""></div>
-                    </label>
-                </button>
+                    <button className="label-btn">
+                        <label htmlFor="profile_picture" className="change-pic" style={ editMode ? {opacity: 1} : {backgroundColor: "white", borderRadius: "50%"}}>
+                        {/* <img className="blog-img" 
+                            src={getAvatar(user)} alt="" 
+                            style={ editMode ? {opacity: 1} : {opacity: 0.2}}/> */}
+                                <div className="blog-img" style={{"backgroundImage": `url(${getAvatar(user)})`}} alt=""></div>
+                        </label>
+                    </button>
                 </div>
-{/*                 <div className="delete">
-                    <button className="delete-btn" onClick={deleteHandler}>delete account</button>
-                </div> */}
             </div>
             <form className="right" onClick={closePopUp} onSubmit={ onSubmitHandler }>
                 <div className="personal-info">
                     <div className="names">
                         <div className="fn-label">
-                            <label htmlFor="firstname">Firstname</label>
+                            <label htmlFor="firstname">Firstname<span> *</span></label>
                             <input className="firstname" name="first_name" onChange= { userInfoChange } value = {userInfo.first_name} required placeholder="firstname" disabled={editMode}/>
                         </div>
                         <div className="ln-label">
-                            <label htmlFor="lastname">Lastname</label>
+                            <label htmlFor="lastname">Lastname<span> *</span></label>
                             <input className="lastname"  name="last_name" placeholder="lastname" onChange= { userInfoChange } value = {userInfo.last_name} required disabled={editMode}/>
                         </div>
                     </div>
                     <div className="location-box">
-                        <label htmlFor="location-label">Location</label>
+                        <label htmlFor="location-label">Location<span> *</span></label>
                         <textarea className="location" name="location" onChange= { userInfoChange } required value = {userInfo.location} disabled={editMode} placeholder="Type your address here... "/>
                     </div>
                 </div>
@@ -158,13 +159,18 @@ const Profile=()=>{
                         <input className="email"  name="email" onChange= { userInfoChange } value = {userInfo.email} placeholder="email" disabled={editMode}></input>
                     </div>
                 </div>
+                { 
+                !editMode ? 
                 <div className="footer-btn">
                     <input type="button" type="submit" className="save" disabled={editMode} value="save"/>
-                    <input type="button" className="edit" value={ editMode ? "edit" : "cancel"} onClick={ editHandler }/>
-                </div>      
+                    <input type="button" className="edit" value={"cancel"} onClick={ editHandler }/>
+                </div> 
+                : null 
+                }
+     
             </form>
             <div className="positionSettingsButton"> 
-                     {openConfig ? <PopUp settings={profileSettings}/> : ""} 
+                     {openConfig ? <PopUp className="settings-box" settings={profileSettings}/> : ""} 
                     <SettingsButton settingsButtonHandler={profileConfigurationOpenButtonHandler}/>
             </div> 
          

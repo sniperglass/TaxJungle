@@ -55,6 +55,7 @@ background-color: ${props => props.theme.text.mainColor};
     align-items: center;
     list-style: none;
     height: 45%;
+    width: 240px;
     text-decoration: none;
     /* border: 1px solid green; */
 
@@ -74,6 +75,7 @@ background-color: ${props => props.theme.text.mainColor};
             background-color: transparent;
             border-style: none;
             font-size: 15px;
+            width: 220px;;
             /* border: 1px solid blue; */
             margin-right: 10px;
             color: white;
@@ -88,13 +90,19 @@ background-color: ${props => props.theme.text.mainColor};
             }
         }
 
-        img {
-            margin-left: 10px;
-            border-radius: 50%;
-            border: 1px solid ${props => props.theme.text.mainColor};
-        }
-
 }
+
+    .avatar {
+        display: flex;
+        background-size: cover;
+        margin-left: 10px;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid ${props => props.theme.text.mainColor};
+    }
 
 .positionSettingsButton {
     position: relative;

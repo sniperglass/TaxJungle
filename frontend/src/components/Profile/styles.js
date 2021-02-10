@@ -23,10 +23,21 @@ justify-content: flex-start;
     /* border: 1px solid yellow; */
 }
 
+.back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 50px;
+/*     border: 1px solid yellow; */
+    padding-top: 50px;
+    padding-left: 50px;
+}
+
 a {
     text-decoration: none;
     color: white;
-    padding: 20px;
+
 }
 
 .title {
@@ -46,7 +57,7 @@ a {
     align-items: center;
     justify-content: flex-start;
     margin-left: 70%;
-    margin-top: 20%; 
+    margin-top: 15%; 
     /* border: 1px solid yellow; */
 }
 
@@ -88,28 +99,6 @@ input.pic-input:focus {
     /* border: 1px solid red; */
 }
 
-/* .delete {
-    margin-top: 120px;
-    display: flex;
-    justify-content: flex-start;
-    border: 1px solid yellow;
-    width: 100%;
-    height: 20px;
-}
-
-.delete-btn {
-    display: flex;
-    background-color: transparent;
-    color: white;
-    justify-content: flex-end;
-    border-style: none;
-    padding-right: 10px;
-    margin-top: 20px;
-    width: 150px;
-    height: 20px;
-    outline: none;
-} */
-
 .right {
     display: flex;
     flex-direction: column;
@@ -143,6 +132,7 @@ input.pic-input:focus {
     height: 50%;
     width: 40%;
     flex-direction: column;
+    font-size: 14px;
     /* border: 1px solid green; */
 }
 .fn-label,
@@ -152,6 +142,7 @@ input.pic-input:focus {
     height: 40%;
     width: 100%;
     flex-direction: column;
+    font-size: 13px;
     /* border: 1px solid green; */
 }
 
@@ -165,6 +156,7 @@ input.pic-input:focus {
     height: 40px;
     outline: none;
     border-radius: 8px;
+    font-size: 16px;
 }
 
 .username,
@@ -178,7 +170,7 @@ input.pic-input:focus {
     /* border: 1px solid yellow; */
     color: ${props => props.theme.text.mainColor};
     border-radius: 8px;
-
+    font-size: 16px;
 }
 
 
@@ -188,6 +180,7 @@ input.pic-input:focus {
     height: 83%;
     width: 40%;
     flex-direction: column;
+    font-size: 13px;
     /* border: 1px solid blue; */
 }
 
@@ -199,17 +192,19 @@ input.pic-input:focus {
     outline: none;
     padding: 7px;
     border-radius: 8px;
+    font-size: 16px;
 }
 
 .location::placeholder,
 .about::placeholder {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .about-box {
     width: 60%;
     height: 20%;
     display: flex;
+    font-size: 16px;
     flex-direction: column;
     /* border: 1px solid red; */
 
@@ -220,12 +215,14 @@ input.pic-input:focus {
     height: 20%;
     justify-content: space-between;
     display: flex;
+    font-size: 13px;
     /* border: 1px solid yellow; */
     outline: none;
 }
 
 .pic-input {
     opacity: 0;
+
 }
 
 .about {
@@ -236,6 +233,7 @@ input.pic-input:focus {
         border: none;
         outline: none;
         border-radius: 8px;
+        font-size: 18px;
     }
 
 
@@ -272,17 +270,19 @@ input.pic-input:focus {
 
 .positionSettingsButton {
     display: flex;
+    position: relative;
+    z-index: 99;
     flex-direction: column;
     align-items: flex-end;
     justify-content: flex-end;
     margin-top: auto;
-    margin-bottom: 30px;
+    margin-bottom: 100px;
+    padding-right: 100px;
     margin-right: 20px;
-    height: 80px;
+    height: 200px;
     width: 200px;
-    
+    /* border: 1px solid red; */
 }
-
 
 
 

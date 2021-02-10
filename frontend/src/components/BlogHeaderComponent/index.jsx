@@ -93,7 +93,7 @@ const BlogHeaderComponent = () => {
                                 {/* <Link to="/profile"> */}
                                 <button className="profile-btn" onClick={profileConfigurationOpenButtonHandler}>
                                     <li className="username" >Welcome { user.first_name}!</li>
-                                    <img src={getAvatar(user)} className="avatar" height="35px" alt="avatar"></img>
+                                    <div style={{"backgroundImage": `url(${getAvatar(user)})`}} className="avatar" height="35px" alt="avatar"></div>
                                 </button>
                                 <div className="positionSettingsButton"> 
                                     {openConfig ? <PopUp settings={profileSettings}/> : ""} 

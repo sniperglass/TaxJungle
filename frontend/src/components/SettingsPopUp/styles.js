@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const PopUpStyled = styled.section`
 
 position: absolute;
-width: 110px;
+width: 120px;
 height: auto;
 background-color: white;
 display: flex;
@@ -11,7 +11,8 @@ flex-direction: row;
 align-items: flex-end;
 justify-content: flex-end;
 margin-top: auto;
-margin-bottom: 10px;
+padding-left: 5px;
+margin-bottom: 60px;
 margin-right: 15px;
 border: 1px solid ${props => props.theme.text.mainColor};
 border-radius: 8px;
