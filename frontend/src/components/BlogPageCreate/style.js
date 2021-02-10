@@ -22,7 +22,6 @@ justify-content: flex-start;
     height: 340px;
     z-index: -1;
     top: 0;
-
     background-color: ${props => props.theme.text.mainColor};
 }
 
@@ -169,14 +168,32 @@ textarea {
     
 }
 
-.imageFile {
+/* .imageFile {
     display: flex;
     align-items: center;
     outline: none;
     white-space: nowrap;
     width: 60%;
-    height: 100%;   
+    height: 100%; */
 }
+label{
+    display: flex;
+    //align-items: center;
+    outline: none;
+    cursor: pointer;
+    align-items: center;
+    margin-right: 40%;
+    justify-content: center;
+    font-size: 10px;
+    width: 95px;
+    height: 35px;
+    background-color: ${props => props.theme.text.mainColor};
+    border: 1px solid ${props => props.theme.text.mainColor};
+    color: white;
+    border-radius: ${props => props.theme.borders.radius};
+    outline: none;
+}
+
 
 .videoFile {
     outline: none;
@@ -213,8 +230,8 @@ textarea {
     outline: none;
     
 }
-.confirmation {
-    position: absolute;
+/* .confirmation { */
+    /* position: absolute;
     background-color: ${props => props.theme.backgrounds.secondaryColor};
     width: 600px;
     height: 200px;
@@ -227,10 +244,23 @@ textarea {
     border-radius: 8px;
     box-shadow: 
         0 1px 10px rgba(0,0,0,0.3), 
-        0 0 0 1px rgba(221,221,221,0.75);
+        0 0 0 1px rgba(221,221,221,0.75); */
+    /* .confirmation {
+    background-color: white;
+    width:460px;
+    border: 1px solid black;
+    position:fixed;
+    left:50%;
+    top:50%;
+    margin:-130px 0 0 -230px;
+
+    -moz-box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+    -webkit-box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+    border-radius: ${props => props.theme.borders.radius};
     
     
-}
+} */
 .hidden{
     display: none;
 }
@@ -249,4 +279,79 @@ textarea {
     height: 20px;
     width: 20px;
 }
+
+
+#confirmOverlay{
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    background: -moz-linear-gradient(rgba(11,11,11,0.1), rgba(11,11,11,0.6)) repeat-x rgba(11,11,11,0.2);
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(11,11,11,0.1)), to(rgba(11,11,11,0.6))) repeat-x rgba(11,11,11,0.2);
+    z-index:100000;
+}
+
+#confirmBox{
+    background-color: white;
+    width:460px;
+    position:fixed;
+    left:50%;
+    top:50%;
+    margin:-130px 0 0 -230px;
+
+    -moz-box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+    -webkit-box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+    border-radius: ${props => props.theme.borders.radius};
+}
+
+#confirmBox h1,
+#confirmBox p{
+    font:26px/1 'Cuprum','Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+    background-color: white;
+    padding: 18px 25px;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+    color:#666;
+    border-radius: ${props => props.theme.borders.radius};
+}
+
+#confirmBox h1{
+    display: flex;
+    justify-content: center;
+    color:#888;
+}
+
+#confirmBox p{
+    margin-top: -20px;
+    display: flex;
+    justify-content: center;
+    background:none;
+    font-size:16px;
+    line-height:1.6;
+    padding-top: 35px;
+}
+
+#confirmButtons{
+    padding:15px 0 25px;
+    text-align:center;
+}
+
+#confirmBox .close-btn{
+    display:inline-block;
+    background-color: ${props => props.theme.text.mainColor};
+    color:white;
+    position:relative;
+    height: 33px;
+    border-radius: ${props => props.theme.borders.radius};
+
+    font:17px/33px 'Cuprum','Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+
+    margin-right: 15px;
+    padding: 0 35px 0 40px;
+    text-decoration:none;
+    border: 1px solid ${props => props.theme.text.mainColor};
+}
+
+
 `

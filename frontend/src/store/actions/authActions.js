@@ -108,7 +108,8 @@ export const updateUserAction = (userData) => {
 export const updateUser = (method, user) => async (dispatch, getState) => {
     const token = getState().authReducer.accessToken
     const headers = new Headers ({
-        'Authorization': ` Bearer ${token} `
+        'Authorization': ` Bearer ${token} `,
+        "Content-type": "application/json"
     })
 
     let config = {}

@@ -2,68 +2,46 @@ import styled from 'styled-components';
 
 export const PopUpStyled = styled.section`
 
-position: relative;
-width: 150px;
-height: auto;
-background-color: #F4F6F6;
+position: absolute;
+width: 120px;
+height: 75px;
+background-color: white;
 display: flex;
-flex-direction: row;
-align-items: flex-end;
-justify-content: flex-end;
-margin-top: auto;
-margin-bottom: 10px;
-margin-right: 15px;
-border: 1px solid #573E8C;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+margin-bottom: 60px;
+border: 1px solid ${props => props.theme.text.mainColor}; 
 border-radius: 8px;
 
-.style-component {
+
+
+.main-content {
     display: flex;
     flex-direction: column;
-    height: 120px;
-    width: 150px;
-
-    .main-content {
-    display: flex;
-    align-items: flex-start;
+    height: auto;
+    width: 118px;
+    align-items: center;
     justify-content: flex-start;
-    //flex-wrap: wrap;
-    border: 1px solid purple;
+    /* border: 1px solid green;  */
+    background-color: white;
+    border-radius: 8px;
+}
 
-    }
-} 
 
 .styling-buttons {
     display: flex;
     align-items: center;
-    background-color: #F4F6F6;
+    justify-content: center;
+    background-color: white;
     color: ${props => props.theme.text.mainColor};
-    border-radius: 4px;
+    border-radius: 8px;
+    width: 115px;
     padding: 8px;
     border: none;
     outline: none;
-    margin-right: 13px;
-}
-
-/*
-.close-button {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-end;
-    margin-bottom: 53px;
-}
-
-.x-closebutton {
-    outline: none;
-    border: none;
-}
-
-.x-button {
-    display: flex;
-    width: 20px;
-    height: 20px;
     cursor: pointer;
-} 
- */
+   /*  border: 1px solid blue; */
+}
 
 `;
