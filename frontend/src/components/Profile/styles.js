@@ -88,11 +88,11 @@ input.pic-input:focus {
     /* border: 1px solid red; */
 }
 
-.delete {
+/* .delete {
     margin-top: 120px;
     display: flex;
     justify-content: flex-start;
-    /* border: 1px solid yellow; */
+    border: 1px solid yellow;
     width: 100%;
     height: 20px;
 }
@@ -108,7 +108,7 @@ input.pic-input:focus {
     width: 150px;
     height: 20px;
     outline: none;
-}
+} */
 
 .right {
     display: flex;

@@ -24,17 +24,59 @@ background-color: transparent;
     /* border: 1px solid blue;  */
 }
 
-.closing-btn {
+.closing-modal {
     width: 95%;
-    height: 20px;
+    height: 50px;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     font-size: 20px;
     border: none;
     outline: none;
     background-color: ${props => props.theme.backgrounds.secondaryColor};
     /* border: 1px solid yellow; */
 }
+
+.closing-btn {
+    width: 50px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    background-color: ${props => props.theme.backgrounds.greyLight};
+    /* border: 1px solid green; */
+}
+
+.x-button {
+        display: flex;
+        width: 50px;
+        height: 50px;
+        font-weight: 700;
+        cursor: pointer;
+        /* border: 1px solid red; */
+    }
+
+/* .close-button {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding: 40px;
+    }
+
+    .x-closebutton {
+        outline: none;
+        border: none;
+    }
+
+    .x-button {
+        display: flex;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+    } */
 
 .main-tax-container {
     width: 95%;

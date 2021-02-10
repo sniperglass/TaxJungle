@@ -1,7 +1,7 @@
 import React from 'react';
 
 //img
-import close from '../../../assets/icons/close.svg'
+import close from '../../../assets/icons/x-icon.svg'
 import tickCircle from '../../../assets/icons/tickCircle.svg'
 
 //css
@@ -16,7 +16,9 @@ const TaxDetailsModal =()=>{
     return(
         <TaxDetailsModalStyle>
             <div className="modal-container">
-                <button type="submit" className="closing-btn"><img src={close} height="14px" width="14px" alt=""></img></button>
+                <div className="closing-modal">
+                    <button className="closing-btn" /* onClick={taxConfigOpenHandler} */><img src={close} className="x-button" alt="close" height="14px" width="14px" draggable="false" /></button>
+                </div>
                 <section className="main-tax-container">
                     <div className="left">
                         <p className="chosen-municipality">Kriens</p>
