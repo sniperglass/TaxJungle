@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import backg10 from '../../../assets/backg10.jpg'
+import backg10 from '../../../assets/background-auth.jpg'
 
 
 export const BackgroundStyle = styled.div `

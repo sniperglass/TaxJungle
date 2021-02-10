@@ -25,13 +25,14 @@ const Map = () => {
             firstRender.current = true
             return
         } 
-        // Update map and axis on state changes in taxes (execpt on mounting)
+        // Update map and axis whenever taxData changes (execpt on mounting)
         updateMap(taxData)
         updateAxis(taxData)
     }, [taxData])
 
     useEffect(() => {
         // Update search selection
+        updateMunicipalities(taxData, searchedMunicipality)
         resetSelection()
         if (searchedMunicipality) {
             selectMunicipality()
@@ -42,14 +43,15 @@ const Map = () => {
     let mapWidth = window.innerWidth, mapHeight = window.innerHeight
 
     // Axis dimensions
-    const axisWidth = 345, axisHeight = 75
+    const axisWidth = 350, axisHeight = 75
     const axisInnerWidth = 300, axisInnerHeight = 15
-    const axisMarginLeftMultiplier = 0.115
-    let axisMarginLeft = (mapHeight * mapWidth) > (550 * 550) ? mapWidth * axisMarginLeftMultiplier : -10000
-    let axisMarginBottom = mapWidth > 1000 ? 90 : 135
+    const axisPaddingLeft = -25, axisPaddingBottom = -20
+    const axisMarginLeftMultiplier = 0.11
+    let axisMarginLeft = mapWidth * axisMarginLeftMultiplier //(mapHeight * mapWidth) > (600 * 600) ? mapWidth * axisMarginLeftMultiplier : -10000
+    let axisMarginBottom = mapWidth > 1000 ? 100 : 135
 
     // Map projection, scale factor and path
-    let projection, scaleFactor = 6, path
+    let projection, scaleFactor = 7, path
 
     // Multiplier applied to tax rates for better color distribution
     const colorMultiplier = 10000
@@ -103,8 +105,8 @@ const Map = () => {
             const map = d3.select(mapRef.current)
             mapWidth = parseInt(map.style("width"))
             mapHeight = parseInt(map.style("height"))
-            axisMarginLeft = (mapHeight * mapWidth) > (550 * 550) ? mapWidth * axisMarginLeftMultiplier : -10000
-            axisMarginBottom = mapWidth > 1000 ? 90 : 135
+            axisMarginLeft = mapWidth * axisMarginLeftMultiplier //(mapHeight * mapWidth) > (550 * 550) ? mapWidth * axisMarginLeftMultiplier : -10000
+            axisMarginBottom = mapWidth > 1000 ? 100 : 135
 
             // Upate projection
             projection
@@ -154,36 +156,35 @@ const Map = () => {
 
     const updateMap = (data) => {
         updateMunicipalities(data)
+        colorizeMunicipalites(data)
         updateCantons(data)
+        colorizeCantons(data)
     }
 
-    const updateMunicipalities = (data) => {
+    const updateMunicipalities = (data, searched) => {
         if (!data) {return}
 
         d3.selectAll(".municipalities path")
             .on("mouseover", function(e, d) {
                 const mun = data.filter(m => m.gemeinde_id === d.id)[0]
                 if (!mun) { return }
-                d3.select(this)
-                    .classed("active", true)
+                d3.select(this).classed("active", true)
                 // Display tooltip
                 const rate = (mun.satz * 100).toFixed(2)
                 d3.select("#tooltip").classed("hidden", false)
                     .attr("style", "left:" + (e.pageX - 80) + "px; top:" + (e.pageY + 50) + "px")
                     .html(`${mun.gemeinde} ${rate}%`)
             })
-            .on("mouseout", function(d) {
-                d3.select(this)
-                    .classed("active",false)
-                // Hide tooltip
+            .on("mouseout", function(e, d) {
+                if (!searched || (searched.gemeinde_id !== d.id)) {
+                    d3.select(this).classed("active",false)
+                }
                 d3.select("#tooltip").classed("hidden", true)
             })
             .on("click", function(e, d) {
                 e.preventDefault()
                 // TODO: Trigger tax detail modal display
             })
-
-        colorizeMunicipalites(data)
     }
 
     const colorizeMunicipalites = (data) => {
@@ -239,8 +240,7 @@ const Map = () => {
                 return averageRate
             })
             .on("mouseover", function(e, d) {
-                d3.select(this)
-                    .classed("active",true)
+                d3.select(this).classed("active",true)
                 // Display tooltip
                 const canton = cantons[d.id]
                 const muns = data.filter(m => m.kanton_id === canton)
@@ -250,20 +250,15 @@ const Map = () => {
                     .html(`${muns[0].kanton_name} ${averageRate}% (⌀)`);
                 })
             .on("mouseout", function(d) {
-                d3.select(this)
-                    .classed("active",false)
-                // Hide tooltip
+                d3.select(this).classed("active",false)
                 d3.select("#tooltip").classed("hidden", true)
             })
             .on("click", function(e, d) {
                 e.preventDefault()
                 dispatch(searchMapAction(null))
                 colorizeCantons(data)
-                d3.select(this)
-                    .attr("style", "fill: none; stroke-width: 1.5;")
+                d3.select(this).attr("style", "fill: none; stroke-width: 1.5;")
             })
-
-        colorizeCantons(data)
     }
 
     const colorizeCantons = (data) => {
@@ -319,7 +314,9 @@ const Map = () => {
         cantonSelection.attr("style", "fill: none; stroke-width: 1.5;")
         munSelection.classed("active", true)
     
-        const bounds = munSelection.node().getBoundingClientRect()
+        const node = munSelection.node()
+        if (!node) {return}
+        const bounds = node.getBoundingClientRect()
         const x = bounds.x + bounds.width / 2
         const y = bounds.y + bounds.height / 2
         
@@ -342,12 +339,12 @@ const Map = () => {
 
         // Draw background
         d3.select(".axis").append("rect")
-            .attr("x", "-20px")
-            .attr("y", "-20px")
+            .attr("x", `${axisPaddingLeft}`)
+            .attr("y", `${axisPaddingBottom}`)
             .attr("width", axisWidth)
             .attr("height", axisHeight)
             .style("rx", "8px")
-            .style("fill", Theme.backgrounds.greyLight)
+            .style("fill", Theme.backgrounds.ternaryColor)
 
         // Draw color gradient
         d3.select(".axis-defs").append("linearGradient").attr("id", "axis").selectAll("stop")

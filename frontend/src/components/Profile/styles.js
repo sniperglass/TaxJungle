@@ -10,7 +10,7 @@ height: 100%;
 display: flex;
 justify-content: center;
 align-items: center;
-background-color:${props => props.theme.backgrounds.greyLight};
+background-color:${props => props.theme.backgrounds.secondaryColor};
 /* border: 1px solid red; */
 justify-content: flex-start;
 
@@ -164,6 +164,7 @@ input.pic-input:focus {
     width: 100%;
     height: 40px;
     outline: none;
+    border-radius: 8px;
 }
 
 .username,
@@ -176,6 +177,8 @@ input.pic-input:focus {
     height: 40px; 
     /* border: 1px solid yellow; */
     color: ${props => props.theme.text.mainColor};
+    border-radius: 8px;
+
 }
 
 
@@ -195,6 +198,12 @@ input.pic-input:focus {
     width: 100%;
     outline: none;
     padding: 7px;
+    border-radius: 8px;
+}
+
+.location::placeholder,
+.about::placeholder {
+    font-size: 14px;
 }
 
 .about-box {
@@ -226,6 +235,7 @@ input.pic-input:focus {
         height: 100px;
         border: none;
         outline: none;
+        border-radius: 8px;
     }
 
 
@@ -238,13 +248,13 @@ input.pic-input:focus {
     /* border: 1px solid red; */
 }
 
-
 .footer-btn {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     height: 10%;
     width: 400px;
+    
     /* border: 1px solid red; */
 }
 
@@ -260,4 +270,20 @@ input.pic-input:focus {
     outline: none;
 }
 
-`
+.positionSettingsButton {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-top: auto;
+    margin-bottom: 30px;
+    margin-right: 20px;
+    height: 80px;
+    width: 200px;
+    
+}
+
+
+
+
+`;

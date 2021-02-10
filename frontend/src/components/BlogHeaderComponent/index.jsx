@@ -13,7 +13,6 @@ const BlogHeaderComponent = () => {
     let category = useSelector(state => state.blogReducer.category);
     const dispatch = useDispatch();
     const location = useLocation();
-    console.log(location.blog);
     /* const history = useHistory(); */
 
     const logoutHandler = (e) => {
@@ -27,7 +26,7 @@ const BlogHeaderComponent = () => {
 
     const Title = () => {
         let location = useLocation();
-        if (location.pathname === "/blog" || location.pathname === "/blog/taxes" 
+        if (location.pathname === "/blog" || location.pathname === "/blog/search" || location.pathname === "/blog/taxes" 
                 || location.pathname === "/blog/insurance" || location.pathname === "/blog/renting" || location.pathname === "/blog/banking") {
             return (
                 <ul className="nav-center">

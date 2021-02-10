@@ -18,21 +18,17 @@ background-color: ${props => props.theme.text.mainColor};
     /* border: 1px solid blue; */
 }
 
-
-
 .nav-left {
     display: flex;
-    width: 280px;
     justify-content: space-evenly;
-    /* border: 1px solid blue; */
     list-style: none;
     text-decoration: none;
+    /* border: 1px solid blue; */
 
     a {
         color: white;
         text-decoration: none;
-    
-        padding: 22px 10px;
+        margin-left: 30px;
         &:active, &:focus, &:hover {
              text-decoration: none;
         }
@@ -55,21 +51,18 @@ background-color: ${props => props.theme.text.mainColor};
 .nav-right {
     display: flex;
     flex-direction: row;
-    padding-right: 20px;
     justify-content: space-between;
-    /* border: 1px solid green; */
     list-style: none;
     text-decoration: none;
-    width: 250px;
+    /* border: 1px solid green; */
 
     .nav-profile-info {
         display: flex;
         width: 100%;
-        padding-left: 20px;
         align-items: center;
-        /* border: 1px solid red; */
         list-style: none;
         text-decoration: none;
+        /* border: 1px solid red; */
 
         a {
             text-decoration: none;
@@ -77,9 +70,9 @@ background-color: ${props => props.theme.text.mainColor};
             justify-content: center;
             align-items: center;
             color: white;
+            margin-right: 30px;
 
             li{
-                padding: 22px 10px;
                 &:active, &:focus, &:hover {
                     outline: none;
                 }
@@ -87,6 +80,7 @@ background-color: ${props => props.theme.text.mainColor};
         }
 
         img {
+            margin-left: 10px;
             border-radius: 50%;
             border: 1px solid ${props => props.theme.text.mainColor};
         }

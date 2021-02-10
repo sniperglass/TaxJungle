@@ -22,21 +22,22 @@ background-color: white;
 .nav-left {
     display: flex;
     width: 350px;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
-    /* border: 1px solid blue; */
     list-style: none;
     text-decoration: none;
-    margin-left: 20px;
+    margin-left: 30px;
+    /* border: 1px solid blue; */
 
     button {
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 30px;
+        font-size: 24px;
         height: 30px;
         width: 30px;
-        font-weight: 300;
+        margin-right: 10px;
+        font-weight: 200;
         border-radius:8px;
         border: 1px solid ${props => props.theme.text.mainColor};
         background-color: ${props => props.theme.text.mainColor};
@@ -49,7 +50,6 @@ background-color: white;
         color: ${props => props.theme.text.mainColor};
         text-decoration: none;
     
-
         &:active, &:focus, &:hover {
              text-decoration: none;
         }
@@ -62,18 +62,17 @@ background-color: white;
     height: 100%;
     justify-content: center;
     align-items: center;
-    margin-left: 12%;
-    /* border: 2px solid yellow; */
     list-style: none;
     text-decoration: none;
+    /* border: 2px solid yellow; */
 
     a {
         color: ${props => props.theme.text.mainColor};
         text-decoration: none;
         align-items: center;
         padding-top: 12px;
-        /* border-bottom: 1px solid red; */
         height: 50px;
+        /* border-bottom: 1px solid red; */
     
         &:active, &:focus, &:hover {
              text-decoration: none;
@@ -91,10 +90,10 @@ background-color: white;
 
 .search-wrapperbox {
     height: 30px;
-    width: 42%;
+    width: 350px;
     display: flex;
     z-index: 1;
-    margin-right: 25px;
+    margin-right: 30px;
     pointer-events: none;
     justify-content: flex-end;
     /* border: 1px solid orange; */
@@ -139,6 +138,10 @@ background-color: white;
     outline: none;
     cursor: pointer;
     background:${props => props.theme.text.mainColor};
+
+    img {
+        height: 14px;
+    }
 }
 
 `

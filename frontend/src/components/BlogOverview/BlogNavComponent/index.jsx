@@ -51,7 +51,7 @@ const BlogNavComponent = () => {
                 <div className="search-wrapperbox">
                     <form onSubmit={ searchHandler } className="search-form" autoComplete="off">
                             <input id="search-input" onChange={textInputChange} value={searchText} className="search-input" type="text" placeholder="search articles..." name="search"></input>
-                            <button type="submit" className="search-btn"><img src={search} height="18px" alt=""></img></button>
+                            <button type="submit" className="search-btn"><img src={search} alt=""></img></button>
                     </form>
                 </div> 
             </header>

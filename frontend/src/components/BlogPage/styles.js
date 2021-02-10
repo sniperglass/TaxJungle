@@ -10,7 +10,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-background-color:${props => props.theme.backgrounds.greyLight};
+background-color:${props => props.theme.backgrounds.secondaryColor};
 justify-content: flex-start;
 
 .back-img {
@@ -184,7 +184,7 @@ justify-content: flex-start;
     background-color: ${props => props.theme.text.mainColor};
     border: 1px solid ${props => props.theme.text.mainColor};
     color: white;
-    border-radius: 6px;
+    border-radius: ${props => props.theme.borders.radius};
     outline: none;
     cursor: pointer;
 }
@@ -204,6 +204,7 @@ justify-content: flex-start;
         height: auto;
         background-color: white;
         margin-bottom: 10px;
+        border-radius: ${props => props.theme.borders.radius};
 
         .single-comment {
             padding: 10px;
