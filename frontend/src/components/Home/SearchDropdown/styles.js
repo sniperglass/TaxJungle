@@ -7,7 +7,6 @@ export const DropDownStyled = styled.div`
     max-height: 250px;
     background-color: rgba(255, 255, 255, 0);
 
-
     li {
         display: block;
         transition-duration: 0.5s;
@@ -41,7 +40,7 @@ export const DropDownStyled = styled.div`
 
     .dropdown {
         margin-top: 10px;  
-        box-shadow: 0 0 10px ${props => props.theme.text.mainColor};
+        box-shadow: 0 0 5px ${props => props.theme.text.mainColor};
         border-radius: 8px;
         background-color: ${props => props.theme.backgrounds.ternaryColor};
     }

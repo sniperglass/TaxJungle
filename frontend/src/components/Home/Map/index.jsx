@@ -183,7 +183,53 @@ const Map = () => {
             })
             .on("click", function(e, d) {
                 e.preventDefault()
-                // TODO: Trigger tax detail modal display
+                const mun = data.filter(m => m.gemeinde_id === d.id)[0]
+                if (!mun) { return }
+                const cantonMunsSorted = data.filter(m => m.kanton_id === mun.kanton_id).sort((m1, m2) => m1.satz - m2.satz)
+                const cantonLowestMun = cantonMunsSorted[0]
+                const cantonHighestMun = cantonMunsSorted[cantonMunsSorted.length - 1]
+                d3.select(this).classed("active", true)
+                // Display detailed tooltip
+                d3.select("#tooltip").classed("hidden", false)
+                    .attr("style", "left:" + (e.pageX - 80) + "px; top:" + (e.pageY + 50) + "px")
+                    .html(`
+                        <p>${mun.gemeinde}</p>
+                        <div class="main-row">
+                            <p>Municipal tax rate:</p>
+                            <p>${(mun.satz * 100).toFixed(2)}%</p>
+                        </div>
+                        <div class="main-row">
+                            <p>Municipal tax:</p>
+                            <p>CHF ${new Intl.NumberFormat().format(mun.gemeindesteuer.toFixed(2))}</p>
+                        </div>
+                        <div class="main-row">
+                            <p>Federal tax:</p>
+                            <p>CHF ${new Intl.NumberFormat().format(mun.kantonsteuer.toFixed(2))}</p>
+                        </div>
+                        <div class="main-row">
+                            <p>Church tax:</p>
+                            <p>CHF ${new Intl.NumberFormat().format(mun.kirchensteuer.toFixed(2))}</p>
+                        </div>
+                        <footer>
+                            <p>Cantonal comparison (${mun.kanton_id})</p>
+                            <div class="footer-subcontainer">
+                                <div class="footer-section">
+                                    <p>Lowest rate:<p/>
+                                    <div class="footer-section-sub">
+                                        <p>${cantonLowestMun.gemeinde}</p>
+                                        <p>${(cantonLowestMun.satz * 100).toFixed(2)}%</p>
+                                    </div>
+                                </div>
+                                <div class="footer-section">
+                                    <p>Highest rate:<p/>
+                                    <div class="footer-section-sub">
+                                        <p>${cantonHighestMun.gemeinde}</p>
+                                        <p>${(cantonHighestMun.satz * 100).toFixed(2)}%</p>
+                                    </div>
+                                </div>
+                            <div>
+                        </footer>
+                    `)
             })
     }
 

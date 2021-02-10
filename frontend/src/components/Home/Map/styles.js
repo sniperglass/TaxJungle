@@ -20,15 +20,74 @@ export const MapStyle = styled.div `
     font-weight: 600;
     color: ${props => props.theme.text.mainColor};
     background-color: ${props => props.theme.backgrounds.ternaryColor};
-    box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.5);  
+    box-shadow: 0 0 5px ${props => props.theme.text.mainColor};
     z-index: 999;
-}
+
+    p {
+      text-align: center;
+    }
+
+    .main-row {
+      width: 100%;
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 0.5px solid ${props => props.theme.text.mainColor};
+      font-size: 14px;
+
+      p {
+        padding: 5px 0;
+      }
+      p:first-child {
+        padding-right: 20px;
+      }
+      p:last-child {
+        font-weight: 200;
+      }
+    }
+
+    footer {
+      margin-top: 20px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      font-size: 12px;
+      
+      .footer-subcontainer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        border: none;
+      }
+
+      .footer-section {
+        width: 100%;
+        height: 100%;
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        border-bottom: 0.5px solid ${props => props.theme.text.mainColor};
+      }
+
+      .footer-section-sub {
+        width: 100%;
+        height: 100%;
+        margin-top: 5px;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
   
   .canton-boundaries {
     fill: white;
     stroke: black;
     stroke-width: 0.5;
     opacity: 80%;
+    cursor: pointer;
   }
 
   .canton-boundaries.active {
@@ -41,6 +100,7 @@ export const MapStyle = styled.div `
     fill: none;  
     stroke: black;
     stroke-width: 0.3;
+    cursor: pointer;
   }
 
   .municipality-boundaries.active {
