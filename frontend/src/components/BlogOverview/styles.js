@@ -32,7 +32,7 @@ export const BlogOverviewStyle = styled.section`
     display: flex;
     width: 100%;
     justify-content: center;
-    border: 1px solid green;
+    /* border: 1px solid green; */
 }
 
 .category-flexcontainer {
@@ -48,7 +48,7 @@ export const BlogOverviewStyle = styled.section`
     div:last-child{
         margin-right:auto;
     }
-    border: 1px solid yellow;
+    /* border: 1px solid yellow; */
 }
 
 .main-container {
