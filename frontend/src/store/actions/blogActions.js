@@ -31,18 +31,20 @@ export const fetchAllArticles = (category) => async (dispatch, getState) => {
     const config = {
         method: "GET",
     }
-
-    const response = await fetch (`${baseBackendURL}/article/${category ? "category/" + category : ""}`, config)
-    if (response.ok) {
-        const json = await response.json()
-        if (json.results) {
-            dispatch(fetchAllArticlesAction(json.results))
-            return json.results
-        } else {
-            dispatch(fetchAllArticlesAction(json))
-            return json
+    if (category !== "search") {
+        const response = await fetch (`${baseBackendURL}/article/${category ? "category/" + category : ""}`, config)
+        if (response.ok) {
+            const json = await response.json()
+            if (json.results) {
+                dispatch(fetchAllArticlesAction(json.results))
+                return json.results
+            } else {
+                dispatch(fetchAllArticlesAction(json))
+                return json
+            }
         }
     }
+   
     return null
 }
 
@@ -50,10 +52,10 @@ export const searchOnArticlesByCategory = (toSearch) => async (dispatch, getStat
     const config = {
         method: "GET",
     }
-    const response = await fetch (`${baseBackendURL}/article/?search=${toSearch}`, config)
+    const response = await fetch (`${baseBackendURL}/article/search/?search=${toSearch}`, config)
     if (response.ok) {
         const json = await response.json()
-        dispatch(fetchAllArticlesAction(json.results))
+        dispatch(fetchAllArticlesAction(json))
         return json
     }
     return null

@@ -108,7 +108,7 @@ export const updateUserAction = (userData) => {
 export const updateUser = (method, user) => async (dispatch, getState) => {
     const token = getState().authReducer.accessToken
     const headers = new Headers ({
-        'Authorization': ` Bearer ${token} `
+        'Authorization': ` Bearer ${token} `,
     })
 
     let config = {}
@@ -123,7 +123,7 @@ export const updateUser = (method, user) => async (dispatch, getState) => {
         method: method,
         headers: headers,
     }
-
+    
     const response = await fetch(`${baseBackendURL}/users/me/`, config)
     if (response.ok) {
         const userData = await response.json()

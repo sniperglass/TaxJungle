@@ -35,17 +35,8 @@ const BlogPageCreate =()=>{
         })
     }
 
-   
-
     const onSubmitHandler = e => {
         e.preventDefault()
-        setNewArticle({
-            title: '',
-            content: '',
-            article_category: 1,
-            article_video: '',
-            article_image: []
-        }) 
 
         const formData = new FormData();
         for (let i in article.article_image) {
@@ -61,6 +52,13 @@ const BlogPageCreate =()=>{
         dispatch(newArticleAction(formData, history))
         setShowConfirmation(true)
 
+        setNewArticle({
+            title: '',
+            content: '',
+            article_category: 1,
+            article_video: '',
+            article_image: []
+        }) 
     }
 
     const closeHandler = (e) => {

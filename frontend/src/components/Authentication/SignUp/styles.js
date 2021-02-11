@@ -4,6 +4,7 @@ import { FormStyle, InputStyle } from "../styles";
 
 export const SignupFormTwoStyle = styled(FormStyle) `
   p {
+    height: 40px;
     width: 70%;
     text-align: center;
     white-space: pre-line;

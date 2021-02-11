@@ -13,16 +13,18 @@ export const MainStyle = styled.main `
   width: 100%;
   flex: 1;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-`
-export const Welcome = styled.h1 `
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  p {
+    height: 60px;
     color: white;
-    margin-top: 5px;
-    margin-bottom: 50px;
+    margin-top: 40px;
+    margin-bottom: 20px;
     text-align: center;  
-    font-size: 40px;
-    /* font-weight: lighter; */
+    font-size: 14px;
+  }
 `
 
 export const FormStyle = styled.form `
@@ -36,14 +38,6 @@ export const FormStyle = styled.form `
   justify-content: flex-start;
   align-items: center;
   /* border: 1px solid green; */
-
-  p {
-    color: white;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    text-align: center;  
-    font-size: 14px;
-  }
 `
 
 export const TitleStyle = styled.h1 `
@@ -121,7 +115,7 @@ export const ButtonStyle = styled.button `
   min-height: 60px;
   max-height: 60px;
   width: 200px;
-  margin-top: auto;
+  margin-top: 40px;
   border-radius: 40px;
   border: 1px solid white;
   background-color: transparent;
