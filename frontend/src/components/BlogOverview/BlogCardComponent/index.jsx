@@ -25,7 +25,7 @@ const BlogCardComponent = (props) => {
             <div style={{"backgroundImage": `url(${props.article.article_image.length ? props.article.article_image[0].image : defaultImages[props.article.article_category.category]})`}} className="img" draggable="false" />
             <div className="text-box">
                 <p className="blog-question">{props.article.title}</p>
-                <p className="author">{`${props.article.user.first_name} ${props.article.user.last_name}`}</p>
+                <p className="author">{props.article.user ? `${props.article.user.first_name} ${props.article.user.last_name}` : ""}</p>
             </div>
             <p className="readmore">read more</p>
             </Link>  

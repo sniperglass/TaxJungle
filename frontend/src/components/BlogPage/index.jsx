@@ -80,7 +80,7 @@ const BlogPage =()=>{
                 <div className="header-info">
                     <p className="category">{article.article_category.category}</p>
                     <p className="headline">{article.title}</p>
-                    <p className="author">by {`${article.user.first_name} ${article.user.last_name}`}</p>
+                    <p className="author">by {article.user ? `${article.user.first_name} ${article.user.last_name}` : ""}</p>
                     <div className="main-content">
                         <div className="article-box">
                             <p className="article">{article.content}</p>
