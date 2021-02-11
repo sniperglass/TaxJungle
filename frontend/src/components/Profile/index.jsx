@@ -12,14 +12,12 @@ import PopUp from '../SettingsPopUp';
 import {ProfileStyle} from '../Profile/styles';
 
 const Profile=()=>{
-
     const dispatch = useDispatch();
     const history = useHistory();
     const user = useSelector(state => state.authReducer.user);
     const [openConfig, setOpenConfig] = useState(false);
     const [showConfirmation, setShowConfirmation] = useState(false) 
     const [editMode, setEditMode] = useState(true)
-
     const [userInfo, setUserInfo] = useState({
         first_name: user.first_name,
         last_name: user.last_name,
@@ -38,31 +36,30 @@ const Profile=()=>{
         setUserInfo({...userInfo, [name]: value})
     }
     
-
     const editHandler = (event) => {
         setEditMode(!editMode)
         if (event.target.value === "cancel") {
             setUserInfo({
-                first_name: "",
-                last_name: "",
-                location: "",
-                about: "",
-                username: "",
-                email: "",
-                profile_picture: ""
+                first_name: user.first_name,
+                last_name: user.last_name,
+                location: user.location,
+                about: user.about,
+                username: user.username,
+                email: user.email,
+                profile_picture: user.profile_picture
             })
         }
     };
 
     const deleteHandler = () => {
-            setShowConfirmation(true)
+        setShowConfirmation(true)
     }
 
     const yesConfirmationHandler = () => {
         setShowConfirmation(false)
-            dispatch(updateUser("DELETE", user))
-            localStorage.clear()
-            history.push("/signin")
+        dispatch(updateUser("DELETE", user))
+        localStorage.clear()
+        history.push("/signin")
     }
 
     const noConfirmationHandler = () => {
@@ -158,7 +155,7 @@ const Profile=()=>{
                     <div className="about-pic">
                         <label htmlFor="about-label">About</label>
                         <input className="pic-input" name='profile_picture' id="profile_picture" type="file" accept="image/jpeg, image/png" 
-                            multiple placeholder="Image" onChange= { userInfoChange } 
+                            placeholder="Image" onChange= { userInfoChange } 
                             disabled={editMode}/>
                     </div>
                     <textarea className="about" name="about" onChange= { userInfoChange } value = {userInfo.about} disabled={editMode} placeholder="Give more information about yourself..."/>

@@ -1,4 +1,4 @@
-import { BLOG_CATEGORY, FETCH_ALL_ARTICLES, SINGLE_ARTICLE, NEW_COMMENT, SEARCH_ARTICLE } from '../actionTypes'
+import { BLOG_CATEGORY, FETCH_ALL_ARTICLES, SINGLE_ARTICLE, /*NEW_COMMENT, SEARCH_ARTICLE*/ } from '../actionTypes'
 
 const initialState = {
     articles: [],
@@ -21,8 +21,6 @@ const blogReducer = (state = initialState, action) => {
             
         }
         case SINGLE_ARTICLE: {
-            console.log('data', action.payload)
-
             return {...state, current:action.payload}
             
         }

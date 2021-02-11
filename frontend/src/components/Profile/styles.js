@@ -356,6 +356,7 @@ input.pic-input:focus {
     padding: 0 35px 0 40px;
     text-decoration:none;
     border: 1px solid ${props => props.theme.text.mainColor};
+    cursor: pointer;
 }
 
 #confirmBox .no-btn{
@@ -372,6 +373,7 @@ input.pic-input:focus {
     padding: 0 35px 0 40px;
     text-decoration:none;
     border:none;
+    cursor: pointer;
 }
 
 

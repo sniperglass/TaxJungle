@@ -13,13 +13,18 @@ import {BlogPageStyle} from '../BlogPage/styles';
 import BlogHeaderComponent from '../../components/BlogHeaderComponent';
 
 //img
-import defaultCardImage from '../../assets/categories/defaultCardImage.jpg';
 import taxes1 from '../../assets/categories/taxes1.jpg';
+import bank3 from '../../assets/categories/bank3.jpg';
+import rent3 from '../../assets/categories/rent3.jpg';
+import insurance3 from '../../assets/categories/insurance3.jpg';
 
 //icons
 import { FacebookShareButton, FacebookIcon, EmailShareButton,
 EmailIcon, LinkedinShareButton, LinkedinIcon, TwitterShareButton, 
 TwitterIcon, WhatsappShareButton, WhatsappIcon } from "react-share";
+
+//css
+import {BlogCardCompStyle} from './styles';
 
 
 const BlogPage =()=>{
@@ -27,7 +32,12 @@ const BlogPage =()=>{
     const dispatch = useDispatch()
     const {category, id} = useParams()
     const [content, setContent] = useState('')
-
+    const defaultImages = {
+        "Taxes": taxes1,
+        "Banking": bank3,
+        "Renting": rent3,
+        "Insurance": insurance3,
+    }
 
     useEffect(() => {    
         dispatch(fetchSingleArticle(id))
@@ -37,8 +47,6 @@ const BlogPage =()=>{
     const onCommentSubmit = e => {
         e.preventDefault()
         dispatch (createCommentAction(id, content))
-        
-        // console.log(e.target.elements.content.value)
     }
 
     const getTimestamp = (dateStr) => {
@@ -67,9 +75,8 @@ const BlogPage =()=>{
             <div className="back-img"></div>
             <div className="article-info">  
                 <div className="round-pic">
-                    <div className="blog-img" style={{"backgroundImage": `url(${article.article_image.length ? article.article_image[0].image : taxes1})`}}></div>
+                    <div className="blog-img" style={{"backgroundImage": `url(${article.article_image.length ? article.article_image[0].image : defaultImages[article.article_category.category]})`}}></div>
                 </div> 
-                {/* <div className="round-pic"><img className="blog-img" src={article.article_image.length ? article.article_image[0].image : taxes1}/></div> */}
                 <div className="header-info">
                     <p className="category">{article.article_category.category}</p>
                     <p className="headline">{article.title}</p>
@@ -77,32 +84,24 @@ const BlogPage =()=>{
                     <div className="main-content">
                         <div className="article-box">
                             <p className="article">{article.content}</p>
-{/*                             <div className="image-container">
-                                <div className="uploaded-pic"></div>
-                                <div className="uploaded-pic"></div>
-                                <div className="uploaded-pic"></div>
-                                <div className="uploaded-pic"></div>
-                            </div> */}
                             { 
                              article.article_image.length  ? 
                                 <div className="image-container">
                                     {article.article_image.slice(1).map((image, index) => {
-                                        console.log("check the images", article.article_image)
                                         return <div key={index} className="uploaded-pic" style={{"backgroundImage": `url(${ image.image })`}}></div>
                                         
                                     })}
                                 </div>  : null 
                             }
-
                             {    
-                            ( article.article_video.video ) ? 
-                            (<div className="player">
-                                <ReactPlayer url={article.article_video.length ? article.article_video[0].video : ""}
-                                width="675px"
-                                height="385px"
-                                controls="true"
-                                 />
-                            </div>): null }
+                            article.article_video.length ? 
+                                <div className="player">
+                                    <ReactPlayer url={article.article_video[0].video}
+                                    width="675px"
+                                    height="385px"
+                                    controls="true"
+                                    />
+                                </div> : null }
                         </div>
                             <div className="comment-section">
                                 <div className="comment-title">Comments</div>

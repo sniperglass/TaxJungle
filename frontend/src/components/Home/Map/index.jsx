@@ -190,9 +190,9 @@ const Map = () => {
                 const cantonHighestMun = cantonMunsSorted[cantonMunsSorted.length - 1]
                 d3.select(this).classed("active", true)
                 // Display detailed tooltip
-                console.log(e.pageY)
+                const yOffset = e.pageY < mapHeight / 2 ? 50 : -375
                 d3.select("#tooltip").classed("hidden", false)
-                    .attr("style", "left:" + (e.pageX - 80) + "px; top:" + (e.pageY + 50) + "px")
+                    .attr("style", "left:" + (e.pageX - 120) + "px; top:" + (e.pageY + yOffset) + "px")
                     .html(`
                         <p>${mun.gemeinde}</p>
                         <div class="main-row">
@@ -215,14 +215,14 @@ const Map = () => {
                             <p>Cantonal comparison (${mun.kanton_id})</p>
                             <div class="footer-subcontainer">
                                 <div class="footer-section">
-                                    <p>Lowest rate:<p/>
+                                    <p>Lowest:<p/>
                                     <div class="footer-section-sub">
                                         <p>${cantonLowestMun.gemeinde}</p>
                                         <p>${(cantonLowestMun.satz * 100).toFixed(2)}%</p>
                                     </div>
                                 </div>
                                 <div class="footer-section">
-                                    <p>Highest rate:<p/>
+                                    <p>Highest:<p/>
                                     <div class="footer-section-sub">
                                         <p>${cantonHighestMun.gemeinde}</p>
                                         <p>${(cantonHighestMun.satz * 100).toFixed(2)}%</p>
