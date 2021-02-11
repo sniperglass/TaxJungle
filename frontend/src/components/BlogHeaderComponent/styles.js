@@ -127,10 +127,14 @@ background-color: ${props => props.theme.text.mainColor};
     height: 200px;
     width: 120px;
     z-index: 99;
-    padding-top: 20px;
+    top: 20px;
     margin-right: -60px;
     cursor: pointer;
     /* border: 1px solid red; */
+
+    * > div {
+        margin: 0;
+    }
 }
 
     a {

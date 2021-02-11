@@ -15,7 +15,6 @@ border: 1px solid ${props => props.theme.text.mainColor};
 border-radius: 8px;
 
 
-
 .main-content {
     display: flex;
     flex-direction: column;

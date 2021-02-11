@@ -6,6 +6,7 @@ position: absolute;
 z-index: -1;
 width: 100%;
 min-height: 100%; 
+padding-bottom: 40px;
 display: flex;
 flex-direction: column;
 justify-content: center;

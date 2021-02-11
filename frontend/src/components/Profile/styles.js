@@ -158,6 +158,11 @@ input.pic-input:focus {
     outline: none;
     border-radius: 8px;
     font-size: 16px;
+    color: ${props => props.theme.text.mainColor}
+}
+
+.firstname:disabled, .lastname:disabled {
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .username,
@@ -174,6 +179,9 @@ input.pic-input:focus {
     font-size: 16px;
 }
 
+.email:disabled, .username:disabled {
+    background-color: rgba(255, 255, 255, 0.5);
+}
 
 .location-box {
     margin-top: 10px;
@@ -194,6 +202,10 @@ input.pic-input:focus {
     padding: 7px;
     border-radius: 8px;
     font-size: 16px;
+    color: ${props => props.theme.text.mainColor}
+}
+.location:disabled {
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .location::placeholder,
@@ -208,7 +220,6 @@ input.pic-input:focus {
     font-size: 16px;
     flex-direction: column;
     /* border: 1px solid red; */
-
 }
 
 .about-pic {
@@ -223,19 +234,22 @@ input.pic-input:focus {
 
 .pic-input {
     opacity: 0;
-
 }
 
 .about {
-        margin-top: 20px;
-        padding: 7px;
-        width: 100%;
-        height: 100px;
-        border: none;
-        outline: none;
-        border-radius: 8px;
-        font-size: 16px;
-    }
+    margin-top: 20px;
+    padding: 7px;
+    width: 100%;
+    height: 100px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    font-size: 16px;
+    color: ${props => props.theme.text.mainColor}
+}
+.about:disabled {
+    background-color: rgba(255, 255, 255, 0.5);
+}
 
 
 .known-credentials {
