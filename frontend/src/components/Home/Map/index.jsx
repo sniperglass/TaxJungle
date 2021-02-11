@@ -172,8 +172,9 @@ const Map = () => {
                 d3.select(this).classed("active", true)
                 // Display tooltip
                 const rate = (mun.satz * 100).toFixed(2)
+                const yOffset = e.pageY < window.innerHeight / 2 ? 50 : -90
                 d3.select("#tooltip").classed("hidden", false)
-                    .attr("style", "left:" + (e.pageX - 80) + "px; top:" + (e.pageY + 50) + "px")
+                    .attr("style", "left:" + (e.pageX - 80) + "px; top:" + (e.pageY + yOffset) + "px")
                     .html(`${mun.gemeinde} ${rate}%`)
             })
             .on("mouseout", function(e, d) {
@@ -186,12 +187,12 @@ const Map = () => {
                 e.preventDefault()
                 const mun = data.filter(m => m.gemeinde_id === d.id)[0]
                 if (!mun) { return }
+                d3.select(this).classed("active", true)
+                // Display detailed tooltip
                 const cantonMunsSorted = data.filter(m => m.kanton_id === mun.kanton_id).sort((m1, m2) => m1.satz - m2.satz)
                 const cantonLowestMun = cantonMunsSorted[0]
                 const cantonHighestMun = cantonMunsSorted[cantonMunsSorted.length - 1]
-                d3.select(this).classed("active", true)
-                // Display detailed tooltip
-                const yOffset = e.pageY < mapHeight / 2 ? 50 : -375
+                const yOffset = e.pageY < window.innerHeight / 2 ? 50 : -375
                 d3.select("#tooltip").classed("hidden", false)
                     .attr("style", "left:" + (e.pageX - 120) + "px; top:" + (e.pageY + yOffset) + "px")
                     .html(`
@@ -293,8 +294,9 @@ const Map = () => {
                 const canton = cantons[d.id]
                 const muns = data.filter(m => m.kanton_id === canton)
                 const averageRate = (d3.select(this).attr("averageRate") * 100).toFixed(2)
+                const yOffset = e.pageY < window.innerHeight / 2 ? 50 : -90
                 d3.select("#tooltip").classed('hidden', false)
-                    .attr("style", "left:" + (e.pageX - 80) + "px; top:" + (e.pageY + 50) + "px")
+                    .attr("style", "left:" + (e.pageX - 80) + "px; top:" + (e.pageY + yOffset) + "px")
                     .html(`${muns[0].kanton_name} ${averageRate}% (⌀)`);
                 })
             .on("mouseout", function(d) {
