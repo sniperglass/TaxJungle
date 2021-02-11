@@ -18,7 +18,7 @@ const BlogNavComponent = () => {
 
     const searchHandler = (e) => {
         e.preventDefault()
-        console.log(e.target.elements.search.id, e.target.elements.search.value)
+        (e.target.elements.search.id, e.target.elements.search.value)
         dispatch(searchOnArticlesByCategory(e.target.elements.search.value)).then(result => {
             history.push('/blog/search')
         })
@@ -29,8 +29,6 @@ const BlogNavComponent = () => {
     const textInputChange = (e) => {
         const{value} = e.target;
         setsearchText(value)
-        console.log('search',e.target.value)
-
     }
 
     return(

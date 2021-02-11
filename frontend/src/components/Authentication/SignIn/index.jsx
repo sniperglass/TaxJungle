@@ -1,6 +1,7 @@
 import AuthBackground from "../AuthBackground"
 import AuthHeader from "../AuthHeader"
-import { Welcome, Layout, MainStyle, FormStyle, TitleStyle, InputFieldStyle, ButtonStyle } from "../styles"
+import { Layout, MainStyle, FormStyle, TitleStyle, InputFieldStyle, ButtonStyle } from "../styles"
+import { Welcome } from "./styles"
 import emailIcon from '../../../assets/icons/email.png';
 import lockIcon from '../../../assets/icons/lock.svg';
 import { useDispatch } from "react-redux"
@@ -50,9 +51,9 @@ const SignIn = () => {
                         </label>
                         <input id="password" name="password" type="password" placeholder="password" required />
                     </InputFieldStyle>
-                    <p>{userFeedback}</p>
                     <ButtonStyle type="submit">sign in</ButtonStyle>
                 </FormStyle>
+                <p>{userFeedback}</p>
             </MainStyle>
         </Layout>
     )

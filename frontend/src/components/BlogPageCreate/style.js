@@ -22,7 +22,6 @@ justify-content: flex-start;
     height: 340px;
     z-index: -1;
     top: 0;
-
     background-color: ${props => props.theme.text.mainColor};
 }
 

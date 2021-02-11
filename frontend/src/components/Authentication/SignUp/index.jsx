@@ -57,7 +57,7 @@ const SignUp = () => {
                         dispatch(signupStepAction(1))
                         history.push("/signin")
                     } else {
-                        let feedback = Object.keys(result).map(key => result.hasOwnProperty(key) ? result[key] : "").join(" & ")
+                        let feedback = Object.keys(result).map(key => result.hasOwnProperty(key) && key !== "password_repeat" ? result[key] : "").join(" ").split(",").join(" ")
                         setUserFeedback(feedback)
                     }
                 })
@@ -80,7 +80,6 @@ const SignUp = () => {
                                 </label>
                                 <input id="email" name="email" type="email" placeholder="email" autoComplete="email" required />
                             </InputFieldStyle>  
-                            <p>{userFeedback}</p>                          
                             <ButtonStyle>sign up</ButtonStyle>
                         </FormStyle>
                     : null
@@ -93,6 +92,7 @@ const SignUp = () => {
                                 `You've been successfully registered.
                                 Shortly you will receive an email from us with your validation code. Please click on continue and use this code to finish the registration process. After that you will be redirected and immediately able to sign in with your personal credentials.`
                             }</p>
+                            <p>{""}</p>                          
                             <ButtonStyle>continue</ButtonStyle>
                         </SignupFormTwoStyle>
                     : null
@@ -109,11 +109,11 @@ const SignUp = () => {
                                 <InputSmallStyle name="password" type="password" placeholder="Password" onChange={passwordInputHandler} required />
                                 <InputSmallStyle name="passwordrepeat" type="password" placeholder="Password repeat" onChange={passwordRepeatInputHandler} required />
                             </div>
-                            <p>{userFeedback}</p>
                             <ButtonStyle>finish registration</ButtonStyle>
                         </SignupFormThreeStyle>
                     : null
                 }
+                <p>{userFeedback}</p>
             </MainStyle>
         </Layout>
     )

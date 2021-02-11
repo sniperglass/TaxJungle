@@ -1,5 +1,3 @@
-import React from 'react';
-
 //img
 import close from '../../../assets/icons/x-icon.svg'
 import tickCircle from '../../../assets/icons/tickCircle.svg'
@@ -11,8 +9,7 @@ import {TaxDetailsModalStyle} from '../TaxDetailsModal/styles';
 import RowBoxComponent from '../../../components/Home/TaxDetailsModal/RowBoxComponent'
 
 
-const TaxDetailsModal =()=>{
-
+const TaxDetailsModal = () => {
     return(
         <TaxDetailsModalStyle>
             <div className="modal-container">
