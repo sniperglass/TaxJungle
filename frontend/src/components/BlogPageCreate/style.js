@@ -230,37 +230,7 @@ label{
     outline: none;
     
 }
-/* .confirmation { */
-    /* position: absolute;
-    background-color: ${props => props.theme.backgrounds.secondaryColor};
-    width: 600px;
-    height: 200px;
-    z-index: 99;
-    margin-top: 23%;
-    margin-left: 10%;
-    padding: 5%;
-    border: 1px solid ${props => props.theme.text.mainColor};
-    text-align: center;
-    border-radius: 8px;
-    box-shadow: 
-        0 1px 10px rgba(0,0,0,0.3), 
-        0 0 0 1px rgba(221,221,221,0.75); */
-    /* .confirmation {
-    background-color: white;
-    width:460px;
-    border: 1px solid black;
-    position:fixed;
-    left:50%;
-    top:50%;
-    margin:-130px 0 0 -230px;
 
-    -moz-box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
-    -webkit-box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
-    box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
-    border-radius: ${props => props.theme.borders.radius};
-    
-    
-} */
 .hidden{
     display: none;
 }

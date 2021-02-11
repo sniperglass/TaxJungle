@@ -23,8 +23,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     def get_amount_of_likes(self, obj):
         return obj.liked_by.all().count()
 
-
-
     class Meta:
         model = Article
         fields = '__all__'
+        # ordering = ['-created']

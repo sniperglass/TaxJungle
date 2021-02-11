@@ -5,7 +5,7 @@ from apps.article_category.models import ArticleCategory
 
 
 class Article(models.Model):
-    content = models.CharField(max_length=3000)
+    content = models.TextField()
     title = models.CharField(max_length=50, blank=False, null=True)
     article_category = models.ForeignKey(to=ArticleCategory, related_name='article',
                                          blank=False, null=True, on_delete=models.CASCADE)
