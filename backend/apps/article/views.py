@@ -32,16 +32,6 @@ class ArticleCreateView(CreateAPIView):
             article_video.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    # uploaded_images = self.context.get('request').FILES.getlist('images')
-    # if uploaded_images:
-    #     for image in uploaded_images:
-    #         article_image = ArticleImage.objects.create(
-    #             article_image=article,
-    #             image=image
-    #         )
-
-
-
 
 class PaginationView(pagination.PageNumberPagination):
     page_size = 4
@@ -54,6 +44,17 @@ class ListArticleView(ListAPIView):
     """
     serializer_class = ArticleSerializer
     pagination_class = PaginationView
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        return Article.objects.all().order_by("-created")
+
+
+class ListSearchView(ListAPIView):
+    """
+    List of all the articles in chronological order
+    """
+    serializer_class = ArticleSerializer
     search_fields = ['content', 'title']
     filter_backends = (filters.SearchFilter,)
     permission_classes = [AllowAny]

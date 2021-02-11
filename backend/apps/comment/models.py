@@ -6,7 +6,7 @@ User = get_user_model()
 
 
 class Comment(models.Model):
-    content = models.CharField(max_length=300)
+    content = models.CharField(max_length=1000)
     created = models.DateTimeField(auto_now_add=True)
     article = models.ForeignKey(to=Article, related_name="comment", on_delete=models.CASCADE)
     user = models.ForeignKey(to=User, related_name='user_comment', on_delete=models.CASCADE)
