@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 import { searchMapAction } from "../../store/actions/mapActions"
 
 //img
-import filter from '../../assets/icons/filter.svg'
-import search from '../../assets/icons/search.svg'
+import filter from '../../assets/icons/filter-inverted.svg'
+import search from '../../assets/icons/search-inverted.svg'
 import location from '../../assets/icons/location.svg'
-import close from '../../assets/icons/x-icon.svg'
+import close from '../../assets/icons/x-icon-inverted.svg'
 
 //css
 import { HomeStyle } from '../Home/styles'
@@ -83,7 +83,7 @@ const Home =()=>{
                         </div>
                     </div>
                     <div className="config-container">
-                        <button className="config-btn" onClick={taxConfigOpenHandler}><img src={filter} height="50px" className="filter" alt="change tax configuration" draggable="false" /></button>
+                        <button className="config-btn" onClick={taxConfigOpenHandler}><img src={filter} className="filter" alt="change tax configuration" draggable="false" /></button>
                         <div className="config-box">
                             <p className="category">{`Gross Income ${taxConfiguration.zivilstand !== "Single" ? "(Partner 1)" : ""}`}</p>
                             <p className="chosen-by-user">{`CHF ${new Intl.NumberFormat().format(taxConfiguration.einkommen1)}`}</p>
@@ -108,15 +108,15 @@ const Home =()=>{
                         </div>
                     </div>
                 </div>
-                <footer>
-                    {/* <div className="footer-bar-left">
+                {/* <footer>
+                    <div className="footer-bar-left">
                         <p className="made-by">made</p>
                         <p className="made-by">by</p>
                         <div className="company">
                             <p className="keen">keen</p>
                             <p className="underscore">_</p>
                         </div>
-                    </div> */}
+                    </div>
                     <div className="footer-bar-right">
                         <a href="https://taxjungle.ch/ch-en/calculation">Calculation methodology</a>
                         <a href="https://taxjungle.ch/ch-en/api">API</a>
@@ -124,7 +124,7 @@ const Home =()=>{
                         <a href="https://taxjungle.ch/ch-en/data-protection">Privacy Policy</a>
                         <a href="https://taxjungle.ch/ch-en/about">We are Keen</a>
                     </div>
-                </footer> 
+                </footer>  */}
             </HomeStyle>
         </div>
     )

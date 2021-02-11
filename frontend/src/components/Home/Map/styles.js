@@ -39,8 +39,6 @@ export const MapStyle = styled.div `
         padding-right: 20px;
         font-weight: 200;
       }
-      p:last-child {
-      }
     }
   
     footer {
@@ -78,6 +76,7 @@ export const MapStyle = styled.div `
 
         p:first-child {
           font-weight: 200;
+          padding-right: 20px;
         }
       }
     }
@@ -98,13 +97,13 @@ export const MapStyle = styled.div `
   }
   
   .municipality-boundaries {
-    fill: none;  
+    fill: none;
     stroke: black;
     stroke-width: 0.3;
     cursor: pointer;
   }
 
   .municipality-boundaries.active {
-    fill: ${props => props.theme.text.mainColor} !important;
+    fill: ${props => props.theme.backgrounds.hover} !important;
   }
 `

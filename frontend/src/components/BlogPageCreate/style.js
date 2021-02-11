@@ -6,7 +6,7 @@ export const BlogPageCreateStyle = styled.section`
 
 position: absolute;
 z-index: -1;
-width: 100vw;
+width: 100%;
 min-height: 100%; 
 display: flex;
 flex-direction: column;
@@ -168,17 +168,8 @@ textarea {
     
 }
 
-/* .imageFile {
-    display: flex;
-    align-items: center;
-    outline: none;
-    white-space: nowrap;
-    width: 60%;
-    height: 100%; */
-}
 label{
     display: flex;
-    //align-items: center;
     outline: none;
     cursor: pointer;
     align-items: center;
@@ -213,9 +204,6 @@ label{
     background-color: white;
    
 }
-
-
-
 
 .submit-btn {
     display: flex;
@@ -322,6 +310,5 @@ label{
     text-decoration:none;
     border: 1px solid ${props => props.theme.text.mainColor};
 }
-
 
 `

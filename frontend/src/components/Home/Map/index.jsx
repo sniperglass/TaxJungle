@@ -8,8 +8,8 @@ import { useSelector, useDispatch } from "react-redux"
 import { searchMapAction, fetchTaxes } from "../../../store/actions/mapActions"
 
 
+// TODO: Refactor map into own file/class (seperate from react part)
 const Map = () => {
-    // TODO: Refactor map into own file/class (seperate from react part) and make functions less coupled
     const taxData = useSelector(state => state.mapReducer.taxes)
     const searchedMunicipality = useSelector(state => state.mapReducer.searchedMunicipality)
     const dispatch = useDispatch()
@@ -46,9 +46,10 @@ const Map = () => {
     const axisWidth = 350, axisHeight = 75
     const axisInnerWidth = 300, axisInnerHeight = 15
     const axisPaddingLeft = -25, axisPaddingBottom = -20
-    const axisMarginLeftMultiplier = 0.11
+    const axisMarginLeftMultiplier = 0.065
+    const axisMarginBottomMultiplier = 0.158
     let axisMarginLeft = mapWidth * axisMarginLeftMultiplier //(mapHeight * mapWidth) > (600 * 600) ? mapWidth * axisMarginLeftMultiplier : -10000
-    let axisMarginBottom = mapWidth > 1000 ? 100 : 135
+    let axisMarginBottom = mapHeight * axisMarginBottomMultiplier
 
     // Map projection, scale factor and path
     let projection, scaleFactor = 7, path
@@ -106,7 +107,7 @@ const Map = () => {
             mapWidth = parseInt(map.style("width"))
             mapHeight = parseInt(map.style("height"))
             axisMarginLeft = mapWidth * axisMarginLeftMultiplier //(mapHeight * mapWidth) > (550 * 550) ? mapWidth * axisMarginLeftMultiplier : -10000
-            axisMarginBottom = mapWidth > 1000 ? 100 : 135
+            axisMarginBottom = mapHeight * axisMarginBottomMultiplier
 
             // Upate projection
             projection
@@ -116,7 +117,7 @@ const Map = () => {
             // Upate map
             d3.select("svg").attr("width", mapWidth).attr("height", mapHeight)
 
-            // Upate axis
+            // // Upate axis
             d3.select(".axis").attr("transform", `translate(${axisMarginLeft}, ${mapHeight - axisMarginBottom})`) 
 
             d3.selectAll("path").attr('d', path);
@@ -171,8 +172,9 @@ const Map = () => {
                 d3.select(this).classed("active", true)
                 // Display tooltip
                 const rate = (mun.satz * 100).toFixed(2)
+                const yOffset = e.pageY < window.innerHeight / 2 ? 50 : -90
                 d3.select("#tooltip").classed("hidden", false)
-                    .attr("style", "left:" + (e.pageX - 80) + "px; top:" + (e.pageY + 50) + "px")
+                    .attr("style", "left:" + (e.pageX - 80) + "px; top:" + (e.pageY + yOffset) + "px")
                     .html(`${mun.gemeinde} ${rate}%`)
             })
             .on("mouseout", function(e, d) {
@@ -185,12 +187,12 @@ const Map = () => {
                 e.preventDefault()
                 const mun = data.filter(m => m.gemeinde_id === d.id)[0]
                 if (!mun) { return }
+                d3.select(this).classed("active", true)
+                // Display detailed tooltip
                 const cantonMunsSorted = data.filter(m => m.kanton_id === mun.kanton_id).sort((m1, m2) => m1.satz - m2.satz)
                 const cantonLowestMun = cantonMunsSorted[0]
                 const cantonHighestMun = cantonMunsSorted[cantonMunsSorted.length - 1]
-                d3.select(this).classed("active", true)
-                // Display detailed tooltip
-                const yOffset = e.pageY < mapHeight / 2 ? 50 : -375
+                const yOffset = e.pageY < window.innerHeight / 2 ? 50 : -375
                 d3.select("#tooltip").classed("hidden", false)
                     .attr("style", "left:" + (e.pageX - 120) + "px; top:" + (e.pageY + yOffset) + "px")
                     .html(`
@@ -292,8 +294,9 @@ const Map = () => {
                 const canton = cantons[d.id]
                 const muns = data.filter(m => m.kanton_id === canton)
                 const averageRate = (d3.select(this).attr("averageRate") * 100).toFixed(2)
+                const yOffset = e.pageY < window.innerHeight / 2 ? 50 : -90
                 d3.select("#tooltip").classed('hidden', false)
-                    .attr("style", "left:" + (e.pageX - 80) + "px; top:" + (e.pageY + 50) + "px")
+                    .attr("style", "left:" + (e.pageX - 80) + "px; top:" + (e.pageY + yOffset) + "px")
                     .html(`${muns[0].kanton_name} ${averageRate}% (⌀)`);
                 })
             .on("mouseout", function(d) {
@@ -391,7 +394,7 @@ const Map = () => {
             .attr("width", axisWidth)
             .attr("height", axisHeight)
             .style("rx", "8px")
-            .style("fill", Theme.backgrounds.ternaryColor)
+            .style("fill", Theme.backgrounds.mainColor)
 
         // Draw color gradient
         d3.select(".axis-defs").append("linearGradient").attr("id", "axis").selectAll("stop")
@@ -439,10 +442,10 @@ const Map = () => {
         d3.selectAll(".axis .domain")
             .style("stroke", "none")
         d3.selectAll(".axis .tick line")
-            .style("stroke", Theme.text.secondaryColor)
+            .style("stroke", Theme.backgrounds.ternaryColor)
         d3.selectAll(".axis .tick text")
             .style("font-size", "12px")
-            .style("fill", Theme.text.secondaryColor) 
+            .style("fill", Theme.backgrounds.ternaryColor) 
     }
 
     return (

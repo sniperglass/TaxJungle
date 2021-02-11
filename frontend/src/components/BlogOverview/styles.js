@@ -55,7 +55,6 @@ export const BlogOverviewStyle = styled.section`
     position: relative;
     display: flex;
     margin-top: 100px;
-    /* margin: 2% 0; */
     justify-content: center;
     align-items: center;
     width: 90%;
