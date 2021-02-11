@@ -95,14 +95,14 @@ const BlogPage =()=>{
                             }
 
                             {    
-                            ( article.article_video.video ) ? 
-                            (<div className="player">
+                             article.article_video.video  ? 
+                            <div className="player">
                                 <ReactPlayer url={article.article_video.length ? article.article_video[0].video : ""}
                                 width="675px"
                                 height="385px"
                                 controls="true"
                                  />
-                            </div>): null }
+                            </div>: null }
                         </div>
                             <div className="comment-section">
                                 <div className="comment-title">Comments</div>
