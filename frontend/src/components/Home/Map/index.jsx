@@ -8,8 +8,8 @@ import { useSelector, useDispatch } from "react-redux"
 import { searchMapAction, fetchTaxes } from "../../../store/actions/mapActions"
 
 
+// TODO: Refactor map into own file/class (seperate from react part)
 const Map = () => {
-    // TODO: Refactor map into own file/class (seperate from react part) and make functions less coupled
     const taxData = useSelector(state => state.mapReducer.taxes)
     const searchedMunicipality = useSelector(state => state.mapReducer.searchedMunicipality)
     const dispatch = useDispatch()
@@ -46,8 +46,8 @@ const Map = () => {
     const axisWidth = 350, axisHeight = 75
     const axisInnerWidth = 300, axisInnerHeight = 15
     const axisPaddingLeft = -25, axisPaddingBottom = -20
-    const axisMarginLeftMultiplier = 0.11
-    const axisMarginBottomMultiplier = 0.168
+    const axisMarginLeftMultiplier = 0.065
+    const axisMarginBottomMultiplier = 0.158
     let axisMarginLeft = mapWidth * axisMarginLeftMultiplier //(mapHeight * mapWidth) > (600 * 600) ? mapWidth * axisMarginLeftMultiplier : -10000
     let axisMarginBottom = mapHeight * axisMarginBottomMultiplier
 
@@ -107,6 +107,7 @@ const Map = () => {
             mapWidth = parseInt(map.style("width"))
             mapHeight = parseInt(map.style("height"))
             axisMarginLeft = mapWidth * axisMarginLeftMultiplier //(mapHeight * mapWidth) > (550 * 550) ? mapWidth * axisMarginLeftMultiplier : -10000
+            axisMarginBottom = mapHeight * axisMarginBottomMultiplier
 
             // Upate projection
             projection
@@ -391,7 +392,6 @@ const Map = () => {
             .attr("width", axisWidth)
             .attr("height", axisHeight)
             .style("rx", "8px")
-            .style("stroke", Theme.backgrounds.ternaryColor)
             .style("fill", Theme.backgrounds.mainColor)
 
         // Draw color gradient
@@ -440,7 +440,7 @@ const Map = () => {
         d3.selectAll(".axis .domain")
             .style("stroke", "none")
         d3.selectAll(".axis .tick line")
-            .style("stroke", Theme.text.mainColor)
+            .style("stroke", Theme.backgrounds.ternaryColor)
         d3.selectAll(".axis .tick text")
             .style("font-size", "12px")
             .style("fill", Theme.backgrounds.ternaryColor) 

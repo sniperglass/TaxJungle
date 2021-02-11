@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { searchMapAction } from "../../store/actions/mapActions"
 
 //img
-import filter from '../../assets/icons/filter.svg'
+import filter from '../../assets/icons/filter-inverted.svg'
 import search from '../../assets/icons/search-inverted.svg'
 import location from '../../assets/icons/location.svg'
 import close from '../../assets/icons/x-icon-inverted.svg'
@@ -83,7 +83,7 @@ const Home =()=>{
                         </div>
                     </div>
                     <div className="config-container">
-                        <button className="config-btn" onClick={taxConfigOpenHandler}><img src={filter} height="50px" className="filter" alt="change tax configuration" draggable="false" /></button>
+                        <button className="config-btn" onClick={taxConfigOpenHandler}><img src={filter} className="filter" alt="change tax configuration" draggable="false" /></button>
                         <div className="config-box">
                             <p className="category">{`Gross Income ${taxConfiguration.zivilstand !== "Single" ? "(Partner 1)" : ""}`}</p>
                             <p className="chosen-by-user">{`CHF ${new Intl.NumberFormat().format(taxConfiguration.einkommen1)}`}</p>
