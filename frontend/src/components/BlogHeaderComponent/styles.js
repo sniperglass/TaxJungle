@@ -67,7 +67,7 @@ background-color: ${props => props.theme.text.mainColor};
         align-items: center;
         list-style: none;
         text-decoration: none;
-        /* border: 1px solid red; */
+        border: 1px solid red;
 
         .profile-btn {
             display: flex;
