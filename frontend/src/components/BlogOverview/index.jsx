@@ -15,6 +15,7 @@ const BlogOverview =()=>{
     const category = useSelector(state => state.blogReducer.category);
 
     useEffect(() => dispatch(fetchAllArticles(category)), [category]);
+
    
         return(
             <BlogOverviewStyle>

@@ -38,11 +38,16 @@ export const BlogOverviewStyle = styled.section`
 .category-flexcontainer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     padding-top: 40px;
     width: 90%;
     height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    div:last-child{
+        margin-right:auto;
+    }
     /* border: 1px solid yellow; */
 }
 

@@ -99,8 +99,8 @@ const BlogHeaderComponent = () => {
                                 </div> 
                             </div> :
                             <>
-                                <Link className="sign-btn" to="/signin"><li>sign in</li></Link>
-                                <Link className="sign-btn" to="/signup"><li>sign up</li></Link>
+                                <Link className="sign-btn1" to="/signin"><li>sign in</li></Link>
+                                <Link className="sign-btn2" to="/signup"><li>sign up</li></Link>
                             </>
                     }
                 </ul>

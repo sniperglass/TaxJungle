@@ -12,13 +12,13 @@ const BlogNavComponent = () => {
     const [searchText, setsearchText] = useState("")
     const dispatch = useDispatch()
     const history = useHistory()
+    
     const blogCategoryHandler = (e) => {
         dispatch(blogCategoryAction(e.target.id))
     }
 
     const searchHandler = (e) => {
         e.preventDefault()
-        (e.target.elements.search.id, e.target.elements.search.value)
         dispatch(searchOnArticlesByCategory(e.target.elements.search.value)).then(result => {
             history.push('/blog/search')
         })

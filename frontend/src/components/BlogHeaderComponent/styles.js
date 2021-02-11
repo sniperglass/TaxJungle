@@ -67,7 +67,6 @@ background-color: ${props => props.theme.text.mainColor};
         align-items: center;
         list-style: none;
         text-decoration: none;
-        /* border: 1px solid red; */
 
         .profile-btn {
             display: flex;
@@ -91,6 +90,21 @@ background-color: ${props => props.theme.text.mainColor};
             }
         }
 
+}
+
+.sign-btn1 {
+    display: flex;
+    justify-content: flex-end;
+    height: 40px;
+    width: 90px;
+    /* border: 1px solid blue; */
+}
+
+.sign-btn2{
+    display: flex;
+    height: 40px;
+    width: 90px;
+/*     border: 1px solid blue; */
 }
 
     .avatar {

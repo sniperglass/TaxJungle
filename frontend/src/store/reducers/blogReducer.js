@@ -24,15 +24,7 @@ const blogReducer = (state = initialState, action) => {
             return {...state, current:action.payload}
             
         }
-        // case SEARCH_ARTICLE: {
-        //     console.log('data', action.payload)
-
-        //     return {...state, search_article:action.payload}
-        // }
-        // case NEW_COMMENT: {
-        //     return {...state, comment:action.payload}
-        // }
-
+       
         default:
             return state
     }
