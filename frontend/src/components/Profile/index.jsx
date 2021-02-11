@@ -80,7 +80,10 @@ const Profile=()=>{
         formData.append('about', userInfo.about);
         formData.append('username', userInfo.username);
         formData.append('email', userInfo.email);
-        formData.append('profile_picture', userInfo.profile_picture);
+
+        if (userInfo.profile_picture && typeof userInfo.profile_picture !== "string") {
+            formData.append('profile_picture', userInfo.profile_picture);
+        }
 
         dispatch(updateUser("PATCH", formData))
     }
