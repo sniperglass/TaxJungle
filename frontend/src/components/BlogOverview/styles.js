@@ -32,18 +32,23 @@ export const BlogOverviewStyle = styled.section`
     display: flex;
     width: 100%;
     justify-content: center;
-    /* border: 1px solid green; */
+    border: 1px solid green;
 }
 
 .category-flexcontainer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     padding-top: 40px;
     width: 90%;
     height: 100%;
-    /* border: 1px solid yellow; */
+    margin-left: auto;
+    margin-right: auto;
+    div:last-child{
+        margin-right:auto;
+    }
+    border: 1px solid yellow;
 }
 
 .main-container {
