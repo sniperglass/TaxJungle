@@ -47,8 +47,9 @@ const Map = () => {
     const axisInnerWidth = 300, axisInnerHeight = 15
     const axisPaddingLeft = -25, axisPaddingBottom = -20
     const axisMarginLeftMultiplier = 0.11
+    const axisMarginBottomMultiplier = 0.15
     let axisMarginLeft = mapWidth * axisMarginLeftMultiplier //(mapHeight * mapWidth) > (600 * 600) ? mapWidth * axisMarginLeftMultiplier : -10000
-    let axisMarginBottom = mapWidth > 1000 ? 100 : 135
+    let axisMarginBottom = mapHeight * axisMarginBottomMultiplier
 
     // Map projection, scale factor and path
     let projection, scaleFactor = 7, path
@@ -106,7 +107,6 @@ const Map = () => {
             mapWidth = parseInt(map.style("width"))
             mapHeight = parseInt(map.style("height"))
             axisMarginLeft = mapWidth * axisMarginLeftMultiplier //(mapHeight * mapWidth) > (550 * 550) ? mapWidth * axisMarginLeftMultiplier : -10000
-            axisMarginBottom = mapWidth > 1000 ? 100 : 135
 
             // Upate projection
             projection
@@ -116,8 +116,8 @@ const Map = () => {
             // Upate map
             d3.select("svg").attr("width", mapWidth).attr("height", mapHeight)
 
-            // Upate axis
-            d3.select(".axis").attr("transform", `translate(${axisMarginLeft}, ${mapHeight - axisMarginBottom})`) 
+            // // Upate axis
+            // d3.select(".axis").attr("transform", `translate(${axisMarginLeft}, ${mapHeight - axisMarginBottom})`) 
 
             d3.selectAll("path").attr('d', path);
         }
@@ -391,7 +391,8 @@ const Map = () => {
             .attr("width", axisWidth)
             .attr("height", axisHeight)
             .style("rx", "8px")
-            .style("fill", Theme.backgrounds.ternaryColor)
+            .style("stroke", Theme.backgrounds.ternaryColor)
+            .style("fill", Theme.backgrounds.mainColor)
 
         // Draw color gradient
         d3.select(".axis-defs").append("linearGradient").attr("id", "axis").selectAll("stop")
@@ -439,10 +440,10 @@ const Map = () => {
         d3.selectAll(".axis .domain")
             .style("stroke", "none")
         d3.selectAll(".axis .tick line")
-            .style("stroke", Theme.text.secondaryColor)
+            .style("stroke", Theme.text.mainColor)
         d3.selectAll(".axis .tick text")
             .style("font-size", "12px")
-            .style("fill", Theme.text.secondaryColor) 
+            .style("fill", Theme.backgrounds.ternaryColor) 
     }
 
     return (

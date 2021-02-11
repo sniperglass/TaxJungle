@@ -17,7 +17,7 @@ export const HomeStyle = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color:${props => props.theme.backgrounds.ternaryColor};
+    background-color:${props => props.theme.backgrounds.mainColor};
     user-select: none;
     overflow: hidden;
     ${props => props.blur ? setBlur : ''}
@@ -53,7 +53,7 @@ export const HomeStyle = styled.section`
 .main-title {
     height: auto;
     font-size: 26px;
-    color:${props => props.theme.text.mainColor};
+    color:${props => props.theme.backgrounds.ternaryColor};
     z-index: 1;
     pointer-events: none;
     display: flex;
@@ -82,10 +82,10 @@ export const HomeStyle = styled.section`
     align-items: center;
     height: 50px;
     width: 340px;
-    color:${props => props.theme.text.mainColor};
+    color:${props => props.theme.backgrounds.ternaryColor};
     background-color:${props => props.theme.backgrounds.ternaryColor};
     border-radius: 8px;
-    border: 1px solid ${props => props.theme.text.mainColor};
+    border: 1px solid ${props => props.theme.backgrounds.ternaryColor};
     pointer-events: initial;
     position: relative;
     /* border: 1px solid red; */
@@ -122,28 +122,28 @@ export const HomeStyle = styled.section`
     height: 100%;
     width: 50px;
     border: none;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     outline: none;
     cursor: pointer;
-    background: ${props => props.theme.text.mainColor};
+    background: ${props => props.theme.text.ternaryColor};
 }
 
 .close-btn {
     height: 100%;
     width: 50px;
     border: none;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     outline: none;
     cursor: pointer;
-    background: ${props => props.theme.backgrounds.mainColor};
+    background: ${props => props.theme.text.ternaryColor};
     overflow: hidden;
 
     img {
@@ -160,7 +160,7 @@ export const HomeStyle = styled.section`
     margin-bottom: auto;
     padding-top: 10px;
     align-items: flex-end;
-    justify-content: flex-start;
+    justify-content: space-between;
     pointer-events: none;
     /* border: 1px solid red; */
 
@@ -173,12 +173,17 @@ export const HomeStyle = styled.section`
     height: 50px;
     width: 50px;
     margin-bottom: 10px;
-    border-radius: 12px;
     border: none;
     outline: none;
+    border-radius: 12px;
     z-index: 1;
     cursor: pointer;
     pointer-events: initial;
+
+    img {
+        border: 1px solid ${props => props.theme.backgrounds.ternaryColor};
+        border-radius: 8px;
+    }
 }
 
 .config-box {
@@ -194,19 +199,19 @@ export const HomeStyle = styled.section`
 
 .category {
     font-size: 12px;
-    color:${props => props.theme.text.mainColor};
+    color:${props => props.theme.backgrounds.ternaryColor};
 }
 
 .chosen-by-user {
     font-size: 16px;
-    color:${props => props.theme.text.mainColor};
+    color:${props => props.theme.backgrounds.ternaryColor};
     font-weight: 500;
 }
 
 .blog-link-container {
     width: 100%;
     margin-top: auto;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     display: flex;
     pointer-events: none;
     z-index: 1;
@@ -215,7 +220,7 @@ export const HomeStyle = styled.section`
     p {
         margin: 10px 0;
         text-align: right;
-        color: ${props => props.theme.text.mainColor};
+        color:${props => props.theme.backgrounds.ternaryColor};
 
         span {
             font-weight: bold;
@@ -232,18 +237,17 @@ export const HomeStyle = styled.section`
         align-items: center;
         font-weight: bold;
         font-size: 24px;
-        color: ${props => props.theme.text.mainColor};
+        color:${props => props.theme.backgrounds.ternaryColor};
     }
 }
 
-footer {
+/* footer {
     display: flex;
     width: 80%;
     justify-content: flex-end;
     align-items: center;
-    /* border: 1px solid red; */
 
-    /* .footer-bar-left {
+    .footer-bar-left {
         display: flex;
         justify-content: space-evenly;
         width: 140px;
@@ -264,7 +268,7 @@ footer {
         .underscore {
             color: #9BC36C;
         }
-    } */
+    }
 
     .footer-bar-right {
         max-width: 100%;
@@ -272,7 +276,6 @@ footer {
         font-size: 12px;
         justify-content: space-between;
         align-items: center;
-        /* border: 1px solid green; */
 
         a {
             z-index: 99;
@@ -288,5 +291,5 @@ footer {
             color: ${props => props.theme.text.secondaryColor};
         }
     }
-}
+} */
 `

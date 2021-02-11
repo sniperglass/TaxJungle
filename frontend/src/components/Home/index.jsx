@@ -108,15 +108,15 @@ const Home =()=>{
                         </div>
                     </div>
                 </div>
-                <footer>
-                    {/* <div className="footer-bar-left">
+                {/* <footer>
+                    <div className="footer-bar-left">
                         <p className="made-by">made</p>
                         <p className="made-by">by</p>
                         <div className="company">
                             <p className="keen">keen</p>
                             <p className="underscore">_</p>
                         </div>
-                    </div> */}
+                    </div>
                     <div className="footer-bar-right">
                         <a href="https://taxjungle.ch/ch-en/calculation">Calculation methodology</a>
                         <a href="https://taxjungle.ch/ch-en/api">API</a>
@@ -124,7 +124,7 @@ const Home =()=>{
                         <a href="https://taxjungle.ch/ch-en/data-protection">Privacy Policy</a>
                         <a href="https://taxjungle.ch/ch-en/about">We are Keen</a>
                     </div>
-                </footer> 
+                </footer>  */}
             </HomeStyle>
         </div>
     )
