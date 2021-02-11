@@ -5,9 +5,9 @@ import { searchMapAction } from "../../store/actions/mapActions"
 
 //img
 import filter from '../../assets/icons/filter.svg'
-import search from '../../assets/icons/search.svg'
+import search from '../../assets/icons/search-inverted.svg'
 import location from '../../assets/icons/location.svg'
-import close from '../../assets/icons/x-icon.svg'
+import close from '../../assets/icons/x-icon-inverted.svg'
 
 //css
 import { HomeStyle } from '../Home/styles'

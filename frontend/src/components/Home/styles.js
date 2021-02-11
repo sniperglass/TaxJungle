@@ -83,11 +83,12 @@ export const HomeStyle = styled.section`
     height: 50px;
     width: 340px;
     color:${props => props.theme.backgrounds.ternaryColor};
-    background-color:${props => props.theme.backgrounds.ternaryColor};
     border-radius: 8px;
-    border: 1px solid ${props => props.theme.backgrounds.ternaryColor};
     pointer-events: initial;
     position: relative;
+    border: 1px solid ${props => props.theme.backgrounds.ternaryColor};
+    background-color:${props => props.theme.backgrounds.mainColor};
+
     /* border: 1px solid red; */
     
     div {
@@ -104,46 +105,46 @@ export const HomeStyle = styled.section`
 }
 
 .search-input {
-    height: 45px;
+    height: 100%;
     width: 260px;
     font-size: 16px;
-    color:${props => props.theme.text.mainColor};
-    background-color:${props => props.theme.backgrounds.ternaryColor};
-    border: none;
+    color:${props => props.theme.backgrounds.ternaryColor};
+    background-color:${props => props.theme.backgrounds.mainColor};
     outline: none;
+    border: none;
     /* border: 1px solid yellow; */
 }
 
 .search-input::placeholder {
-    color:${props => props.theme.text.mainColor};
+    color:${props => props.theme.backgrounds.ternaryColor};
 }
 
 .search-btn {
     height: 100%;
     width: 50px;
     border: none;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     outline: none;
     cursor: pointer;
-    background: ${props => props.theme.text.ternaryColor};
+    background: ${props => props.theme.backgrounds.ternaryColor};
 }
 
 .close-btn {
     height: 100%;
     width: 50px;
     border: none;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     outline: none;
     cursor: pointer;
-    background: ${props => props.theme.text.ternaryColor};
+    background: ${props => props.theme.backgrounds.ternaryColor};
     overflow: hidden;
 
     img {

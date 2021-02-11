@@ -47,7 +47,7 @@ const Map = () => {
     const axisInnerWidth = 300, axisInnerHeight = 15
     const axisPaddingLeft = -25, axisPaddingBottom = -20
     const axisMarginLeftMultiplier = 0.11
-    const axisMarginBottomMultiplier = 0.15
+    const axisMarginBottomMultiplier = 0.168
     let axisMarginLeft = mapWidth * axisMarginLeftMultiplier //(mapHeight * mapWidth) > (600 * 600) ? mapWidth * axisMarginLeftMultiplier : -10000
     let axisMarginBottom = mapHeight * axisMarginBottomMultiplier
 
@@ -117,7 +117,7 @@ const Map = () => {
             d3.select("svg").attr("width", mapWidth).attr("height", mapHeight)
 
             // // Upate axis
-            // d3.select(".axis").attr("transform", `translate(${axisMarginLeft}, ${mapHeight - axisMarginBottom})`) 
+            d3.select(".axis").attr("transform", `translate(${axisMarginLeft}, ${mapHeight - axisMarginBottom})`) 
 
             d3.selectAll("path").attr('d', path);
         }
