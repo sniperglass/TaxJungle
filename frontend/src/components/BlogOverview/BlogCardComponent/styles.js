@@ -53,7 +53,7 @@ a {
 .text-box {
     display: flex;
     width: 80%;
-    height: 45%;
+    height: 50%;
     flex-direction: column;
     justify-content: space-evenly;
     /* border: 1px solid orange; */
@@ -64,7 +64,13 @@ a {
     }
 
     .author {
+        margin-top: 20px;
+        margin-bottom: 5px;
         color:${props => props.theme.text.mainColor};
+    }
+
+    .created {
+        font-size: 12px;
     }
 }
 
@@ -72,8 +78,6 @@ a {
     display: flex;
     justify-content: flex-end;
     width: 80%;
-    /* border: 1px solid red; */
 }
-
 
 `

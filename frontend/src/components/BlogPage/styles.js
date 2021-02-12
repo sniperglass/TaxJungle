@@ -103,6 +103,7 @@ justify-content: flex-start;
     width: 90%;
     height: auto;
     text-align: justify;
+    white-space: pre-wrap; 
     /* border: 1px solid red; */
 }
 
